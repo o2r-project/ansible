@@ -1,0 +1,5 @@
+---
+proxy:
+  enabled: yes
+  http_proxy: http://ip:port
+  https_proxy: http://ip:port

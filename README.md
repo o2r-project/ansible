@@ -15,6 +15,11 @@ make
 
 Bei Fragen: [https://o2r.slack.com/messages/server/](https://o2r.slack.com/messages/server/)
 
+## Configuration files to edit for this playbook to work
+
+- `provisioning/group_vars/all/vars.yml.template` - rename to `vars.yml` and put in the proxy server for public web access
+- `provisioning/host_vars/ubsvirt148.uni-muenster.de/vault.yml` - the vault file for the main host
+
 ## Enthaltene services
 
 Die Konfiguration erfolgt mittels Ansible (`>= 2.0`), und richtet den Server mit folgender Software ein.
