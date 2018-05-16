@@ -1,0 +1,24 @@
+[Unit]
+Description=o2r shipper
+
+[Service]
+Restart=always
+RestartSec=10s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{shipper_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{shipper_role.container.name}}" \
+  -v "{{shipper_role.config.basepath}}:/tmp/o2r" \
+  -e "SHIPPER_MONGODB=mongodb://{{shipper_role.config.mongo_host}}:{{shipper_role.config.mongo_port}}/" \
+  -e "SHIPPER_MONGO_NAME={{shipper_role.config.mongo_database}}" \
+  -e "SHIPPER_BOTTLE_HOST={{shipper_role.config.bottle_host}}" \
+  -e "SHIPPER_SECRET={{shipper_role.config.sessionsecret}}" \
+  -e SHIPPER_REPO_TOKENS="{\\"zenodo_sandbox\\": \\"{{shipper_role.config.zenodo_sandbox.token}}\\", \\"download\\": \\"none\\" }" \
+  -e "SHIPPER_BOTTLE_PORT=8087" \
+  -p "{{shipper_role.config.port}}:8087" \
+  "{{shipper_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{shipper_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{shipper_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

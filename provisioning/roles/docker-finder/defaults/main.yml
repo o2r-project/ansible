@@ -1,0 +1,15 @@
+---
+finder_role:
+  config:
+    basepath: "/data/docker/o2r"
+    port: 8084
+    mongo_url: "mongodb://{{mongo_host}}/"
+    mongo_database: "{{mongo_database}}"
+    mongo_database_url: "mongodb://{{mongo_host}}/{{mongo_database}}"
+    elasticsearch_endpoint: "{{elasticsearch_endpoint}}"
+    elasticsearch_index: "{{elasticsearch_index}}"
+    elasticsearch_container_name: "elasticsearch"
+    sync_batch_count: 20
+  container:
+    image: "o2rproject/o2r-finder:0.6.0"
+    name: o2r-finder

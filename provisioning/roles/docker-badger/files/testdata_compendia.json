@@ -1,0 +1,3362 @@
+[
+    {
+        "_id": ObjectId("599aeddc955d820010a87e57"),
+        "createdAt": ISODate("2017-08-21T14:27:40.323Z"),
+        "updatedAt": ISODate("2017-08-21T14:27:40.323Z"),
+        "id": "XiQu8_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Analysis of Properties of Reflectance Reference Targets for Permanent Radiometric Test Sites of High Resolution Airborne Imaging Systems",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "MIT",
+                        "text": "CC0-1.0",
+                        "data": "CC0-1.0",
+                        "code": "MIT"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "Eero Ahokas",
+                            "affiliation": "University of Nowhere1"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "XiQu8_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Analysis of Properties of Reflectance Reference Targets for Permanent Radiometric Test Sites of High Resolution Airborne Imaging Systems",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            21.9451904296875,
+                                            59.99898612060444
+                                        ],
+                                        [
+                                            23.038330078125,
+                                            59.99898612060444
+                                        ],
+                                        [
+                                            23.038330078125,
+                                            60.53837217051857
+                                        ],
+                                        [
+                                            21.9451904296875,
+                                            60.53837217051857
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    21.9451904296875,
+                                    59.99898612060444,
+                                    23.038330078125,
+                                    59.99898612060444
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "XiQu8_demo/data/testshapefiles_finland/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    21.9451904296875,
+                                                    59.99898612060444
+                                                ],
+                                                [
+                                                    23.038330078125,
+                                                    60.53837217051857
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        21.9451904296875,
+                                        59.99898612060444,
+                                        23.038330078125,
+                                        60.53837217051857
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.3390/rs2081892",
+                    "doi": "10.3390/rs2081892"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "XiQu8_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "XiQu8_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0003-0484-8597",
+                        "name": "Eero Ahokas",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Nowhere1",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "XiQu8_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Analysis of Properties of Reflectance Reference Targets for Permanent Radiometric Test Sites of High Resolution Airborne Imaging Systems",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            21.9451904296875,
+                                            59.99898612060444
+                                        ],
+                                        [
+                                            23.038330078125,
+                                            59.99898612060444
+                                        ],
+                                        [
+                                            23.038330078125,
+                                            60.53837217051857
+                                        ],
+                                        [
+                                            21.9451904296875,
+                                            60.53837217051857
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    21.9451904296875,
+                                    59.99898612060444,
+                                    23.038330078125,
+                                    59.99898612060444
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "XiQu8_demo/data/testshapefiles_finland/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    21.9451904296875,
+                                                    59.99898612060444
+                                                ],
+                                                [
+                                                    23.038330078125,
+                                                    60.53837217051857
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        21.9451904296875,
+                                        59.99898612060444,
+                                        23.038330078125,
+                                        60.53837217051857
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": null,
+                    "text": "cc-by",
+                    "data": null,
+                    "code": null
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.3390/rs2081892",
+                    "doi": "10.3390/rs2081892"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "XiQu8_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "XiQu8_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0003-0484-8597",
+                        "name": "Eero Ahokas",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Nowhere1",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:27:40.282Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aeebf955d820010a87e58"),
+        "createdAt": ISODate("2017-08-21T14:31:27.377Z"),
+        "updatedAt": ISODate("2017-08-21T14:31:27.377Z"),
+        "id": "mQryh_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Global Air Quality and Pollution",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "GPL-3.0",
+                        "text": "CC-BY-NC-4.0",
+                        "data": "CC-BY-NC-4.0",
+                        "code": "GPL-3.0"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "Hajime Akimoto",
+                            "affiliation": "University of Munster"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "mQryh_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Global Air Quality and Pollution",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            6.532745361328125,
+                                            51.205162601119824
+                                        ],
+                                        [
+                                            7.551727294921875,
+                                            51.205162601119824
+                                        ],
+                                        [
+                                            7.551727294921875,
+                                            51.5463350479341
+                                        ],
+                                        [
+                                            6.532745361328125,
+                                            51.5463350479341
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    6.532745361328125,
+                                    51.205162601119824,
+                                    7.551727294921875,
+                                    51.205162601119824
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "mQryh_demo/data/testshapefiles_ruhr/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    6.532745361328125,
+                                                    51.205162601119824
+                                                ],
+                                                [
+                                                    7.551727294921875,
+                                                    51.5463350479341
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        6.532745361328125,
+                                        51.205162601119824,
+                                        7.551727294921875,
+                                        51.5463350479341
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "GPL-3.0",
+                    "text": "CC-BY-NC-4.0",
+                    "data": "CC-BY-NC-4.0",
+                    "code": "GPL-3.0"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1126/science.1092666",
+                    "doi": "10.1126/science.1092666"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "mQryh_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "mQryh_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Hajime Akimoto",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "mQryh_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Global Air Quality and Pollution",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            6.532745361328125,
+                                            51.205162601119824
+                                        ],
+                                        [
+                                            7.551727294921875,
+                                            51.205162601119824
+                                        ],
+                                        [
+                                            7.551727294921875,
+                                            51.5463350479341
+                                        ],
+                                        [
+                                            6.532745361328125,
+                                            51.5463350479341
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    6.532745361328125,
+                                    51.205162601119824,
+                                    7.551727294921875,
+                                    51.205162601119824
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "mQryh_demo/data/testshapefiles_ruhr/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    6.532745361328125,
+                                                    51.205162601119824
+                                                ],
+                                                [
+                                                    7.551727294921875,
+                                                    51.5463350479341
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        6.532745361328125,
+                                        51.205162601119824,
+                                        7.551727294921875,
+                                        51.5463350479341
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "GPL-3.0",
+                    "text": "CC-BY-NC-4.0",
+                    "data": "CC-BY-NC-4.0",
+                    "code": "GPL-3.0"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1126/science.1092666",
+                    "doi": "10.1126/science.1092666"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "mQryh_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "mQryh_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Hajime Akimoto",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:31:27.376Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aeed3955d820010a87e59"),
+        "createdAt": ISODate("2017-08-21T14:31:47.624Z"),
+        "updatedAt": ISODate("2017-08-21T14:31:47.624Z"),
+        "id": "Ks1Bc_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Review of the Governing Equations, Computational Algorithms, and Other Components of the Models-3 Community Multiscale Air Quality (CMAQ) Modeling System",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "MIT",
+                        "text": "CC0-1.0",
+                        "data": "CC0-1.0",
+                        "code": "MIT"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "Daewon Byun",
+                            "affiliation": "University of Munster"
+                        },
+                        {
+                            "name": "Carl Connauthora",
+                            "affiliation": "N.O.N.E"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "Ks1Bc_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Review of the Governing Equations, Computational Algorithms, and Other Components of the Models-3 Community Multiscale Air Quality (CMAQ) Modeling System",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            20.214843749999996,
+                                            -1.0216743684873772
+                                        ],
+                                        [
+                                            21.3134765625,
+                                            -1.0216743684873772
+                                        ],
+                                        [
+                                            21.3134765625,
+                                            0.3076157096439005
+                                        ],
+                                        [
+                                            20.214843749999996,
+                                            0.3076157096439005
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    20.214843749999996,
+                                    -1.0216743684873772,
+                                    21.3134765625,
+                                    -1.0216743684873772
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "Ks1Bc_demo/data/testshapefiles_kongo/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    20.214843749999996,
+                                                    -1.0216743684873772
+                                                ],
+                                                [
+                                                    21.3134765625,
+                                                    0.3076157096439005
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        20.214843749999996,
+                                        -1.0216743684873772,
+                                        21.3134765625,
+                                        0.3076157096439005
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://dx.doi.org/10.1115/1.2128636",
+                    "doi": "10.1115/1.2128636"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "Ks1Bc_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "Ks1Bc_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Daewon Byun",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0001-7116-9717",
+                        "name": "Carl Connauthora",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "Ks1Bc_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "This is the title: it contains a colon",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            20.214843749999996,
+                                            -1.0216743684873772
+                                        ],
+                                        [
+                                            21.3134765625,
+                                            -1.0216743684873772
+                                        ],
+                                        [
+                                            21.3134765625,
+                                            0.3076157096439005
+                                        ],
+                                        [
+                                            20.214843749999996,
+                                            0.3076157096439005
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    20.214843749999996,
+                                    -1.0216743684873772,
+                                    21.3134765625,
+                                    -1.0216743684873772
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "Ks1Bc_demo/data/testshapefiles_kongo/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    20.214843749999996,
+                                                    -1.0216743684873772
+                                                ],
+                                                [
+                                                    21.3134765625,
+                                                    0.3076157096439005
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        20.214843749999996,
+                                        -1.0216743684873772,
+                                        21.3134765625,
+                                        0.3076157096439005
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://dx.doi.org/10.1115/1.2128636",
+                    "doi": "10.1115/1.2128636"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "Ks1Bc_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "Ks1Bc_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Daewon Byun",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0001-7116-9717",
+                        "name": "Carl Connauthora",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:31:47.623Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aeeec955d820010a87e5a"),
+        "createdAt": ISODate("2017-08-21T14:32:12.365Z"),
+        "updatedAt": ISODate("2017-08-21T14:32:12.365Z"),
+        "id": "NBwzf_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Air Conditioning Compressor Air Leak Detection by Image Processing Techniques for Industrial Applications",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "GPL-3.0",
+                        "text": "CC-BY-NC-4.0",
+                        "data": "CC-BY-NC-4.0",
+                        "code": "GPL-3.0"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "Pookongchai Kritsada",
+                            "affiliation": "University of Munster"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "NBwzf_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Air Conditioning Compressor Air Leak Detection by Image Processing Techniques for Industrial Applications",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            98.98956298828125,
+                                            9.148197713142977
+                                        ],
+                                        [
+                                            99.2010498046875,
+                                            9.148197713142977
+                                        ],
+                                        [
+                                            99.2010498046875,
+                                            9.565542635823142
+                                        ],
+                                        [
+                                            98.98956298828125,
+                                            9.565542635823142
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    98.98956298828125,
+                                    9.148197713142977,
+                                    99.2010498046875,
+                                    9.148197713142977
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "NBwzf_demo/data/shapefiles_thailand/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    98.98956298828125,
+                                                    9.148197713142977
+                                                ],
+                                                [
+                                                    99.2010498046875,
+                                                    9.565542635823142
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        98.98956298828125,
+                                        9.148197713142977,
+                                        99.2010498046875,
+                                        9.565542635823142
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "GPL-3.0",
+                    "text": "CC-BY-NC-4.0",
+                    "data": "CC-BY-NC-4.0",
+                    "code": "GPL-3.0"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1051/matecconf/20152603010",
+                    "doi": "10.1051/matecconf/20152603010"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "NBwzf_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "NBwzf_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Pookongchai Kritsada",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "NBwzf_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Air Conditioning Compressor Air Leak Detection by Image Processing Techniques for Industrial Applications",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            98.98956298828125,
+                                            9.148197713142977
+                                        ],
+                                        [
+                                            99.2010498046875,
+                                            9.148197713142977
+                                        ],
+                                        [
+                                            99.2010498046875,
+                                            9.565542635823142
+                                        ],
+                                        [
+                                            98.98956298828125,
+                                            9.565542635823142
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    98.98956298828125,
+                                    9.148197713142977,
+                                    99.2010498046875,
+                                    9.148197713142977
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "NBwzf_demo/data/shapefiles_thailand/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    98.98956298828125,
+                                                    9.148197713142977
+                                                ],
+                                                [
+                                                    99.2010498046875,
+                                                    9.565542635823142
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        98.98956298828125,
+                                        9.148197713142977,
+                                        99.2010498046875,
+                                        9.565542635823142
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "GPL-3.0",
+                    "text": "CC-BY-NC-4.0",
+                    "data": "CC-BY-NC-4.0",
+                    "code": "GPL-3.0"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1051/matecconf/20152603010",
+                    "doi": "10.1051/matecconf/20152603010"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "NBwzf_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "NBwzf_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": null,
+                        "name": "Pookongchai Kritsada",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:32:12.364Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aef06955d820010a87e5b"),
+        "createdAt": ISODate("2017-08-21T14:32:38.545Z"),
+        "updatedAt": ISODate("2017-08-21T14:32:38.545Z"),
+        "id": "0ShuS_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Environmental quality and development: is there a Kuznets curve for air pollution",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "MIT",
+                        "text": "CC0-1.0",
+                        "data": "CC0-1.0",
+                        "code": "MIT"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "Thomas M. Selden",
+                            "affiliation": "University of Munster"
+                        },
+                        {
+                            "name": "Daqing Song",
+                            "affiliation": "N.O.N.E"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "0ShuS_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Environmental quality and development: is there a Kuznets curve for air pollution",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            -54.36584472656249,
+                                            -8.836223192538503
+                                        ],
+                                        [
+                                            -53.06396484374999,
+                                            -8.836223192538503
+                                        ],
+                                        [
+                                            -53.06396484374999,
+                                            -8.059229627200192
+                                        ],
+                                        [
+                                            -54.36584472656249,
+                                            -8.059229627200192
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    -54.36584472656249,
+                                    -8.836223192538503,
+                                    -53.06396484374999,
+                                    -8.836223192538503
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "0ShuS_demo/data/testshapefiles_brazil/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    -54.36584472656249,
+                                                    -8.836223192538503
+                                                ],
+                                                [
+                                                    -53.06396484374999,
+                                                    -8.059229627200192
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        -54.36584472656249,
+                                        -8.836223192538503,
+                                        -53.06396484374999,
+                                        -8.059229627200192
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1006/jeem.1994.1031",
+                    "doi": "10.1006/jeem.1994.1031"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "0ShuS_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "0ShuS_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0003-2699-3031",
+                        "name": "Thomas M. Selden",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0002-6943-9682",
+                        "name": "Daqing Song",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "0ShuS_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Environmental quality and development: is there a Kuznets curve for air pollution",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            -54.36584472656249,
+                                            -8.836223192538503
+                                        ],
+                                        [
+                                            -53.06396484374999,
+                                            -8.836223192538503
+                                        ],
+                                        [
+                                            -53.06396484374999,
+                                            -8.059229627200192
+                                        ],
+                                        [
+                                            -54.36584472656249,
+                                            -8.059229627200192
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    -54.36584472656249,
+                                    -8.836223192538503,
+                                    -53.06396484374999,
+                                    -8.836223192538503
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "0ShuS_demo/data/testshapefiles_brazil/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    -54.36584472656249,
+                                                    -8.836223192538503
+                                                ],
+                                                [
+                                                    -53.06396484374999,
+                                                    -8.059229627200192
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        -54.36584472656249,
+                                        -8.836223192538503,
+                                        -53.06396484374999,
+                                        -8.059229627200192
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1006/jeem.1994.1031",
+                    "doi": "10.1006/jeem.1994.1031"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "0ShuS_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "0ShuS_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0003-2699-3031",
+                        "name": "Thomas M. Selden",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0002-6943-9682",
+                        "name": "Daqing Song",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:32:38.544Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aef19955d820010a87e5c"),
+        "createdAt": ISODate("2017-08-21T14:32:57.735Z"),
+        "updatedAt": ISODate("2017-08-21T14:32:57.735Z"),
+        "id": "NJ3Pb_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "Goldenhar syndrome: a cause of secondary immunodeficiency?",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "MIT",
+                        "text": "CC0-1.0",
+                        "data": "CC0-1.0",
+                        "code": "MIT"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "De Golovine Serge",
+                            "affiliation": "University of Munster"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "NJ3Pb_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Goldenhar syndrome: a cause of secondary immunodeficiency?",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            -95.77880859375,
+                                            29.386961521657504
+                                        ],
+                                        [
+                                            -94.85595703125,
+                                            29.386961521657504
+                                        ],
+                                        [
+                                            -94.85595703125,
+                                            30.164126343161097
+                                        ],
+                                        [
+                                            -95.77880859375,
+                                            30.164126343161097
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    -95.77880859375,
+                                    29.386961521657504,
+                                    -94.85595703125,
+                                    29.386961521657504
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "NJ3Pb_demo/data/shapefiles_texas/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    -95.77880859375,
+                                                    29.386961521657504
+                                                ],
+                                                [
+                                                    -94.85595703125,
+                                                    30.164126343161097
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        -95.77880859375,
+                                        29.386961521657504,
+                                        -94.85595703125,
+                                        30.164126343161097
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1186/1710-1492-8-10",
+                    "doi": "10.1186/1710-1492-8-10"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "NJ3Pb_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "NJ3Pb_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0002-5695-2081",
+                        "name": "De Golovine Serge",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "NJ3Pb_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "Goldenhar syndrome: a cause of secondary immunodeficiency?",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            -95.77880859375,
+                                            29.386961521657504
+                                        ],
+                                        [
+                                            -94.85595703125,
+                                            29.386961521657504
+                                        ],
+                                        [
+                                            -94.85595703125,
+                                            30.164126343161097
+                                        ],
+                                        [
+                                            -95.77880859375,
+                                            30.164126343161097
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    -95.77880859375,
+                                    29.386961521657504,
+                                    -94.85595703125,
+                                    29.386961521657504
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "NJ3Pb_demo/data/shapefiles_texas/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    -95.77880859375,
+                                                    29.386961521657504
+                                                ],
+                                                [
+                                                    -94.85595703125,
+                                                    30.164126343161097
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        -95.77880859375,
+                                        29.386961521657504,
+                                        -94.85595703125,
+                                        30.164126343161097
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://doi.org/10.1186/1710-1492-8-10",
+                    "doi": "10.1186/1710-1492-8-10"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "NJ3Pb_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "NJ3Pb_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0002-5695-2081",
+                        "name": "De Golovine Serge",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:32:57.734Z"),
+        "__v": 0
+    },
+    {
+        "_id": ObjectId("599aef2c955d820010a87e5d"),
+        "createdAt": ISODate("2017-08-21T14:33:16.238Z"),
+        "updatedAt": ISODate("2017-08-21T14:33:16.238Z"),
+        "id": "8tFEy_demo",
+        "user": "0000-0001-6021-1617",
+        "metadata": {
+            "zenodo": {
+                "metadata": {
+                    "upload_type": "publication",
+                    "title": "This is the title: it contains a colon",
+                    "publication_type": "other",
+                    "publication_date": "2017-08-21",
+                    "license": {
+                        "uibindings": "MIT",
+                        "text": "CC0-1.0",
+                        "data": "CC0-1.0",
+                        "code": "MIT"
+                    },
+                    "keywords": [
+                        "o2r_demo_badger"
+                    ],
+                    "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                    "creators": [
+                        {
+                            "name": "William R. Stockwell",
+                            "affiliation": "University of Munster"
+                        },
+                        {
+                            "name": "Paulette Middleton",
+                            "affiliation": "N.O.N.E"
+                        }
+                    ],
+                    "communities": [
+                        {
+                            "identifier": "o2r"
+                        }
+                    ],
+                    "access_right": "open"
+                }
+            },
+            "o2r": {
+                "viewfiles": [
+                    "8tFEy_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "This is the title: it contains a colon",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            144.305419921875,
+                                            -37.95286091815648
+                                        ],
+                                        [
+                                            146.458740234375,
+                                            -37.95286091815648
+                                        ],
+                                        [
+                                            146.458740234375,
+                                            -36.43012234551576
+                                        ],
+                                        [
+                                            144.305419921875,
+                                            -36.43012234551576
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    144.305419921875,
+                                    -37.95286091815648,
+                                    146.458740234375,
+                                    -37.95286091815648
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "8tFEy_demo/data/testshapefiles_australia/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    144.305419921875,
+                                                    -37.95286091815648
+                                                ],
+                                                [
+                                                    146.458740234375,
+                                                    -36.43012234551576
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        144.305419921875,
+                                        -37.95286091815648,
+                                        146.458740234375,
+                                        -36.43012234551576
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://dx.doi.org/10.1029/jd095id10p16343",
+                    "doi": "10.1029/jd095id10p16343"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "8tFEy_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "8tFEy_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0002-4694-2699",
+                        "name": "William R. Stockwell",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0002-6869-004X",
+                        "name": "Paulette Middleton",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            },
+            "raw": {
+                "viewfiles": [
+                    "8tFEy_demo/data/document.html"
+                ],
+                "viewfile": null,
+                "version": null,
+                "upload_type": "publication",
+                "title": "This is the title: it contains a colon",
+                "temporal": {
+                    "end": null,
+                    "begin": null
+                },
+                "spatial": {
+                    "spatial": {
+                        "union": {
+                            "geojson": {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Polygon",
+                                    "coordinates": [
+                                        [
+                                            144.305419921875,
+                                            -37.95286091815648
+                                        ],
+                                        [
+                                            146.458740234375,
+                                            -37.95286091815648
+                                        ],
+                                        [
+                                            146.458740234375,
+                                            -36.43012234551576
+                                        ],
+                                        [
+                                            144.305419921875,
+                                            -36.43012234551576
+                                        ]
+                                    ]
+                                },
+                                "bbox": [
+                                    144.305419921875,
+                                    -37.95286091815648,
+                                    146.458740234375,
+                                    -37.95286091815648
+                                ]
+                            }
+                        },
+                        "files": [
+                            {
+                                "source_file": "8tFEy_demo/data/testshapefiles_australia/POLYGON.shp",
+                                "geojson": {
+                                    "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [
+                                            [
+                                                [
+                                                    144.305419921875,
+                                                    -37.95286091815648
+                                                ],
+                                                [
+                                                    146.458740234375,
+                                                    -36.43012234551576
+                                                ]
+                                            ]
+                                        ]
+                                    },
+                                    "bbox": [
+                                        144.305419921875,
+                                        -37.95286091815648,
+                                        146.458740234375,
+                                        -36.43012234551576
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "softwarePaperCitation": null,
+                "researchQuestions": [],
+                "researchHypotheses": [],
+                "recordDateCreated": "2017-08-21",
+                "r_rdata": [],
+                "r_output": [
+                    {
+                        "text": "42",
+                        "line": 14,
+                        "feature": "setseed"
+                    },
+                    {
+                        "text": "plot",
+                        "line": 23,
+                        "feature": "result"
+                    },
+                    {
+                        "text": "print",
+                        "line": 25,
+                        "feature": "result"
+                    }
+                ],
+                "r_input": [],
+                "r_comment": [
+                    {
+                        "text": "Trying some seperation lines:",
+                        "line": 9,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "chunk: random string",
+                        "line": 13,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "umlaut ö ä ü ß",
+                        "line": 18,
+                        "feature": "comment"
+                    },
+                    {
+                        "text": "some plot",
+                        "line": 22,
+                        "feature": "comment"
+                    }
+                ],
+                "publication_type": "other",
+                "publicationDate": "2017-08-21",
+                "paperSource": "document.Rmd",
+                "paperLanguage": [],
+                "license": {
+                    "uibindings": "MIT",
+                    "text": "CC0-1.0",
+                    "data": "CC0-1.0",
+                    "code": "MIT"
+                },
+                "keywords": [
+                    "o2r_demo_badger"
+                ],
+                "interaction": {
+                    "ui_binding": {
+                        "widget": null,
+                        "variable": null,
+                        "purpose": null,
+                        "code": {
+                            "shinyRenderFunction": null,
+                            "shinyInputFunction": null,
+                            "functionParameter": null,
+                            "function": null,
+                            "filename": null
+                        }
+                    },
+                    "interactive": false
+                },
+                "inputfiles": [],
+                "identifier": {
+                    "reserveddoi": null,
+                    "doiurl": "https://dx.doi.org/10.1029/jd095id10p16343",
+                    "doi": "10.1029/jd095id10p16343"
+                },
+                "generatedBy": "o2r-meta metaextract.py",
+                "file": {
+                    "mimetype": "text/markdown",
+                    "filepath": "8tFEy_demo/data/document.Rmd",
+                    "filename": "document.Rmd"
+                },
+                "ercIdentifier": "8tFEy_demo",
+                "description": "This is a demo ERC only for o2r-badger and o2r-extender.\n",
+                "depends": [
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "RColorBrewer",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "dplyr",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "ggplot2",
+                        "category": "geo sciences,CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "minqa",
+                        "category": "CRAN Top100"
+                    },
+                    {
+                        "version": null,
+                        "packageSystem": "https://cloud.r-project.org/",
+                        "identifier": "PBSmapping",
+                        "category": "geo sciences"
+                    }
+                ],
+                "communities": [
+                    {
+                        "identifier": "o2r"
+                    }
+                ],
+                "codefiles": [],
+                "author": [
+                    {
+                        "url": "\\url{http://404.awebsite8372930.org}",
+                        "orcid": "0000-0002-4694-2699",
+                        "name": "William R. Stockwell",
+                        "email": "ted.tester@awebsite8372930.org",
+                        "affiliation2": "University of Nowhere",
+                        "affiliation": "University of Munster",
+                        "address": "This might be a correct address Yet it might also be lorem ipsum\\newline Another line 252b\\newline 00000 Anywhere, Nomansland\n",
+                        "Telephone": "+00/00/1000-2000"
+                    },
+                    {
+                        "orcid": "0000-0002-6869-004X",
+                        "name": "Paulette Middleton",
+                        "affiliation": "N.O.N.E"
+                    }
+                ],
+                "access_right": "open"
+            }
+        },
+        "jobs": [],
+        "created": ISODate("2017-08-21T14:33:16.236Z"),
+        "__v": 0
+    }
+]

@@ -1,0 +1,38 @@
+---
+- name: debug
+  debug: var=loader_role
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-loader container
+  template:
+    src: o2r-loader.service.j2
+    dest: /etc/systemd/system/o2r-loader.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - loader
+
+- name: Enable service
+  become: yes
+  service: name=o2r-loader enabled=yes
+  tags:
+    - loader
+
+- meta: flush_handlers
+  tags:
+    - loader
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-loader to start up
+  service: name=o2r-loader state=started
+  tags:
+    - loader
+
+- meta: flush_handlers
+  tags:
+    - loader

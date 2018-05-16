@@ -1,0 +1,9 @@
+---
+- name: Wait for piwik to start up
+  pause: seconds=20
+
+- name: restart piwik
+  become: yes
+  docker_container:
+    name: piwik
+    restart: yes

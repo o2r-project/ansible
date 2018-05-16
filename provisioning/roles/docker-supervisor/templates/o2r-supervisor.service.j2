@@ -1,0 +1,27 @@
+[Unit]
+Description=o2r-supervisor
+
+[Service]
+Restart=always
+RestartSec=10s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{supervisor_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{supervisor_role.container.name}}" \
+  -v "/etc/o2r/supervisor/endpoints.js:/supervisor/config/endpoints.js" \
+  -e "SUPERVISOR_MONGODB=mongodb://{{supervisor_role.config.mongo_host}}/" \
+  -e "SUPERVISOR_MONGODB_DATABASE={{supervisor_role.config.mongo_database}}" \
+  -e "SUPERVISOR_PORT={{supervisor_role.config.port}}" \
+  -e "SUPERVISOR_SESSION_COOKIE_URL={{supervisor_role.config.session_cookie_url}}" \
+  -e "DEBUG=supervisor" \
+  -p "{{supervisor_role.config.port}}:8085" \
+  --link o2r-muncher \
+  --link o2r-contentbutler \
+  --link o2r-bouncer \
+  --link o2r-finder \
+  "{{supervisor_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{supervisor_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{supervisor_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

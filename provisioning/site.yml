@@ -1,0 +1,5 @@
+---
+- import_playbook: common.yml
+- import_playbook: production.yml
+- import_playbook: longrunning.yml # can be commented out, because it takes a lot of time on re-runs
+- import_playbook: master.yml

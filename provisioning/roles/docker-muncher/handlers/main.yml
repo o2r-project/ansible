@@ -1,0 +1,19 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-muncher container
+  become: yes
+  notify: Wait for o2r-muncher to start up
+  docker_container:
+    name: "{{muncher_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-muncher
+  become: yes
+  notify: Wait for o2r-muncher to start up
+  service: name=o2r-muncher state=restarted
+
+- name: Wait for o2r-muncher to start up
+  pause: seconds=30

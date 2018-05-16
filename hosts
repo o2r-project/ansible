@@ -1,0 +1,8 @@
+[master]
+ubsvirt148.uni-muenster.de
+
+[o2r:children]
+master
+
+[production:children]
+master

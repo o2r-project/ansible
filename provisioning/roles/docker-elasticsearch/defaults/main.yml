@@ -1,0 +1,5 @@
+---
+elasticsearch_role:
+  container:
+    image: "elasticsearch:5"
+    name: elasticsearch

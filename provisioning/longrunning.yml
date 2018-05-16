@@ -1,0 +1,13 @@
+---
+- hosts: master
+  roles:
+    # EPEL is needed for docker, etc.
+    - epel
+    - docker
+    # docker-py is needed for ansible, to talk to the docker server
+    - docker-py
+    - docker-mariadb
+    - docker-piwik
+  environment:
+    http_proxy: "{{proxy.http_proxy}}"
+    https_proxy: "{{proxy.http_proxy}}"

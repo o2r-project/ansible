@@ -1,0 +1,40 @@
+---
+- name: debug
+  debug: var=finder_role
+  tags:
+    - finder
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-finder container
+  template:
+    src: o2r-finder.service.j2
+    dest: /etc/systemd/system/o2r-finder.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - finder
+
+- name: Enable service
+  become: yes
+  service: name=o2r-finder enabled=yes
+  tags:
+    - finder
+
+- meta: flush_handlers
+  tags:
+    - finder
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-finder to start up
+  service: name=o2r-finder state=started
+  tags:
+    - finder
+
+- meta: flush_handlers
+  tags:
+    - finder

@@ -1,0 +1,47 @@
+---
+- name: debug
+  debug: var=muncher_role
+
+- name: Create data directory
+  become: yes
+  file:
+    path: "{{muncher_role.config.basepath}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-muncher container
+  template:
+    src: o2r-muncher.service.j2
+    dest: /etc/systemd/system/o2r-muncher.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - muncher
+
+- name: Enable service
+  become: yes
+  service: name=o2r-muncher enabled=yes
+  tags:
+    - muncher
+
+- meta: flush_handlers
+  tags:
+    - muncher
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-muncher to start up
+  service: name=o2r-muncher state=started
+  tags:
+    - muncher
+
+- meta: flush_handlers
+  tags:
+    - muncher

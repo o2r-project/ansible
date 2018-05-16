@@ -1,0 +1,10 @@
+---
+loader_role:
+  config:
+    basepath: "/data/docker/o2r"
+    port: 8088
+    mongo_host: "{{mongo_host}}"
+    sessionsecret: "{{sessionsecret}}"
+  container:
+    image: "o2rproject/o2r-loader:0.8.3"
+    name: o2r-loader

@@ -1,0 +1,4 @@
+---
+- name: restart journald
+  become: yes
+  service: name=systemd-journald state=restarted # Alternative: http://unix.stackexchange.com/questions/253203/how-to-tell-journald-to-re-read-its-configuration

@@ -1,0 +1,27 @@
+[Unit]
+Description=o2r Finder
+
+[Service]
+Restart=always
+RestartSec=10s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{finder_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{finder_role.container.name}}" \
+  -v "{{finder_role.config.basepath}}:/tmp/o2r" \
+  -e "FINDER_MONGODB={{finder_role.config.mongo_url}}" \
+  -e "FINDER_MONGODB_DATABASE={{finder_role.config.mongo_database}}" \
+  -e "FINDER_ELASTICSEARCH_INDEX={{finder_role.config.elasticsearch_index}}" \
+  -e "ELASTIC_SEARCH_URL={{finder_role.config.elasticsearch_endpoint}}" \
+  -e "MONGO_OPLOG_URL={{finder_role.config.mongo_database_url}}" \
+  -e "MONGO_DATA_URL={{finder_role.config.mongo_database_url}}" \
+  -e "BATCH_COUNT={{finder_role.config.sync_batch_count}}" \
+  -e "DEBUG=finder" \
+  -p "{{finder_role.config.port}}:8084" \
+  --link "{{finder_role.config.elasticsearch_container_name}}:{{finder_role.config.elasticsearch_container_name}}" \
+  "{{finder_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{finder_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{finder_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

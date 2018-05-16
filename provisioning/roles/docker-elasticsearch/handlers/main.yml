@@ -1,0 +1,19 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old elasticsearch container
+  become: yes
+  notify: Wait for elasticsearch to start up
+  docker_container:
+    name: "{{elasticsearch_role.container.name}}"
+    state: absent
+
+- name: Restart Elasticsearch
+  become: yes
+  notify: Wait for elasticsearch to start up
+  service: name=elasticsearch state=restarted
+
+- name: Wait for elasticsearch to start up
+  pause: seconds=10

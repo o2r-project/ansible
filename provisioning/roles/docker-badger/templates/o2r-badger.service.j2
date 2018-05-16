@@ -1,0 +1,19 @@
+[Unit]
+Description=o2r Badger
+
+[Service]
+Restart=always
+RestartSec=30s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{badger_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{badger_role.container.name}}" \
+  -e "DEBUG=*,-express:*,-compression,-body-parser:*" \
+  -e "PIWIK_TOKEN={{badger_role.config.piwik_tracking_token}}" \
+  -p "{{badger_role.config.port}}:8089" \
+  "{{badger_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{badger_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{badger_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

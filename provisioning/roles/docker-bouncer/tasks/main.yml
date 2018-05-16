@@ -1,0 +1,35 @@
+---
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-bouncer container
+  template:
+    src: o2r-bouncer.service.j2
+    dest: /etc/systemd/system/o2r-bouncer.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - bouncer
+
+- name: Enable service
+  become: yes
+  service: name=o2r-bouncer enabled=yes
+  tags:
+    - bouncer
+
+- meta: flush_handlers
+  tags:
+    - bouncer
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-bouncer to start up
+  service: name=o2r-bouncer state=started
+  tags:
+    - bouncer
+
+- meta: flush_handlers
+  tags:
+    - bouncer

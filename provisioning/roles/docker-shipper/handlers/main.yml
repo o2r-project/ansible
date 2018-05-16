@@ -1,0 +1,19 @@
+---
+- name: Reload systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-shipper container
+  become: yes
+  notify: Wait for o2r-shipper to start up
+  docker_container:
+    name: "{{shipper_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-shipper
+  become: yes
+  notify: Wait for o2r-shipper to start up
+  service: name=o2r-shipper state=restarted
+
+- name: Wait for o2r-shipper to start up
+  pause: seconds=10

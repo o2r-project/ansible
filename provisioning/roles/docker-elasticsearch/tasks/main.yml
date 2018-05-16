@@ -1,0 +1,81 @@
+---
+- name: debug
+  debug: var=elasticsearch_role
+
+- name: Create config directory
+  become: yes
+  file:
+    path: "/etc/elasticsearch-docker/config"
+    state: directory
+    mode: 0755
+
+- name: Copy elasticsearch.yml
+  become: yes
+  notify: Restart Elasticsearch
+  template:
+    src: "elasticsearch.yml.j2"
+    dest: "/etc/elasticsearch-docker/config/elasticsearch.yml"
+    owner: root
+    group: root
+    mode: 0755 # Elasticsearch does _not_ run as root in container, so config file must be readable by all
+
+- name: Copy log4j2 configuration
+  become: yes
+  notify: Restart Elasticsearch
+  copy:
+    src: log4j2.properties
+    dest: "/etc/elasticsearch-docker/config"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy JVM configuration
+  become: yes
+  notify: Restart Elasticsearch
+  copy:
+    src: jvm.options
+    dest: "/etc/elasticsearch-docker/config"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create scripts directory # this is required so that mounting the ./config directory works
+  become: yes
+  file:
+    path: "/etc/elasticsearch-docker/config/scripts"
+    state: directory
+    mode: 0755
+
+# See https://www.elastic.co/guide/en/elasticsearch/reference/5.0/vm-max-map-count.html
+- name: Configure virtual memory 
+  become: yes
+  notify: Restart Elasticsearch
+  sysctl:
+    name: vm.max_map_count
+    value: 262144
+    state: present
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old elasticsearch container
+  template:
+    src: elasticsearch.service.j2
+    dest: /etc/systemd/system/elasticsearch.service
+    owner: root
+    group: root
+    mode: 0600
+
+- meta: flush_handlers
+
+- name: Enable service
+  become: yes
+  service: name=elasticsearch enabled=yes
+
+- name: Start service
+  become: yes
+  notify: Wait for elasticsearch to start up
+  service: name=elasticsearch state=started
+
+- meta: flush_handlers

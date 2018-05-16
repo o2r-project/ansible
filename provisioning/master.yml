@@ -1,0 +1,28 @@
+---
+- hosts: master
+  roles:
+    # required databases:
+    - mongodb
+    - docker-elasticsearch
+    # MongoDB admin interface:
+    - docker-mongo-express
+    # o2r microservices:
+    - docker-muncher
+    - docker-transporter
+    - docker-informer
+    - docker-inspecter
+    - docker-bouncer
+    - docker-finder
+    - docker-loader
+    - docker-shipper
+    - docker-substituter
+    - docker-supervisor
+    - docker-platform
+    - docker-badger
+    # proxy (must come after services it proxies):
+    - docker-nginx
+    # meta:
+    - docker-ps
+  environment:
+    http_proxy: "{{proxy.http_proxy}}"
+    https_proxy: "{{proxy.http_proxy}}"

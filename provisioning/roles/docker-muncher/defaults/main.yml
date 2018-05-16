@@ -1,0 +1,14 @@
+---
+muncher_role:
+  config:
+    basepath: "/data/docker/o2r"
+    port: 8080
+    sessionsecret: "{{sessionsecret}}"
+    mongo_host: "{{mongo_host}}"
+    email:
+      transport: "smtps://openingreproducibleresearch%40gmail.com:diL59ZzYNA4aNpiGvcXS@smtp.gmail.com"
+      receivers: "openingreproducibleresearch@gmail.com"
+      sender: "openingreproducibleresearch@gmail.com"
+  container:
+    image: "o2rproject/o2r-muncher:0.13.8"
+    name: o2r-muncher

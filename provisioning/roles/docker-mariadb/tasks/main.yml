@@ -1,0 +1,13 @@
+- name: mariadb Container
+  become: yes
+  docker_container:
+    name: mariadb
+    image: mariadb:10.1
+    state: started
+    restart_policy: always
+    env:
+      MYSQL_ROOT_PASSWORD: "{{docker_mariadb_root_pass}}"
+    volumes:
+      - /data/docker/o2r-mariadb/var/lib/mysql:/var/lib/mysql:rw
+  tags:
+    - mariadb

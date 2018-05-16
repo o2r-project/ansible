@@ -1,0 +1,11 @@
+---
+informer_role:
+  config:
+    port: 8082
+    sessionsecret: "{{sessionsecret}}"
+    mongo_host: "{{mongo_host}}"
+    mongo_port: "{{mongo_port}}"
+    mongo_database: "{{mongo_database}}"
+  container:
+    image: "o2rproject/o2r-informer:0.3.0"
+    name: o2r-informer

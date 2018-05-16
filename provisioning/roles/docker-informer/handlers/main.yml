@@ -1,0 +1,21 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-informer container
+  become: yes
+  notify: Wait for o2r-informer to start up
+  docker_container:
+    name: "{{informer_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-informer
+  become: yes
+  notify: Wait for o2r-informer to start up
+  service:
+    name: "{{informer_role.container.name}}"
+    state: restarted
+
+- name: Wait for o2r-informer to start up
+  pause: seconds=10

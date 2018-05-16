@@ -1,0 +1,8 @@
+---
+inspecter_role:
+  config:
+    basepath: "/data/docker/o2r/compendium"
+    port: 8091
+  container:
+    image: "o2rproject/o2r-inspecter:0.0.1"
+    name: o2r-inspecter

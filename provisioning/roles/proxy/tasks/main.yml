@@ -1,0 +1,26 @@
+---
+- name: Install profile exports
+  become: yes
+  when: proxy.enabled
+  template:
+    src: proxy.sh.j2
+    dest: /etc/profile.d/proxy.sh
+    owner: root
+    group: root
+    mode: 644
+
+- name: Install environment file
+  become: yes
+  when: proxy.enabled
+  template:
+    src: environment.j2
+    dest: /etc/environment
+    owner: root
+    group: root
+    mode: 644
+
+- name: Insert proxy in yum.conf
+  become: yes
+  lineinfile:
+    dest: /etc/yum.conf
+    line: "proxy={{proxy_role.http_proxy}}"

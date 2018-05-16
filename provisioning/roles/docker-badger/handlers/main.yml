@@ -1,0 +1,19 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-badger container
+  become: yes
+  notify: Wait for o2r-badger to start up
+  docker_container:
+    name: "{{badger_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-badger
+  become: yes
+  notify: Wait for o2r-badger to start up
+  service: name=o2r-badger state=restarted
+
+- name: Wait for o2r-badger to start up
+  pause: seconds=20

@@ -1,0 +1,22 @@
+# https://github.com/mongo-express/mongo-express/
+- name: mongo-express Container
+  become: yes
+  docker_container:
+    name: mongo-express
+    image: mongo-express:0.42
+    state: started
+    restart_policy: always
+    env:
+      # for all configuration options see https://hub.docker.com/_/mongo-express/
+      ME_CONFIG_BASICAUTH_USERNAME: "{{mongo_express_basicauth_username}}"
+      ME_CONFIG_BASICAUTH_PASSWORD: "{{mongo_express_basicauth_password}}"
+      ME_CONFIG_MONGODB_SERVER: "{{mongo_host}}"
+      ME_CONFIG_MONGODB_PORT: "{{mongo_port}}"
+      ME_CONFIG_SITE_COOKIESECRET: "{{mongo_express_cookiesecret}}"
+      ME_CONFIG_SITE_SESSIONSECRET: "{{mongo_express_sessionsecret}}"
+      ME_CONFIG_SITE_BASEURL: "/mongo-express/"
+  tags:
+    - mongoexpress
+
+# run one-off instance on the server without login:
+# sudo docker run -it --name mongo-express -p 8027:8081 -e ME_CONFIG_MONGODB_SERVER="172.17.0.1" mongo-expres

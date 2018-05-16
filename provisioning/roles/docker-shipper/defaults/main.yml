@@ -1,0 +1,17 @@
+---
+shipper_role:
+  config:
+    basepath: "/data/docker/o2r"
+    port: 8087
+    sessionsecret: "{{sessionsecret}}"
+    mongo_host: "{{mongo_host}}"
+    mongo_port: "{{mongo_port}}"
+    mongo_database: "{{mongo_database}}"
+    bottle_host: "0.0.0.0"
+    zenodo:
+      token: "{{zenodo_token}}"
+    zenodo_sandbox:
+      token: "{{zenodo_sandbox_token}}"
+  container:
+    image: "o2rproject/o2r-shipper:168ae80"
+    name: o2r-shipper

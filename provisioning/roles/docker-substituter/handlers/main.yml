@@ -1,0 +1,19 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-substituter container
+  become: yes
+  notify: Wait for o2r-substituter to start up
+  docker_container:
+    name: "{{substituter_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-substituter
+  become: yes
+  notify: Wait for o2r-substituter to start up
+  service: name=o2r-substituter state=restarted
+
+- name: Wait for o2r-substituter to start up
+  pause: seconds=5

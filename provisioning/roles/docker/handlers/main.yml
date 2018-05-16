@@ -1,0 +1,8 @@
+---
+- name: Restart Docker
+  become: yes
+  notify: Wait for Docker to start up
+  service: name=docker state=restarted
+
+- name: Wait for Docker to start up
+  pause: seconds=20

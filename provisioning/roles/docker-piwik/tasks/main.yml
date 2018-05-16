@@ -1,0 +1,48 @@
+---
+- name: Create config directory
+  become: yes
+  file:
+    path: "/etc/piwik-docker"
+    state: directory
+    mode: 0755
+  tags: piwik
+
+- name: Copy config.ini.php
+  become: yes
+  notify: restart piwik
+  template:
+    src: "config.ini.php.j2"
+    dest: "/etc/piwik-docker/config.ini.php"
+    owner: root
+    group: root
+    mode: 0644
+  tags: piwik
+
+- name: piwik container
+  become: yes
+  docker_container:
+    name: piwik
+    image: marvambass/piwik:3.0.4
+    state: started
+    restart_policy: always
+    env:
+      PIWIK_MYSQL_USER: root
+      PIWIK_MYSQL_PASSWORD: "{{docker_mariadb_root_pass}}"
+      SITE_URL: https://o2r.uni-muenster.de
+    links:
+      - mariadb:mysql
+    volumes:
+      - /etc/piwik-docker/config.ini.php:/piwik/config/config.ini.php:rw
+  notify: Wait for piwik to start up
+  tags: piwik
+
+- name: run command to increase number of custom variables
+  become: yes
+  shell: "sudo docker exec -i piwik /piwik/console customvariables:set-max-custom-variables 10 --no-interaction"
+  register: customvarout
+  tags: piwik
+
+- name: print result of custom variable config command
+  debug:
+    msg: "{{customvarout.stdout_lines}}"
+  tags: piwik

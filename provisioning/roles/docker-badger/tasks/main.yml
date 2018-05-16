@@ -1,0 +1,68 @@
+---
+- name: debug
+  debug: var=badger_role
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-badger container
+  template:
+    src: o2r-badger.service.j2
+    dest: /etc/systemd/system/o2r-badger.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - badger
+
+- name: Enable service
+  become: yes
+  service: name=o2r-badger enabled=yes
+  tags:
+    - badger
+
+- meta: flush_handlers
+  tags:
+    - badger
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-badger to start up
+  service: name=o2r-badger state=started
+  tags:
+    - badger
+
+- meta: flush_handlers
+  tags:
+    - badger
+
+# import 7 test compendia, matching demo queries, and corresponding jobs (also 7) using mongoimport command in a Docker container
+# the files where exported from a development environment and then manually updated to...
+# - use the o2r user with ORCID 0000-0001-6021-1617
+# - compendiums have IDs ending in _demo
+#
+# test with:
+#  ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "demo_data"
+#
+- name: Copy test data file compendia
+  become: yes
+  copy:
+    src: testdata_compendia.json
+    dest: /tmp/testdata_compendia.json
+  tags: badger
+- name: Copy test data file jobs
+  become: yes
+  copy:
+    src: testdata_jobs.json
+    dest: /tmp/testdata_jobs.json
+  tags: badger
+
+- name: Load demo data into MongoDB
+  become: yes
+  notify: Wait for o2r-badger to start up
+  shell: "mongoimport --uri mongodb://{{mongo_host}}:27017/muncher --collection {{item}} --type json --file /tmp/testdata_{{item}}.json --jsonArray"
+  with_items: ["compendia", "jobs"]
+  tags:
+    - badger
+    - demo_data

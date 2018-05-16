@@ -1,0 +1,27 @@
+[Unit]
+Description=o2r Muncher
+
+[Service]
+Restart=always
+RestartSec=30s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{muncher_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{muncher_role.container.name}}" \
+  -v "{{muncher_role.config.basepath}}:{{loader_role.config.basepath}}" \
+  -v "/var/run/docker.sock:/var/run/docker.sock" \
+  -e "MUNCHER_BASEPATH={{loader_role.config.basepath}}/" \
+  -e "MUNCHER_MONGODB=mongodb://{{muncher_role.config.mongo_host}}/" \
+  -e "MUNCHER_PROXY={{proxy.http_proxy}}" \
+  -e "MUNCHER_EMAIL_TRANSPORT={{muncher_role.config.email.transport}}" \
+  -e "MUNCHER_EMAIL_RECEIVERS={{muncher_role.config.email.receivers}}" \
+  -e "MUNCHER_EMAIL_SENDER={{muncher_role.config.email.sender}}" \
+  -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
+  -e "SESSION_SECRET={{muncher_role.config.sessionsecret}}" \
+  -p "{{muncher_role.config.port}}:8080" \
+  "{{muncher_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{muncher_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{muncher_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

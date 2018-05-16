@@ -1,0 +1,21 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-bouncer container
+  become: yes
+  notify: Wait for o2r-bouncer to start up
+  docker_container:
+    name: "{{bouncer_role.container.name}}"
+    state: absent
+
+- name: Restart o2r-bouncer
+  become: yes
+  notify: Wait for o2r-bouncer to start up
+  service:
+    name: "{{bouncer_role.container.name}}"
+    state: restarted
+
+- name: Wait for o2r-bouncer to start up
+  pause: seconds=20

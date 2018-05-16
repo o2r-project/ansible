@@ -1,0 +1,19 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Remove old o2r-inspecter container
+  become: yes
+  notify: Wait for o2r-inspecter to start up
+  docker_container:
+    name: "{{inspecter_role.config.name}}"
+    state: absent
+
+- name: Restart o2r-inspecter
+  become: yes
+  notify: Wait for o2r-inspecter to start up
+  service: name=o2r-inspecter state=restarted
+
+- name: Wait for o2r-inspecter to start up
+  pause: seconds=5

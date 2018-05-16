@@ -1,0 +1,41 @@
+---
+- name: Add repository
+  become: yes
+  copy:
+    src: docker.repo
+    dest: /etc/yum.repos.d/
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  become: yes
+  yum: name=docker-engine
+
+- name: Create folder for additional configuration
+  become: yes
+  when: docker_role.proxy.enabled
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Configure proxy
+  become: yes
+  when: docker_role.proxy.enabled
+  notify: Restart Docker
+  template:
+    src: http-proxy.conf.j2
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and start service
+  become: yes
+  notify: Wait for Docker to start up
+  service: name=docker state=started enabled=yes
+
+- meta: flush_handlers

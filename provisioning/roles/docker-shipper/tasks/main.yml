@@ -1,0 +1,40 @@
+---
+- name: Create data directory
+  become: yes
+  file:
+    path: "{{shipper_role.config.basepath}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: shipper
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-shipper container
+  template:
+    src: o2r-shipper.service.j2
+    dest: /etc/systemd/system/o2r-shipper.service
+    owner: root
+    group: root
+    mode: 0600
+  tags: shipper
+
+- name: Enable service
+  become: yes
+  service: name=o2r-shipper enabled=yes
+  tags: shipper
+
+- meta: flush_handlers
+  tags: shipper
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-shipper to start up
+  service: name=o2r-shipper state=started
+  tags: shipper
+
+- meta: flush_handlers
+  tags: shipper

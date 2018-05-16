@@ -1,0 +1,127 @@
+[o2r@ubsvirt148 ~]$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             anywhere            
+LOG        tcp  --  anywhere             anywhere             tcp flags:FIN,SYN,RST,PSH,ACK,URG/NONE LOG level debug
+DROP       tcp  --  anywhere             anywhere             tcp flags:FIN,SYN,RST,PSH,ACK,URG/NONE
+LOG        tcp  --  anywhere             anywhere             tcp flags:FIN,SYN/FIN,SYN LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:FIN,SYN/FIN,SYN
+LOG        tcp  --  anywhere             anywhere             tcp flags:SYN,RST/SYN,RST LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:SYN,RST/SYN,RST
+LOG        tcp  --  anywhere             anywhere             tcp flags:FIN,RST/FIN,RST LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:FIN,RST/FIN,RST
+LOG        tcp  --  anywhere             anywhere             tcp flags:FIN,ACK/FIN LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:FIN,ACK/FIN
+LOG        tcp  --  anywhere             anywhere             tcp flags:PSH,ACK/PSH LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:PSH,ACK/PSH
+LOG        tcp  --  anywhere             anywhere             tcp flags:ACK,URG/URG LOG level debug tcp-sequence tcp-options ip-options prefix "StealthScan"
+DROP       tcp  --  anywhere             anywhere             tcp flags:ACK,URG/URG
+ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
+ACCEPT     tcp  --  NS01.UNI-MUENSTER.DE/31  anywhere             state NEW tcp dpt:domain
+ACCEPT     udp  --  NS01.UNI-MUENSTER.DE/31  anywhere             state NEW udp dpt:domain
+ACCEPT     icmp --  anywhere             anywhere             state NEW
+ACCEPT     tcp  --  128.176.112.0/26     anywhere             state NEW tcp dpt:ssh
+ACCEPT     tcp  --  10.10.26.0/24        anywhere             state NEW tcp dpt:ssh
+ACCEPT     tcp  --  128.176.0.0/16       anywhere             state NEW tcp dpt:ssh
+ACCEPT     tcp  --  ZIVPROXY1.UNI-MUENSTER.DE  anywhere             state NEW tcp spt:squid
+ACCEPT     tcp  --  UBSVIRT35.UNI-MUENSTER.DE  anywhere             state NEW tcp dpt:ssh
+ACCEPT     tcp  --  172.17.0.0/16        anywhere             state NEW tcp dpt:27017
+DROP       all  --  anywhere             anywhere            
+
+Chain FORWARD (policy DROP)
+target     prot opt source               destination         
+DOCKER-ISOLATION  all  --  anywhere             anywhere            
+DOCKER     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+ACCEPT     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere            
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
+ACCEPT     tcp  --  anywhere             NS01.UNI-MUENSTER.DE/31  state NEW tcp dpt:domain
+ACCEPT     udp  --  anywhere             NS01.UNI-MUENSTER.DE/31  state NEW udp dpt:domain
+ACCEPT     tcp  --  anywhere             NS01.UNI-MUENSTER.DE  state NEW tcp dpt:ntp
+ACCEPT     udp  --  anywhere             NS01.UNI-MUENSTER.DE  state NEW udp dpt:ntp
+ACCEPT     tcp  --  anywhere             128.176.112.0/26     state NEW tcp dpt:ssh
+ACCEPT     tcp  --  anywhere             10.10.26.0/24        state NEW tcp dpt:ssh
+ACCEPT     tcp  --  anywhere             ZIVPROXY1.UNI-MUENSTER.DE  state NEW tcp dpt:squid
+ACCEPT     tcp  --  anywhere             UBSVIRT35.UNI-MUENSTER.DE  state NEW tcp dpt:ssh
+
+Chain DOCKER (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  anywhere             172.17.0.4           tcp dpt:us-srv
+ACCEPT     tcp  --  anywhere             172.17.0.5           tcp dpt:tproxy
+ACCEPT     tcp  --  anywhere             172.17.0.6           tcp dpt:webcache
+ACCEPT     tcp  --  anywhere             172.17.0.7           tcp dpt:https
+ACCEPT     tcp  --  anywhere             172.17.0.7           tcp dpt:http
+
+Chain DOCKER-ISOLATION (1 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere            
+
+Chain FORWARD_IN_ZONES (0 references)
+target     prot opt source               destination         
+
+Chain FORWARD_IN_ZONES_SOURCE (0 references)
+target     prot opt source               destination         
+
+Chain FORWARD_OUT_ZONES (0 references)
+target     prot opt source               destination         
+
+Chain FORWARD_OUT_ZONES_SOURCE (0 references)
+target     prot opt source               destination         
+
+Chain FORWARD_direct (0 references)
+target     prot opt source               destination         
+
+Chain FWDI_public (0 references)
+target     prot opt source               destination         
+
+Chain FWDI_public_allow (0 references)
+target     prot opt source               destination         
+
+Chain FWDI_public_deny (0 references)
+target     prot opt source               destination         
+
+Chain FWDI_public_log (0 references)
+target     prot opt source               destination         
+
+Chain FWDO_public (0 references)
+target     prot opt source               destination         
+
+Chain FWDO_public_allow (0 references)
+target     prot opt source               destination         
+
+Chain FWDO_public_deny (0 references)
+target     prot opt source               destination         
+
+Chain FWDO_public_log (0 references)
+target     prot opt source               destination         
+
+Chain INPUT_ZONES (0 references)
+target     prot opt source               destination         
+
+Chain INPUT_ZONES_SOURCE (0 references)
+target     prot opt source               destination         
+
+Chain INPUT_direct (0 references)
+target     prot opt source               destination         
+
+Chain IN_public (0 references)
+target     prot opt source               destination         
+
+Chain IN_public_allow (0 references)
+target     prot opt source               destination         
+
+Chain IN_public_deny (0 references)
+target     prot opt source               destination         
+
+Chain IN_public_log (0 references)
+target     prot opt source               destination         
+
+Chain OUTPUT_direct (0 references)
+target     prot opt source               destination
+[o2r@ubsvirt148 ~]$ date
+Wed 10 Aug 12:24:01 CEST 2016

@@ -1,0 +1,17 @@
+[General]
+enable_trusted_host_check = 0
+assume_secure_protocol = 1
+proxy_client_headers[] = HTTP_X_FORWARDED_FOR
+proxy_host_headers[] = HTTP_X_FORWARDED_HOST
+
+
+[database]
+host = mysql
+username = root
+password = {{docker_mariadb_root_pass}}
+dbname = piwik
+tables_prefix = piwik_
+port = 3306
+adapter = PDO\MYSQL
+type = InnoDB
+schema = Mysql

@@ -1,0 +1,6 @@
+---
+- hosts: production
+  roles:
+    - proxy
+    - journald
+    - dockercontainers-cron

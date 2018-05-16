@@ -1,0 +1,18 @@
+---
+bouncer_role:
+  config:
+    port: 8083
+    sessionsecret: "{{sessionsecret}}"
+    mongo_host: "{{mongo_host}}"
+    user_level: 1
+    oauth:
+      client_id: "{{oauth_client_id}}"
+      client_secret: "{{oauth_client_secret}}"
+      callback_url: "{{oauth_callback_url}}"
+    slack:
+      verification_token: "{{slack_verification_token}}"
+      bot_token: "{{slack_bot_token}}"
+      usernames_whitelist: "\\\\b(daniel|markuskonkol|m-schu)\\\\b" # \b must be escaped, check correctness on server with docker inspect o2r-bouncer
+  container:
+    image: "o2rproject/o2r-bouncer:0.8.0"
+    name: o2r-bouncer

@@ -1,0 +1,21 @@
+- name: run docker ps
+  become: yes
+  shell: "docker ps"
+  register: dpsout
+  tags: dps
+
+- name: print docker ps result
+  debug:
+    msg: "{{dpsout.stdout_lines}}"
+  tags: dps
+
+- name: run docker images
+  become: yes
+  shell: "docker images"
+  register: dimout
+  tags: dps
+
+- name: print docker images result
+  debug:
+    msg: "{{dimout.stdout_lines}}"
+  tags: dps

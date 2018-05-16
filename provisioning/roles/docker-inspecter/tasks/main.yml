@@ -1,0 +1,46 @@
+---
+- name: Create data directory
+  become: yes
+  file:
+    path: "{{inspecter_role.config.basepath}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - inspecter
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+    - Remove old o2r-inspecter container
+  template:
+    src: o2r-inspecter.service.j2
+    dest: /etc/systemd/system/o2r-inspecter.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - inspecter
+
+- name: Enable service
+  become: yes
+  service: name=o2r-inspecter enabled=yes
+  tags:
+    - inspecter
+
+- meta: flush_handlers
+  tags:
+    - inspecter
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-inspecter to start up
+  service: name=o2r-inspecter state=started
+  tags:
+    - inspecter
+
+- meta: flush_handlers
+  tags:
+    - inspecter

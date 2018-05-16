@@ -1,0 +1,65 @@
+all: provision
+
+lint:
+	ansible-playbook --ask-vault-pass --syntax-check -i hosts provisioning/site.yml
+.PHONY: lint
+
+provision:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml
+.PHONY: provision
+
+provision-mariadb:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mariadb"
+.PHONY: provision-mariadb
+
+provision-mongo-express:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mongoexpress"
+.PHONY: provision-mongo-express
+
+provision-nginx:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "nginx"
+.PHONY: provision-nginx
+
+provision-insert-ip:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "insert_ip" -vv
+.PHONY: provision-insert-ip
+
+provision-bouncer:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "bouncer,nginx"
+.PHONY: provision-bouncer
+
+provision-muncher:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "muncher,nginx"
+.PHONY: provision-muncher
+
+provision-finder:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "finder,nginx"
+.PHONY: provision-finder
+
+provision-inspecter:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "inspecter,nginx"
+.PHONY: provision-inspecter
+
+provision-shipper:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "shipper,nginx"
+.PHONY: provision-shipper
+
+provision-platform:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "platform,nginx"
+.PHONY: provision-platform
+
+provision-piwik:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "piwik,nginx"
+.PHONY: provision-piwik
+
+provision-badger:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "badger,nginx"
+.PHONY: provision-badger
+
+provision-mongodb:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mongodb"
+.PHONY: provision-mongodb
+
+ping:
+	ansible all -i hosts -m ping -u o2r
+.PHONY: ping

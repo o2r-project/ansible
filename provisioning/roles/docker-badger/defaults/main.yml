@@ -1,0 +1,9 @@
+---
+badger_role:
+  config:
+    port: 8089
+    mongo_host: "{{mongo_host}}" # used for test data import
+    piwik_tracking_token: "{{piwik_tracking_token_badger}}"
+  container:
+    image: "o2rproject/o2r-badger:2.0.6"
+    name: o2r-badger

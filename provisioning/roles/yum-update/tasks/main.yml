@@ -1,0 +1,18 @@
+---
+- name: update system via yum
+  become: yes
+  yum:
+    name: '*'
+    update_cache: yes
+    state: latest
+
+# print updated packages, via https://serverfault.com/a/883713
+- name: List updated packages
+  shell: rpm -qa --last | grep "$(date +%a\ %d\ %b\ %Y)" |cut -f 1 -d " "
+  register: yum_result
+  args:
+    warn: no
+
+- name: Updates packages
+  debug:
+    msg: "{{ yum_result.stdout_lines }}"

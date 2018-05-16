@@ -1,0 +1,13 @@
+net:
+   port: {{mongo_port}}
+   bindIp: 0.0.0.0
+
+# Fork server process (false by default)
+#DN: now use systemd?! fork = true
+
+net:
+   unixDomainSocket:
+      pathPrefix: /var/run/mongodb
+
+replication:
+  replSetName: o2rrepl

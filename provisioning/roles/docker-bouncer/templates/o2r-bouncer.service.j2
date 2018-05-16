@@ -1,0 +1,29 @@
+[Unit]
+Description=o2r Bouncer
+
+[Service]
+Restart=always
+RestartSec=10s
+TimeoutStartSec=20m
+ExecStartPre=-/usr/bin/docker pull "{{bouncer_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{bouncer_role.container.name}}" \
+  -e "BOUNCER_MONGODB=mongodb://{{bouncer_role.config.mongo_host}}/" \
+  -e "DEBUG=bouncer,bouncer:*" \
+  -e "BOUNCER_PORT={{bouncer_role.config.port}}" \
+  -e "BOUNCER_DEFAULT_USER_LEVEL={{bouncer_role.config.user_level}}" \
+  -e "OAUTH_CLIENT_ID={{bouncer_role.config.oauth.client_id}}" \
+  -e "OAUTH_CLIENT_SECRET={{bouncer_role.config.oauth.client_secret}}" \
+  -e "OAUTH_URL_CALLBACK={{bouncer_role.config.oauth.callback_url}}" \
+  -e "SLACK_VERIFICATION_TOKEN={{bouncer_role.config.slack.verification_token}}" \
+  -e "SLACK_BOT_TOKEN={{bouncer_role.config.slack.bot_token}}" \
+  -e "SLACK_USERNAMES_WHITELIST={{bouncer_role.config.slack.usernames_whitelist}}" \
+  -e "SESSION_SECRET={{bouncer_role.config.sessionsecret}}" \
+  -e "http_proxy={{proxy.http_proxy}}" \
+  -p "{{bouncer_role.config.port}}:8083" \
+  "{{bouncer_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{bouncer_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{bouncer_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+---
+- name: Install screen
+  become: yes
+  yum: name=screen state=latest
+
+- name: Install nmap
+  become: yes
+  yum: name=nmap state=latest
