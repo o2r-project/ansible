@@ -241,12 +241,6 @@ http {
             proxy_pass http://o2r-inspecter:8091;
         }
 
-        #location /status {
-        #    proxy_set_header Host $host;
-        #    proxy_set_header X-Real-IP $remote_addr;
-        #    proxy_pass http://o2r-supervisor:8085/status;
-        #}
-
         location /piwik {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;

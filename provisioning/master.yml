@@ -16,7 +16,6 @@
     - docker-loader
     - docker-shipper
     - docker-substituter
-    - docker-supervisor
     - docker-platform
     - docker-badger
     # proxy (must come after services it proxies):
