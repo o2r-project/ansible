@@ -2,21 +2,21 @@
 - name: job for deleting containers
   become: yes
   cron:
-    name: "delete old Bagtainer containers daily"
+    name: "delete old (> 2 weeks) job containers daily"
     special_time: daily
     user: root
     state: present
     # delete all containers that are older than 2 weeks and non-"Up" (just to make sure in case we're missing some')
     # control if it is running on the server: sudo crontab -u root -l
-    job: "docker ps -a | grep 'bagtainer:' | grep 'Created' | grep '[3-9] weeks ago' | awk '{print $1}' | xargs --no-run-if-empty docker rm >> /var/log/cron 2>&1"
+    job: "docker ps -a | grep 'job:' | grep 'Created' | grep '[3-9] weeks ago' | awk '{print $1}' | xargs --no-run-if-empty docker rm >> /var/log/cron 2>&1"
   tags: production
 
-- name: job for deleting images
+- name: job for deleting job images
   become: yes
   cron:
-    name: "delete old (>= 2 weeks) Bagtainer images daily"
+    name: "delete old (> 2 weeks) job images daily"
     special_time: daily
     user: root
     state: present
-    job: "docker images -a | grep 'bagtainer' | grep '[2-9] weeks ago' | awk '{print $3}' | xargs --no-run-if-empty docker rmi -f >> /var/log/cron 2>&1"
+    job: "docker images -a | grep 'job' | grep '[3-9] weeks ago' | awk '{print $3}' | xargs --no-run-if-empty docker rmi -f >> /var/log/cron 2>&1"
   tags: production
