@@ -24,16 +24,16 @@ Bei Fragen: [https://o2r.slack.com/messages/server/](https://o2r.slack.com/messa
 
 Die Konfiguration erfolgt mittels Ansible (`>= 2.0`), und richtet den Server mit folgender Software ein.
 
-- proxy-Einstellungen (WWU-spezifisch)
+- proxy Setttings (WWU-specific)
 - [screen](https://centoshelp.org/resources/scripts-tools/a-basic-understanding-of-screen-on-centos/)
 - yum updates
 - EPEL repository
-- MongoDB `3.4` (bare metal, sollte besser sein als im Container)
-  - config file liegt unter `cat /usr/lib/systemd/system/mongod.service `
 - docker
-- docker-py (für Docker via Ansible benötigt)
-- mariadb in Docker-Container
-- piwik in Docker-Container (Nutzungsstatistiken von http://o2r.info)
+- [`docker`](https://pypi.org/project/docker/) from PyPi (required for Docker via Ansible)
+- MongoDB `3.4` in Docker container
+- mariadb in Docker container
+- piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
+  - inofficial piwik container, but works well; watch out when updating the container because on the first run the build in webserver might have to generate private keys, which takes some time!
 - nginx in Docker-Container (läuft _nicht_ über systemd!)
   - reverse proxy für die o2r-microservices (siehe reverse proxies in `provisioning/roles/docker-nginx/templates/nginx.conf_all.j2`)
   - reverse proxy /mongo-express auf die mongo-express-Instanz >> http://o2r-mongo-express:8081
@@ -122,6 +122,9 @@ sudo journalctl --since "1 hour ago"
 sudo journalctl -b
 sudo journalctl --list-boots
 
+# if there are too many logs, retain only the past x
+journalctl --vacuum-time=1h
+
 # Wenn nichts mehr hilft, vielleicht ein Docker restart
 sudo systemctl restart docker
 
@@ -198,6 +201,8 @@ sudo systemctl status o2r-badger
 
 # Wie sieht die Konfiguration aus, die wirklich genutzt wird? (Nützlich wenn es Probleme beim escaping gibt)
 sudo systemctl show o2r-shipper
+
+# If there are problems starting the service, copy and paste the ExecStartPre content from the previous output and run it manually with Docker
 ```
 
 ### Debugging der Docker network Konfiguration
@@ -258,13 +263,19 @@ DH Parameter wurden auf dem Server generiert ([Anleitung](https://weakdh.org/sys
 
 SELinux ist auf `permissive` gesetzt, weil anders MongoDB nicht funktionieren wollte, siehe https://zivgitlab.uni-muenster.de/o2r/o2r-ansible/issues/9.
 
-## Datenbanken
+## Databases
 
 ### MongoDB
 
-Die MongoDB läuft direkt auf dem host, und muss aus den Containern erreichbar sein. Falls eine Firewall mit `iptables` o. Ä. umgesetzt wurde, müssen dementsprechende Regeln gesetzt werden.
+MongoDB is running in version `3.4` in a container, but without a system service configuration.
 
 Außerdem muss auf der MongoDB ein [replication set](https://docs.mongodb.com/manual/replication/) konfiguriert und initialisiert sein, selbst wenn es keine Replikationen gibt, weil der [oplog](https://docs.mongodb.com/manual/core/replica-set-oplog/) von einigen Microservices für event-basierte Updates genutzt wird. Die entsprechenden Tasks sind in der Rolle `roles/mongodb` enthalten.
+
+To get the current state of the MongoDB, run
+
+```bash
+sudo docker logs mongodb
+```
 
 ### MariaDB
 
