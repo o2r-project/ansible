@@ -22,7 +22,7 @@
   become: yes
   docker_container:
     name: piwik
-    image: marvambass/piwik:3.0.4
+    image: marvambass/piwik:3.5.0
     state: started
     restart_policy: always
     env:
