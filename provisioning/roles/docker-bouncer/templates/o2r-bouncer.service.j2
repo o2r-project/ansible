@@ -21,6 +21,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "SESSION_SECRET={{bouncer_role.config.sessionsecret}}" \
   -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{bouncer_role.config.port}}:8083" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{bouncer_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{bouncer_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{bouncer_role.container.name}}"

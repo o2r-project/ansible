@@ -15,6 +15,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=substituter,substituter:*" \
   -e "SESSION_SECRET={{substituter_role.config.sessionsecret}}" \
   -p "{{substituter_role.config.port}}:8090" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{substituter_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{substituter_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{substituter_role.container.name}}"

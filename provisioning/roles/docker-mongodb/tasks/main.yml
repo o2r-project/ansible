@@ -1,0 +1,28 @@
+- name: MongoDB Container
+  become: yes
+  docker_container:
+    name: mongodb
+    image: mongo:3.4
+    state: started
+    restart_policy: always
+    command: "--replSet rso2r"
+    volumes:
+      - /data/docker/o2r-mongodb/db:/data/db:rw
+  tags:
+    - mongodb
+
+- name: MongoDB Container replication set configuration
+  become: yes
+  docker_container:
+    name: config-mongodb
+    image: mongo:3.4
+    state: started
+    restart_policy: no
+    command: bash -c "sleep 5; mongo --verbose --host mongodb --eval 'printjson(rs.initiate()); printjson(rs.conf()); printjson(rs.status()); printjson(rs.slaveOk());'"
+    links:
+      - mongodb
+    volumes:
+      - /data/docker/o2r-mongodb/db:/data/db:rw
+    auto_remove: true
+  tags:
+    - mongodb

@@ -11,6 +11,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=*,-express:*,-compression,-body-parser:*" \
   -e "PIWIK_TOKEN={{badger_role.config.piwik_tracking_token}}" \
   -p "{{badger_role.config.port}}:8089" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{badger_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{badger_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{badger_role.container.name}}"

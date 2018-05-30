@@ -15,6 +15,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "SESSION_SECRET={{loader_role.config.sessionsecret}}" \
   -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
   -p "{{loader_role.config.port}}:8088" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{loader_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{loader_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{loader_role.container.name}}"

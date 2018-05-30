@@ -6,8 +6,7 @@ oauth_client_id: "{{oauth_client_id_vault}}"
 oauth_client_secret: "{{oauth_client_secret_vault}}"
 oauth_callback_url: "https://o2r.uni-muenster.de/api/v1/auth/login"
 sessionsecret: "{{sessionsecret_vault}}"
-host_ip: "172.17.0.1"
-mongo_host: "172.17.0.1"
+mongo_host: "mongodb"
 mongo_port: 27017
 mongo_database: "muncher"
 nginx_server_name: o2r.uni-muenster.de

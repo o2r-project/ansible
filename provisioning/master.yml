@@ -2,7 +2,7 @@
 - hosts: master
   roles:
     # required databases:
-    - mongodb
+    - docker-mongodb
     - docker-elasticsearch
     # MongoDB admin interface:
     - docker-mongo-express

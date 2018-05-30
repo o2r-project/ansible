@@ -19,6 +19,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
   -e "SESSION_SECRET={{muncher_role.config.sessionsecret}}" \
   -p "{{muncher_role.config.port}}:8080" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{muncher_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{muncher_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{muncher_role.container.name}}"

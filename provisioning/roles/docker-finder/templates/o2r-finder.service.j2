@@ -19,6 +19,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=finder" \
   -p "{{finder_role.config.port}}:8084" \
   --link "{{finder_role.config.elasticsearch_container_name}}:{{finder_role.config.elasticsearch_container_name}}" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{finder_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{finder_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{finder_role.container.name}}"

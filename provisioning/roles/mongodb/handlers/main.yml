@@ -1,4 +1,0 @@
----
-- name: Restart MongoDB
-  become: yes
-  service: name=mongod state=restarted

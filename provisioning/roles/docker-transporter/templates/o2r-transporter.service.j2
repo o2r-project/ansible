@@ -16,6 +16,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=transporter" \
   -e "SESSION_SECRET={{transporter_role.config.sessionsecret}}" \
   -p "{{transporter_role.config.port}}:8081" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{transporter_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{transporter_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{transporter_role.container.name}}"

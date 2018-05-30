@@ -17,6 +17,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "https_proxy={{proxy.https_proxy}}" \
   -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{informer_role.config.port}}:8082" \
+  --link "{{mongo_host}}:{{mongo_host}}" \
   "{{informer_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{informer_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{informer_role.container.name}}"
