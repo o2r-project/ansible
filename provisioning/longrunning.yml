@@ -4,7 +4,6 @@
     # EPEL is needed for docker, etc.
     - epel
     - docker
-    # docker-py is needed for ansible, to talk to the docker server
     - docker-py
     - docker-mariadb
     - docker-piwik
