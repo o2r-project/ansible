@@ -1,7 +1,7 @@
 ---
 shipper_role:
   config:
-    basepath: "/data/docker/o2r"
+    basepath: "{{storage}}"
     port: 8087
     sessionsecret: "{{sessionsecret}}"
     mongo_host: "{{mongo_host}}"

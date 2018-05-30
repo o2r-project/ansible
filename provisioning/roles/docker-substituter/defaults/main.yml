@@ -1,7 +1,7 @@
 ---
 substituter_role:
   config:
-    basepath: "/data/docker/o2r"
+    basepath: "{{storage}}"
     port: 8090
     sessionsecret: "{{sessionsecret}}"
     mongo_host: "{{mongo_host}}"

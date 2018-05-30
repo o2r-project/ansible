@@ -1,7 +1,7 @@
 ---
 muncher_role:
   config:
-    basepath: "/data/docker/o2r"
+    basepath: "{{storage}}"
     port: 8080
     sessionsecret: "{{sessionsecret}}"
     mongo_host: "{{mongo_host}}"

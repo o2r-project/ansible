@@ -1,7 +1,7 @@
 ---
 finder_role:
   config:
-    basepath: "/data/docker/o2r"
+    basepath: "{{storage}}"
     port: 8084
     mongo_url: "mongodb://{{mongo_host}}/"
     mongo_database: "{{mongo_database}}"

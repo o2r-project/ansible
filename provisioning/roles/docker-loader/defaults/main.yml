@@ -1,7 +1,7 @@
 ---
 loader_role:
   config:
-    basepath: "/data/docker/o2r"
+    basepath: "{{storage}}"
     port: 8088
     mongo_host: "{{mongo_host}}"
     sessionsecret: "{{sessionsecret}}"
