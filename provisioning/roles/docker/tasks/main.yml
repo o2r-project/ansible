@@ -2,15 +2,18 @@
 - name: Add repository
   become: yes
   copy:
+    # based on https://download.docker.com/linux/centos/docker-ce.repo
     src: docker.repo
     dest: /etc/yum.repos.d/
     owner: root
     group: root
     mode: 0644
+  tags: docker
 
 - name: Install
   become: yes
-  yum: name=docker-engine
+  yum: name=docker-ce
+  tags: docker
 
 - name: Create folder for additional configuration
   become: yes
@@ -21,6 +24,7 @@
     owner: root
     group: root
     mode: 0755
+  tags: docker
 
 - name: Configure proxy
   become: yes
@@ -32,10 +36,13 @@
     owner: root
     group: root
     mode: 0644
+  tags: docker
 
 - name: Enable and start service
   become: yes
   notify: Wait for Docker to start up
   service: name=docker state=started enabled=yes
+  tags: docker
 
 - meta: flush_handlers
+  tags: docker

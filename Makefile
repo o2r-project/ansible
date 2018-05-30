@@ -8,6 +8,10 @@ provision:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml
 .PHONY: provision
 
+provision-docker:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "docker"
+.PHONY: provision-docker
+
 provision-mariadb:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mariadb"
 .PHONY: provision-mariadb
