@@ -10,4 +10,9 @@
     volumes:
       - /data/docker/o2r-mariadb/var/lib/mysql:/var/lib/mysql:rw
   tags:
+    - mariadb 
+  notify: Wait for mariadb to start up
+
+- meta: flush_handlers
+  tags:
     - mariadb
