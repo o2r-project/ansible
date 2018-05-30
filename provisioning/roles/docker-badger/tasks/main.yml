@@ -58,11 +58,42 @@
     dest: /tmp/testdata_jobs.json
   tags: badger
 
-- name: Load demo data into MongoDB
+- name: Load demo compendia into MongoDB
   become: yes
-  notify: Wait for o2r-badger to start up
-  shell: "mongoimport --uri mongodb://{{mongo_host}}:27017/muncher --collection {{item}} --type json --file /tmp/testdata_{{item}}.json --jsonArray"
-  with_items: ["compendia", "jobs"]
+  docker_container:
+    name: demo-compendia-badger
+    image: mongo:3.4
+    state: started
+    restart_policy: no
+    command:
+      - "mongoimport -vvvvv --uri mongodb://{{mongo_host}}:27017/muncher --collection compendia --type json --jsonArray --file '/testdata_compendia.json'"
+    links:
+      - "{{mongo_host}}:{{mongo_host}}"
+    volumes:
+      - "/tmp/testdata_compendia.json:/testdata_compendia.json:ro"
+      - "/tmp/testdata_jobs.json:/testdata_jobs.json:ro"
+    # container will not run if it exists already
+    auto_remove: true
+  tags:
+    - badger
+    - demo_data
+
+- name: Load demo jobs into MongoDB
+  become: yes
+  docker_container:
+    name: demo-jobs-badger
+    image: mongo:3.4
+    state: started
+    restart_policy: no
+    command:
+      - "mongoimport -vvvvv --uri mongodb://{{mongo_host}}:27017/muncher --collection jobs --type json  --jsonArray --file '/testdata_jobs.json'"
+    links:
+      - "{{mongo_host}}:{{mongo_host}}"
+    volumes:
+      - "/tmp/testdata_compendia.json:/testdata_compendia.json:ro"
+      - "/tmp/testdata_jobs.json:/testdata_jobs.json:ro"
+    # container will not run if it exists already
+    auto_remove: true
   tags:
     - badger
     - demo_data
