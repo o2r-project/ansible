@@ -10,6 +10,9 @@
     owner: root
     group: root
     mode: 0755
+  tags:
+    - muncher
+    - microservice
 
 - name: Create service
   become: yes
@@ -18,30 +21,39 @@
     - Remove old o2r-muncher container
   template:
     src: o2r-muncher.service.j2
-    dest: /etc/systemd/system/o2r-muncher.service
+    dest: "/etc/systemd/system/{{muncher_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
   tags:
     - muncher
+    - microservice
 
 - name: Enable service
   become: yes
-  service: name=o2r-muncher enabled=yes
+  service:
+    name: "{{muncher_role.container.name}}"
+    enabled: yes
   tags:
     - muncher
+    - microservice
 
 - meta: flush_handlers
   tags:
     - muncher
+    - microservice
 
 - name: Start service
   become: yes
   notify: Wait for o2r-muncher to start up
-  service: name=o2r-muncher state=started
+  service:
+    name: "{{muncher_role.container.name}}"
+    state: started
   tags:
     - muncher
+    - microservice
 
 - meta: flush_handlers
   tags:
     - muncher
+    - microservice

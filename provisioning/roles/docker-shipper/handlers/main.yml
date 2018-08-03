@@ -13,7 +13,9 @@
 - name: Restart o2r-shipper
   become: yes
   notify: Wait for o2r-shipper to start up
-  service: name=o2r-shipper state=restarted
+  service:
+    name: "{{shipper_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-shipper to start up
-  pause: seconds=10
+  pause: seconds=15

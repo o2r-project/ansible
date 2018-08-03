@@ -5,7 +5,8 @@ substituter_role:
     port: 8090
     sessionsecret: "{{sessionsecret}}"
     mongo_host: "{{mongo_host}}"
+    mongo_port: "{{mongo_port}}"
     mongo_database: "{{mongo_database}}"
   container:
-    image: "o2rproject/o2r-substituter:0.4.1"
+    image: "o2rproject/o2r-substituter:0.5.0"
     name: o2r-substituter

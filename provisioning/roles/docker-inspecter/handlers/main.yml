@@ -7,13 +7,15 @@
   become: yes
   notify: Wait for o2r-inspecter to start up
   docker_container:
-    name: "{{inspecter_role.config.name}}"
+    name: "{{inspecter_role.container.name}}"
     state: absent
 
 - name: Restart o2r-inspecter
   become: yes
   notify: Wait for o2r-inspecter to start up
-  service: name=o2r-inspecter state=restarted
+  service:
+    name: "{{inspecter_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-inspecter to start up
   pause: seconds=5

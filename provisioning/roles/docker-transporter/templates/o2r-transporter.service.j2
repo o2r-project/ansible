@@ -10,13 +10,13 @@ ExecStartPre=-/usr/bin/docker create \
   --name "{{transporter_role.container.name}}" \
   -v "{{transporter_role.config.basepath}}:/tmp/o2r" \
   -v "/var/run/docker.sock:/var/run/docker.sock" \
-  -e "TRANSPORTER_MONGODB=mongodb://{{transporter_role.config.mongo_host}}/" \
+  -e "TRANSPORTER_MONGODB=mongodb://{{transporter_role.config.mongo_host}}:{{transporter_role.config.mongo_port}}/" \
   -e "TRANSPORTER_MONGODB_DATABASE={{transporter_role.config.mongo_database}}" \
   -e "TRANSPORTER_PORT={{transporter_role.config.port}}" \
   -e "DEBUG=transporter" \
   -e "SESSION_SECRET={{transporter_role.config.sessionsecret}}" \
   -p "{{transporter_role.config.port}}:8081" \
-  --link "{{mongo_host}}:{{mongo_host}}" \
+  --link "{{transporter_role.config.mongo_host}}:{{transporter_role.config.mongo_host}}" \
   "{{transporter_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{transporter_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{transporter_role.container.name}}"

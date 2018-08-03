@@ -13,7 +13,9 @@
 - name: Restart o2r-badger
   become: yes
   notify: Wait for o2r-badger to start up
-  service: name=o2r-badger state=restarted
+  service:
+    name: "{{badger_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-badger to start up
   pause: seconds=20

@@ -1,4 +1,4 @@
-all: provision
+default: provision
 
 lint:
 	ansible-playbook --ask-vault-pass --syntax-check -i hosts provisioning/site.yml
@@ -7,6 +7,10 @@ lint:
 provision:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml
 .PHONY: provision
+
+provision-microservices:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "microservice,nginx"
+.PHONY: provision-muncher
 
 provision-docker:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "docker"
@@ -39,6 +43,10 @@ provision-muncher:
 provision-finder:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "finder,nginx"
 .PHONY: provision-finder
+
+provision-informer:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "informer,nginx"
+.PHONY: provision-informer
 
 provision-inspecter:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "inspecter,nginx"

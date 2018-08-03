@@ -29,7 +29,7 @@
     - Remove old o2r-platform container
   template:
     src: o2r-platform.service.j2
-    dest: /etc/systemd/system/o2r-platform.service
+    dest: "/etc/systemd/system/{{platform_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
@@ -38,7 +38,9 @@
 
 - name: Enable service
   become: yes
-  service: name=o2r-platform enabled=yes
+  service:
+    name: "{{platform_role.container.name}}"
+    enabled: yes
   tags:
     - platform
 
@@ -49,7 +51,9 @@
 - name: Start service
   become: yes
   notify: Wait for o2r-platform to start up
-  service: name=o2r-platform state=started
+  service:
+    name: "{{platform_role.container.name}}"
+    state: started
   tags:
     - platform
 

@@ -8,7 +8,7 @@ TimeoutStartSec=20m
 ExecStartPre=-/usr/bin/docker pull "{{bouncer_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{bouncer_role.container.name}}" \
-  -e "BOUNCER_MONGODB=mongodb://{{bouncer_role.config.mongo_host}}/" \
+  -e "BOUNCER_MONGODB=mongodb://{{bouncer_role.config.mongo_host}}:{{bouncer_role.config.mongo_port}}/" \
   -e "DEBUG=bouncer,bouncer:*" \
   -e "BOUNCER_PORT={{bouncer_role.config.port}}" \
   -e "BOUNCER_DEFAULT_USER_LEVEL={{bouncer_role.config.user_level}}" \
@@ -21,7 +21,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "SESSION_SECRET={{bouncer_role.config.sessionsecret}}" \
   -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{bouncer_role.config.port}}:8083" \
-  --link "{{mongo_host}}:{{mongo_host}}" \
+  --link "{{bouncer_role.config.mongo_host}}:{{bouncer_role.config.mongo_host}}" \
   "{{bouncer_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{bouncer_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{bouncer_role.container.name}}"

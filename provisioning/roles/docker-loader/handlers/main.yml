@@ -13,7 +13,9 @@
 - name: Restart o2r-loader
   become: yes
   notify: Wait for o2r-loader to start up
-  service: name=o2r-loader state=restarted
+  service:
+    name: "{{loader_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-loader to start up
   pause: seconds=10

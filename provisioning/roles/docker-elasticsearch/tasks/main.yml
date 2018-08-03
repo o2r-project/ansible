@@ -71,11 +71,15 @@
 
 - name: Enable service
   become: yes
-  service: name=elasticsearch enabled=yes
+  service:
+    name: "{{elasticsearch_role.container.name}}"
+    enabled: yes
 
 - name: Start service
   become: yes
   notify: Wait for elasticsearch to start up
-  service: name=elasticsearch state=started
+  service:
+    name: "{{elasticsearch_role.container.name}}"
+    state: started
 
 - meta: flush_handlers

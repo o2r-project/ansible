@@ -9,6 +9,7 @@
     mode: 0755
   tags:
     - inspecter
+    - microservice
 
 - name: Create service
   become: yes
@@ -17,30 +18,39 @@
     - Remove old o2r-inspecter container
   template:
     src: o2r-inspecter.service.j2
-    dest: /etc/systemd/system/o2r-inspecter.service
+    dest: "/etc/systemd/system/{{inspecter_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
   tags:
     - inspecter
+    - microservice
 
 - name: Enable service
   become: yes
-  service: name=o2r-inspecter enabled=yes
+  service:
+    name: "{{inspecter_role.container.name}}"
+    enabled: yes
   tags:
     - inspecter
+    - microservice
 
 - meta: flush_handlers
   tags:
     - inspecter
+    - microservice
 
 - name: Start service
   become: yes
   notify: Wait for o2r-inspecter to start up
-  service: name=o2r-inspecter state=started
+  service:
+    name: "{{inspecter_role.container.name}}"
+    state: started
   tags:
     - inspecter
+    - microservice
 
 - meta: flush_handlers
   tags:
     - inspecter
+    - microservice

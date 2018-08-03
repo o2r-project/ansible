@@ -20,9 +20,9 @@ Bei Fragen: [https://o2r.slack.com/messages/server/](https://o2r.slack.com/messa
 - `provisioning/group_vars/all/vars.yml.template` - rename to `vars.yml` and put in the proxy server for public web access
 - `provisioning/host_vars/ubsvirt148.uni-muenster.de/vault.yml` - the vault file for the main host
 
-## Enthaltene services
+## Configuration overview
 
-Die Konfiguration erfolgt mittels Ansible (`>= 2.0`), und richtet den Server mit folgender Software ein.
+Configuration is done with Ansible (`>= 2.0`), which installs the following software and applies configurations on a server.
 
 - proxy Setttings (WWU-specific)
 - [screen](https://centoshelp.org/resources/scripts-tools/a-basic-understanding-of-screen-on-centos/)
@@ -50,9 +50,13 @@ Die Konfiguration erfolgt mittels Ansible (`>= 2.0`), und richtet den Server mit
   - loader
   - transporter (inklusive mount von `/var/run/docker.sock` um Container zu starten)
   - platform (die Website)
-  - shipper
+  - shipper (has some issues with the log, the container may run fine but the systemctl log still shows a previous error)
   - badger
   - substituter
+
+## Service names
+
+Container names should match names of systemd services, i.e. the name of the unit file should be `<container-name>.service`.
 
 ## Server OS
 
@@ -113,6 +117,14 @@ sudo systemctl | grep o2r
 sudo systemctl status o2r-finder
 sudo systemctl status mongod
 
+# List all o2r services
+sudo systemctl list-unit-files | grep o2r
+sudo systemctl list-units o2r-* --all
+
+# Stop/start all o2r services
+sudo systemctl stop o2r-*
+sudo systemctl start o2r-*
+
 # Logs sind auch über journalctl einsehbar: https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 # Siehe auch roles/journald für die aktive Konfiguration
 ls /etc/systemd/system
@@ -128,8 +140,8 @@ journalctl --vacuum-time=1h
 # Wenn nichts mehr hilft, vielleicht ein Docker restart
 sudo systemctl restart docker
 
-# Oder ein systemctl restart
-systemctl daemon-reload
+# ... or maybe a systemctl restart
+sudo systemctl daemon-reload
 ```
 
 - Mehr Infos [hier](https://wiki.archlinux.de/title/Systemd).
@@ -199,7 +211,7 @@ sudo systemctl restart o2r-badger
 # Hat alles geklappt?
 sudo systemctl status o2r-badger
 
-# Wie sieht die Konfiguration aus, die wirklich genutzt wird? (Nützlich wenn es Probleme beim escaping gibt)
+# How des the configuration look like, that is actually used by sytemctl? Very helpful if there are issues with escaping environment variables, e.g. shipper with JSON; execute the commands manually to see what the error message is.
 sudo systemctl show o2r-shipper
 
 # If there are problems starting the service, copy and paste the ExecStartPre content from the previous output and run it manually with Docker

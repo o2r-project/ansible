@@ -13,7 +13,9 @@
 - name: Restart o2r-finder
   become: yes
   notify: Wait for o2r-finder to start up
-  service: name=o2r-finder state=restarted
+  service:
+    name: "{{finder_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-finder to start up
   pause: seconds=10

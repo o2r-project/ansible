@@ -8,7 +8,7 @@ TimeoutStartSec=20m
 ExecStartPre=-/usr/bin/docker pull "{{informer_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{informer_role.container.name}}" \
-  -e "INFORMER_MONGODB=mongodb://{{informer_role.config.mongo_host}}/" \
+  -e "INFORMER_MONGODB=mongodb://{{informer_role.config.mongo_host}}:{{informer_role.config.mongo_port}}/" \
   -e "INFORMER_MONGODB_HOST={{informer_role.config.mongo_host}}" \
   -e "INFORMER_MONGODB_PORT={{informer_role.config.mongo_port}}" \
   -e "INFORMER_MONGODB_DATABASE={{informer_role.config.mongo_database}}" \
@@ -17,7 +17,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "https_proxy={{proxy.https_proxy}}" \
   -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{informer_role.config.port}}:8082" \
-  --link "{{mongo_host}}:{{mongo_host}}" \
+  --link "{{informer_role.config.mongo_host}}:{{informer_role.config.mongo_host}}" \
   "{{informer_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{informer_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{informer_role.container.name}}"

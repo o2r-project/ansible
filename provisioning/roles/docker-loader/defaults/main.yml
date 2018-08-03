@@ -4,7 +4,8 @@ loader_role:
     basepath: "{{storage}}"
     port: 8088
     mongo_host: "{{mongo_host}}"
+    mongo_port: "{{mongo_port}}"
     sessionsecret: "{{sessionsecret}}"
   container:
-    image: "o2rproject/o2r-loader:0.8.3"
+    image: "o2rproject/o2r-loader:0.11.0"
     name: o2r-loader

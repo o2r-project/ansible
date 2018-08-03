@@ -11,7 +11,7 @@ ExecStartPre=-/usr/bin/docker create \
   -v "{{muncher_role.config.basepath}}:{{loader_role.config.basepath}}" \
   -v "/var/run/docker.sock:/var/run/docker.sock" \
   -e "MUNCHER_BASEPATH={{loader_role.config.basepath}}/" \
-  -e "MUNCHER_MONGODB=mongodb://{{muncher_role.config.mongo_host}}/" \
+  -e "MUNCHER_MONGODB=mongodb://{{muncher_role.config.mongo_host}}:{{muncher_role.config.mongo_port}}/" \
   -e "MUNCHER_PROXY={{proxy.http_proxy}}" \
   -e "MUNCHER_EMAIL_TRANSPORT={{muncher_role.config.email.transport}}" \
   -e "MUNCHER_EMAIL_RECEIVERS={{muncher_role.config.email.receivers}}" \
@@ -19,7 +19,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
   -e "SESSION_SECRET={{muncher_role.config.sessionsecret}}" \
   -p "{{muncher_role.config.port}}:8080" \
-  --link "{{mongo_host}}:{{mongo_host}}" \
+  --link "{{muncher_role.config.mongo_host}}:{{muncher_role.config.mongo_host}}" \
   "{{muncher_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{muncher_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{muncher_role.container.name}}"

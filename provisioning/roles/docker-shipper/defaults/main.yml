@@ -13,5 +13,5 @@ shipper_role:
     zenodo_sandbox:
       token: "{{zenodo_sandbox_token}}"
   container:
-    image: "o2rproject/o2r-shipper:168ae80"
+    image: "o2rproject/o2r-shipper:9ee605f"
     name: o2r-shipper

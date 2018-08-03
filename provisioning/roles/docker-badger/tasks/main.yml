@@ -9,7 +9,7 @@
     - Remove old o2r-badger container
   template:
     src: o2r-badger.service.j2
-    dest: /etc/systemd/system/o2r-badger.service
+    dest: "/etc/systemd/system/{{badger_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
@@ -18,7 +18,9 @@
 
 - name: Enable service
   become: yes
-  service: name=o2r-badger enabled=yes
+  service:
+    name: "{{badger_role.container.name}}"
+    enabled: yes
   tags:
     - badger
 
@@ -29,7 +31,9 @@
 - name: Start service
   become: yes
   notify: Wait for o2r-badger to start up
-  service: name=o2r-badger state=started
+  service:
+    name: "{{badger_role.container.name}}"
+    state: started
   tags:
     - badger
 
@@ -58,11 +62,21 @@
     dest: /tmp/testdata_jobs.json
   tags: badger
 
+- name: Remove existing demo compendia container
+  become: yes
+  docker_container:
+    name: demo-compendia-badger
+    state: absent
+    force_kill: yes
+  tags:
+    - badger
+    - demo_data
+
 - name: Load demo compendia into MongoDB
   become: yes
   docker_container:
     name: demo-compendia-badger
-    image: mongo:3.4
+    image: mongo:3.6
     state: started
     restart_policy: no
     command:
@@ -78,11 +92,26 @@
     - badger
     - demo_data
 
+- name: Pause to allow MongoDB to take a breath after import
+  pause: seconds=5
+  tags:
+    - mongodb
+
+- name: Remove existing demo jobs container
+  become: yes
+  docker_container:
+    name: demo-jobs-badger
+    state: absent
+    force_kill: yes
+  tags:
+    - badger
+    - demo_data
+
 - name: Load demo jobs into MongoDB
   become: yes
   docker_container:
     name: demo-jobs-badger
-    image: mongo:3.4
+    image: mongo:3.6
     state: started
     restart_policy: no
     command:

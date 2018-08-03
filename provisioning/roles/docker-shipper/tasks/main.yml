@@ -7,7 +7,9 @@
     owner: root
     group: root
     mode: 0755
-  tags: shipper
+  tags:
+    - shipper
+    - microservice
 
 - name: Create service
   become: yes
@@ -16,25 +18,39 @@
     - Remove old o2r-shipper container
   template:
     src: o2r-shipper.service.j2
-    dest: /etc/systemd/system/o2r-shipper.service
+    dest: "/etc/systemd/system/{{shipper_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
-  tags: shipper
+  tags:
+    - shipper
+    - microservice
 
 - name: Enable service
   become: yes
-  service: name=o2r-shipper enabled=yes
-  tags: shipper
+  service:
+    name: "{{shipper_role.container.name}}"
+    enabled: yes
+  tags:
+    - shipper
+    - microservice
 
 - meta: flush_handlers
-  tags: shipper
+  tags:
+    - shipper
+    - microservice
 
 - name: Start service
   become: yes
   notify: Wait for o2r-shipper to start up
-  service: name=o2r-shipper state=started
-  tags: shipper
+  service:
+    name: "{{shipper_role.container.name}}"
+    state: started
+  tags:
+    - shipper
+    - microservice
 
 - meta: flush_handlers
-  tags: shipper
+  tags:
+    - shipper
+    - microservice

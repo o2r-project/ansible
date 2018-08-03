@@ -3,6 +3,7 @@
   debug: var=finder_role
   tags:
     - finder
+    - microservice
 
 - name: Create service
   become: yes
@@ -11,30 +12,39 @@
     - Remove old o2r-finder container
   template:
     src: o2r-finder.service.j2
-    dest: /etc/systemd/system/o2r-finder.service
+    dest: "/etc/systemd/system/{{finder_role.container.name}}.service"
     owner: root
     group: root
     mode: 0600
   tags:
     - finder
+    - microservice
 
 - name: Enable service
   become: yes
-  service: name=o2r-finder enabled=yes
+  service: 
+    name: "{{finder_role.container.name}}"
+    enabled: yes
   tags:
     - finder
+    - microservice
 
 - meta: flush_handlers
   tags:
     - finder
+    - microservice
 
 - name: Start service
   become: yes
   notify: Wait for o2r-finder to start up
-  service: name=o2r-finder state=started
+  service:
+    name: "{{finder_role.container.name}}"
+    state: started
   tags:
     - finder
+    - microservice
 
 - meta: flush_handlers
   tags:
     - finder
+    - microservice

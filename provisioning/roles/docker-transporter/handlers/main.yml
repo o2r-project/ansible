@@ -13,7 +13,9 @@
 - name: Restart o2r-transporter
   become: yes
   notify: Wait for o2r-transporter to start up
-  service: name=o2r-transporter state=restarted
+  service:
+    name: "{{transporter_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-transporter to start up
   pause: seconds=5

@@ -13,7 +13,9 @@
 - name: Restart o2r-muncher
   become: yes
   notify: Wait for o2r-muncher to start up
-  service: name=o2r-muncher state=restarted
+  service:
+    name: "{{muncher_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-muncher to start up
   pause: seconds=30

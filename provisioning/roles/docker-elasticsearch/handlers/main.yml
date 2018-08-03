@@ -13,7 +13,9 @@
 - name: Restart Elasticsearch
   become: yes
   notify: Wait for elasticsearch to start up
-  service: name=elasticsearch state=restarted
+  service:
+    name: "{{elasticseachr_role.container.name}}"
+    state: restarted
 
 - name: Wait for elasticsearch to start up
   pause: seconds=10

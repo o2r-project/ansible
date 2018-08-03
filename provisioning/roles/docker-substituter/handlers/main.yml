@@ -13,7 +13,9 @@
 - name: Restart o2r-substituter
   become: yes
   notify: Wait for o2r-substituter to start up
-  service: name=o2r-substituter state=restarted
+  service:
+    name: "{{substituter_role.container.name}}"
+    state: restarted
 
 - name: Wait for o2r-substituter to start up
   pause: seconds=5

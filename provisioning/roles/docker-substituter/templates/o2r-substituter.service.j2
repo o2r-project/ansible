@@ -9,13 +9,13 @@ ExecStartPre=-/usr/bin/docker pull "{{substituter_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{substituter_role.container.name}}" \
   -v "{{substituter_role.config.basepath}}:/tmp/o2r" \
-  -e "SUBSTITUTER_MONGODB=mongodb://{{substituter_role.config.mongo_host}}/" \
+  -e "SUBSTITUTER_MONGODB=mongodb://{{substituter_role.config.mongo_host}}:{{substituter_role.config.mongo_port}}/" \
   -e "SUBSTITUTER_MONGODB_DATABASE={{substituter_role.config.mongo_database}}" \
   -e "SUBSTITUTER_PORT={{substituter_role.config.port}}" \
   -e "DEBUG=substituter,substituter:*" \
   -e "SESSION_SECRET={{substituter_role.config.sessionsecret}}" \
   -p "{{substituter_role.config.port}}:8090" \
-  --link "{{mongo_host}}:{{mongo_host}}" \
+  --link "{{substituter_role.config.mongo_host}}:{{substituter_role.config.mongo_host}}" \
   "{{substituter_role.container.image}}"
 ExecStart=/usr/bin/docker start -a "{{substituter_role.container.name}}"
 ExecStop=/usr/bin/docker stop "{{substituter_role.container.name}}"
