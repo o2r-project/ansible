@@ -1,0 +1,30 @@
+var config = {
+    _id: "rso2r",
+    version: 1,
+    members: [
+        {
+            _id: 0,
+            host: "{{mongodb_role.container.name}}:27017"
+        }
+    ]
+};
+
+printjson(rs.status());
+
+var output = {};
+if(rs.status().state == 10) {
+    print("State is 10, reconfig")
+    output = rs.reconfig(config);
+} else if(rs.status().state == 1) {
+    print("State is 1, doing nothing")
+} else {
+    print("State is != 10, trying initiate...")
+    output = rs.initiate(config);
+}
+printjson(output);
+
+print("Configuration:\n");
+printjson(rs.conf());
+
+print("Status:\n");
+printjson(rs.status());

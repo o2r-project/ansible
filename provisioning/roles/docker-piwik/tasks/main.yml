@@ -18,7 +18,13 @@
     mode: 0644
   tags: piwik
 
-- name: piwik container
+- name: Remove old piwik container
+  become: yes
+  docker_container:
+    name: piwik
+    state: absent
+
+- name: Start piwik container
   become: yes
   docker_container:
     name: piwik
@@ -38,7 +44,7 @@
 
 - name: run command to increase number of custom variables
   become: yes
-  shell: "sudo docker exec -i piwik /piwik/console customvariables:set-max-custom-variables 10 --no-interaction"
+  shell: "docker exec -i piwik /piwik/console customvariables:set-max-custom-variables 10 --no-interaction"
   register: customvarout
   tags: piwik
 

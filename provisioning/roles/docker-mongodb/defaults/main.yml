@@ -1,0 +1,9 @@
+---
+mongodb_role:
+  config:
+    data_path: "/data/docker/mongodb"
+    port: 8080
+    config_basepath: "/etc/o2r/mongodb"
+  container:
+    image: "mongo:3.6"
+    name: mongodb

@@ -1,28 +1,87 @@
-- name: MongoDB Container
+- name: Create data directory
+  become: yes
+  file:
+    path: "{{mongodb_role.config.data_path}}"
+    state: directory
+    mode: 0755
+  tags:
+    - mongodb
+
+- name: Remove existing MongoDB container
   become: yes
   docker_container:
-    name: mongodb
-    image: mongo:3.4
+    name: "{{mongodb_role.container.name}}"
+    state: absent
+    force_kill: yes
+  tags:
+    - mongodb
+
+- name: Create config directory
+  become: yes
+  file:
+    path: "{{mongodb_role.config.config_basepath}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - mongodb
+
+- name: Add init file
+  become: yes
+  template:
+    src: initreplica.js.j2
+    dest: "{{mongodb_role.config.config_basepath}}/initreplica.js"
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - mongodb
+
+- name: MongoDB container
+  become: yes
+  docker_container:
+    name: "{{mongodb_role.container.name}}"
+    image: "{{mongodb_role.container.image}}"
+    hostname: "{{mongodb_role.container.name}}"
     state: started
     restart_policy: always
-    command: "--replSet rso2r"
+    command: "--replSet rso2r --bind_ip_all"
     volumes:
-      - /data/docker/o2r-mongodb/db:/data/db:rw
+      - "{{mongodb_role.config.data_path}}/db:/data/db:rw"
+      - "/etc/o2r/mongodb/initreplica.js:/initreplica.js:ro"
+  tags:
+    - mongodb
+
+- name: Pause to allow MongoDB service to start
+  pause: seconds=3
   tags:
     - mongodb
 
 - name: MongoDB Container replication set configuration
   become: yes
-  docker_container:
-    name: config-mongodb
-    image: mongo:3.4
-    state: started
-    restart_policy: no
-    command: bash -c "sleep 5; mongo --verbose --host mongodb --eval 'printjson(rs.initiate()); printjson(rs.conf()); printjson(rs.status()); printjson(rs.slaveOk());'"
-    links:
-      - mongodb
-    volumes:
-      - /data/docker/o2r-mongodb/db:/data/db:rw
-    auto_remove: true
+#  docker_container:
+#    name: config-mongodb
+#    image: "{{mongodb_role.container.image}}"
+#    state: started
+#    restart_policy: no
+#    command: bash -c "mongo --verbose --host {{mongodb_role.container.name}} --eval 'printjson(rs.initiate()); printjson(rs.conf()); printjson(rs.status()); printjson(rs.slaveOk());'"
+#    links:
+#      - "{{mongodb_role.container.name}}:{{mongodb_role.container.name}}"
+#    auto_remove: true
+# { _id: 'rso2r, version: 1, members: [ {_id: 0, host: \"{{mongodb_role.container.name}}:27017\" } ] }
+  shell: "docker exec -i {{mongodb_role.container.name}} mongo --verbose --host {{mongodb_role.container.name}} /initreplica.js"
+  register: execlog
+  tags:
+    - mongodb
+
+- name: print result of custom variable config command
+  debug:
+    msg: "{{execlog.stdout_lines}}"
+  tags:
+    - mongodb
+
+- name: Pause to allow MongoDB service to start
+  pause: seconds=10
   tags:
     - mongodb

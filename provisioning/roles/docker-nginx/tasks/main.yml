@@ -5,7 +5,8 @@
     path: "/etc/nginx-docker"
     state: directory
     mode: 0755
-  tags: nginx
+  tags:
+    - nginx
 
 - name: Copy nginx.conf
   become: yes
@@ -17,7 +18,8 @@
     owner: root
     group: root
     mode: 0600
-  tags: nginx
+  tags:
+    - nginx
 
 - name: Create www directory
   become: yes
@@ -25,7 +27,8 @@
     path: "/var/www-docker"
     state: directory
     mode: 0755
-  tags: nginx
+  tags:
+    - nginx
 
 - name: Create www/static directory
   become: yes
@@ -33,7 +36,8 @@
     path: "/var/www-docker/static"
     state: directory
     mode: 0755
-  tags: nginx
+  tags:
+    - nginx
 
 - name: Copy index.html (redirection)
   become: yes
@@ -57,7 +61,7 @@
     name: nginx
     state: absent
   tags:
-    - nginx
+    - nginx 
 
 - name: nginx container
   become: yes
@@ -91,9 +95,12 @@
       - "o2r-substituter"
       - "o2r-platform"
       - "o2r-badger"
-  tags: nginx
+  tags:
+    - nginx
 
 - meta: flush_handlers
+  tags:
+    - nginx
 
 # https://stackoverflow.com/questions/32279519/escaping-double-curly-braces-in-ansible
 - name: query IP of webserver container
@@ -102,7 +109,7 @@
   register: _webserver_container_query
   tags:
     - nginx
-    - insert_ip
+    - insert_ip 
 
 - name: get IP of query result
   become: yes
@@ -117,6 +124,7 @@
   tags:
     - nginx
     - insert_ip
+    
 
 - include_role:
     name: docker-badger
@@ -140,3 +148,4 @@
   tags:
     - nginx
     - insert_ip
+  
