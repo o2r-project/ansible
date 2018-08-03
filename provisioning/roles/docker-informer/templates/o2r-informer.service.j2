@@ -1,10 +1,12 @@
 [Unit]
-Description=o2r Bouncer
+Description=o2r bouncer
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=20m
+RestartSec=10
+TimeoutStartSec=120
 ExecStartPre=-/usr/bin/docker pull "{{informer_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{informer_role.container.name}}" \

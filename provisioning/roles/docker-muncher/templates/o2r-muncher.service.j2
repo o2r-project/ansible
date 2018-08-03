@@ -1,10 +1,12 @@
 [Unit]
-Description=o2r Muncher
+Description=o2r muncher
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=30s
-TimeoutStartSec=20m
+RestartSec=30
+TimeoutStartSec=60
 ExecStartPre=-/usr/bin/docker pull "{{muncher_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{muncher_role.container.name}}" \

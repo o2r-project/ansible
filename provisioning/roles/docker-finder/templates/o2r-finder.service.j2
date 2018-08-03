@@ -1,10 +1,12 @@
 [Unit]
-Description=o2r Finder
+Description=o2r finder
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=20m
+RestartSec=10
+TimeoutStartSec=60
 ExecStartPre=-/usr/bin/docker pull "{{finder_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{finder_role.container.name}}" \

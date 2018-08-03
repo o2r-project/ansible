@@ -1,10 +1,12 @@
 [Unit]
-Description=o2r-platform
+Description=o2r platform
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=20m
+RestartSec=10
+TimeoutStartSec=10
 ExecStartPre=-/usr/bin/docker pull "{{platform_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{platform_role.container.name}}" \

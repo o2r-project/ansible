@@ -1,10 +1,12 @@
 [Unit]
 Description=Elasticsearch
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=2m
+RestartSec=10
+TimeoutStartSec=120
 ExecStartPre=-/usr/bin/docker pull "{{elasticsearch_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{elasticsearch_role.container.name}}" \

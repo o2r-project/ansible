@@ -1,10 +1,12 @@
 [Unit]
-Description=o2r-substituter
+Description=o2r substituter
+StartLimitIntervalSec=200
+StartLimitBurst=6
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=20m
+RestartSec=10
+TimeoutStartSec=30
 ExecStartPre=-/usr/bin/docker pull "{{substituter_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{substituter_role.container.name}}" \

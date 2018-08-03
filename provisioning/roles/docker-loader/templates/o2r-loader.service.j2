@@ -1,10 +1,10 @@
 [Unit]
-Description=o2r Loader
+Description=o2r loader
 
 [Service]
 Restart=always
-RestartSec=10s
-TimeoutStartSec=20m
+RestartSec=10
+TimeoutStartSec=60
 ExecStartPre=-/usr/bin/docker pull "{{loader_role.container.image}}"
 ExecStartPre=-/usr/bin/docker create \
   --name "{{loader_role.container.name}}" \
