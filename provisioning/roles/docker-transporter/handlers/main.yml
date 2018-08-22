@@ -3,19 +3,12 @@
   become: yes
   command: systemctl daemon-reload
 
-- name: Remove old o2r-transporter container
-  become: yes
-  notify: Wait for o2r-transporter to start up
-  docker_container:
-    name: "{{transporter_role.container.name}}"
-    state: absent
-
 - name: Restart o2r-transporter
   become: yes
-  notify: Wait for o2r-transporter to start up
+  notify: Wait for o2r-transporter
   service:
     name: "{{transporter_role.container.name}}"
     state: restarted
 
-- name: Wait for o2r-transporter to start up
+- name: Wait for o2r-transporter
   pause: seconds=5
