@@ -18,6 +18,8 @@ ExecStartPre=-/usr/bin/docker create \
   -e "MUNCHER_EMAIL_TRANSPORT={{muncher_role.config.email.transport}}" \
   -e "MUNCHER_EMAIL_RECEIVERS={{muncher_role.config.email.receivers}}" \
   -e "MUNCHER_EMAIL_SENDER={{muncher_role.config.email.sender}}" \
+  -e "MUNCHER_CONTAINERIT_IMAGE={{muncher_role.config.containerit.image}}" \
+  -e "MUNCHER_META_TOOL_CONTAINER={{muncher_role.config.meta.image}}" \
   -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
   -e "SESSION_SECRET={{muncher_role.config.sessionsecret}}" \
   -p "{{muncher_role.config.port}}:8080" \

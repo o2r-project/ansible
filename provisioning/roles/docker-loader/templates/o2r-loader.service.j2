@@ -12,6 +12,7 @@ ExecStartPre=-/usr/bin/docker create \
   -v "/var/run/docker.sock:/var/run/docker.sock" \
   -e "LOADER_BASEPATH={{loader_role.config.basepath}}/" \
   -e "LOADER_MONGODB=mongodb://{{loader_role.config.mongo_host}}:{{loader_role.config.mongo_port}}/" \
+  -e "LOADER_META_TOOL_CONTAINER={{loader_role.config.meta.image}}" \
   -e "SESSION_SECRET={{loader_role.config.sessionsecret}}" \
   -e "DEBUG=*,-express-session,-express:*,-compression,-body-parser:*,-mquery,-modem" \
   -p "{{loader_role.config.port}}:8088" \

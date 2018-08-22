@@ -10,6 +10,10 @@ muncher_role:
       transport: "smtps://openingreproducibleresearch%40gmail.com:diL59ZzYNA4aNpiGvcXS@smtp.gmail.com"
       receivers: "openingreproducibleresearch@gmail.com"
       sender: "openingreproducibleresearch@gmail.com"
+    containerit:
+      image: "o2rproject/containerit:geospatial-0.5.0.9003"
+    meta:
+      image: "o2rproject/o2r-meta:9198450"
   container:
     image: "o2rproject/o2r-muncher:0.21.0"
     name: o2r-muncher
