@@ -4,27 +4,25 @@
 
 ## tl;dr
 
-Für die Benutzung liegt ein `Makefile` bereit.
-Mit `make` wird das Playbook auf die Produktionsserver angewandt.
-Zuvor muss der lokale SSH key für den deployment user noch im authentication agent hinterlegt werden.
+There is a `Makefile`.
+The default `make` target applies the full playbook to the demo server.
+Beforehand you must add the local SSH key for the demo server to the authentication agent.
 
 ```bash
 ssh-add /<path>/id_rsa
 make
 ```
 
-Bei Fragen: [https://o2r.slack.com/messages/server/](https://o2r.slack.com/messages/server/)
-
 ## Configuration files to edit for this playbook to work
 
 - `provisioning/group_vars/all/vars.yml.template` - rename to `vars.yml` and put in the proxy server for public web access
-- `provisioning/host_vars/ubsvirt148.uni-muenster.de/vault.yml` - the vault file for the main host
+- `provisioning/host_vars/<hostname>/vault.yml` - the vault file for each host (see section [#secrets-and-passwords](Secrets and passwords))
 
 ## Configuration overview
 
 Configuration is done with Ansible (`>= 2.0`), which installs the following software and applies configurations on a server.
 
-- proxy Setttings (WWU-specific)
+- proxy settings (WWU-specific)
 - [screen](https://centoshelp.org/resources/scripts-tools/a-basic-understanding-of-screen-on-centos/)
 - yum updates
 - EPEL repository
@@ -63,26 +61,27 @@ Container names should match names of systemd services, i.e. the name of the uni
 `cat /etc/centos-release` > CentOS Linux release 7.2.1511 (Core)
 `cat /proc/version` > Linux version 3.10.0-327.28.2.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) ) #1 SMP Wed Aug 3 11:11:39 UTC 2016
 
-## Server Hardware
+## Server hardware
 
-Info bei Einrichtung:
+Information received by IT staff:
 
 > _CentOS 7.2 mit 4 Kernen und 8 GB Ram. Die Platte ist zurzeit 100 GB groß. Sollte da in der Performance etwas nicht passen, können wir das noch korrigieren._
 > _Snapshots sind eingerichtet. Es wird jeden Sonntag um ca. 21:00 ein komplettes Image der VM erstellt und auf ein anderes Storage (außerhalb des Datacenters) gespeichert._
 
-## [Beta] Lokaler Test
+## Secrets and passwords
 
-Mittels Vagrant kann das Playbook lokal auf einer automatisch erstellten virtuellen Maschine getestet werden. Dazu gibt es die Befehle `make staging`, welcher mittels Vagrant eine VM einrichtet und Ansible ausführt, sowie `make clean` um diese nach den Tests wieder zu entfernen.
+Tokens, passwords, account names - everything relevant to security is stored in an [Ansible Vault](http://docs.ansible.com/ansible/playbooks_vault.html) for each host.
+The vault file is stored in an independent project, which is not publicly hosted, as an additional layer of security.
+To use the vault file, copy it into this project at `provisioning/host_vars/<hostname>`, where it will be ignored by git.
 
-## Secrets und Passwörter
-
-Sicherheitsrelevante Einstellungen werden je host in einem [Ansible Vault](http://docs.ansible.com/ansible/playbooks_vault.html) gespeichert. Kommando zum Editieren dieses Vaults:
+The command to edit a vault file is
 
 ```bash
-ansible-vault edit provisioning/host_vars/ubsvirt148.uni-muenster.de/vault.yml
+ansible-vault edit <path to vault project>/provisioning/host_vars/<hostname>/vault.yml
 ```
 
-Das Passwort für den vault gibt es bei Daniel.
+Don't forget to manually sync the vault files between the vault file project and this project.
+Daniel has the password to the vault(s) and can give it to you in a secure way.
 
 ## Entwicklung
 
@@ -224,6 +223,11 @@ Alle IPs der Docker container anzeigen lassen:
 ```bash
 sudo docker ps -q | xargs -n 1 sudo docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \//\t/'
 ```
+
+### "Topology was destroyed" error
+
+This can happen if the MongoDB was restarted and a microservice still has the "old" connection open.
+You need to restart the service of that microservice, just restarting the container will result in an incorrect link to an outdated `mongodb` container.
 
 ## Sicherheit
 
