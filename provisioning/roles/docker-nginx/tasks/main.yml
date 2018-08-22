@@ -55,6 +55,15 @@
   tags:
     - nginx
 
+- name: Copy versions file
+  become: yes
+  notify: restart nginx
+  template:
+    src: "versions.json.j2"
+    dest: "/var/www-docker/static/versions.json"
+  tags:
+    - nginx
+
 - name: Stop and remove nginx container
   become: yes
   docker_container:
