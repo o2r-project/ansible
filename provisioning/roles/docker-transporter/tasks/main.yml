@@ -19,6 +19,21 @@
     owner: root
     group: root
     mode: 0600
+  register: transportercreate
+  tags:
+    - transporter
+    - microservice
+
+- name: Pull image
+  when: transportercreate.changed
+  become: yes
+  docker_image:
+    name: "{{transporter_role.container.image}}"
+    state: present
+    force: yes
+  tags:
+    - transporter
+    - microservice
 
 - name: Enable service
   become: yes

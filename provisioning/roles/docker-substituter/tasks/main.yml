@@ -19,6 +19,15 @@
     owner: root
     group: root
     mode: 0600
+  register: substitutercreate
+
+- name: Pull image
+  when: substitutercreate.changed
+  become: yes
+  docker_image:
+    name: "{{substituter_role.container.image}}"
+    state: present
+    force: yes
 
 - name: Enable service
   become: yes

@@ -10,6 +10,18 @@
     owner: root
     group: root
     mode: 0600
+  register: informercreate
+  tags:
+    - informer
+    - microservice
+
+- name: Pull image
+  when: informercreate.changed
+  become: yes
+  docker_image:
+    name: "{{infomer_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - informer
     - microservice

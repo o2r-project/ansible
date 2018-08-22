@@ -25,6 +25,18 @@
     owner: root
     group: root
     mode: 0600
+  register: munchercreate
+  tags:
+    - muncher
+    - microservice
+
+- name: Pull image
+  when: munchercreate.changed
+  become: yes
+  docker_image:
+    name: "{{muncher_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - muncher
     - microservice

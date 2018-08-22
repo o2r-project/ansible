@@ -22,6 +22,18 @@
     owner: root
     group: root
     mode: 0600
+  register: inspectercreate
+  tags:
+    - inspecter
+    - microservice
+
+- name: Pull image
+  when: inspectercreate.changed
+  become: yes
+  docker_image:
+    name: "{{inspecter_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - inspecter
     - microservice

@@ -16,6 +16,18 @@
     owner: root
     group: root
     mode: 0600
+  register: findercreate
+  tags:
+    - finder
+    - microservice
+
+- name: Pull image
+  when: findercreate.changed
+  become: yes
+  docker_image:
+    name: "{{finder_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - finder
     - microservice

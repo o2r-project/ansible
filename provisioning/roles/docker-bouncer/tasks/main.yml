@@ -10,6 +10,18 @@
     owner: root
     group: root
     mode: 0600
+  register: bouncercreate
+  tags:
+    - bouncer
+    - microservice
+
+- name: Pull image
+  when: bouncercreate.changed
+  become: yes
+  docker_image:
+    name: "{{bouncer_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - bouncer
     - microservice

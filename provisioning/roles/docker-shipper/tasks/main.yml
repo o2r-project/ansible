@@ -22,6 +22,18 @@
     owner: root
     group: root
     mode: 0600
+  register: shippercreate
+  tags:
+    - shipper
+    - microservice
+
+- name: Pull image
+  when: shippercreate.changed
+  become: yes
+  docker_image:
+    name: "{{shipper_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - shipper
     - microservice

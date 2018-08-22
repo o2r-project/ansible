@@ -13,6 +13,18 @@
     owner: root
     group: root
     mode: 0600
+  register: loadercreate
+  tags:
+    - loader
+    - microservice
+
+- name: Pull image
+  when: loadercreate.changed
+  become: yes
+  docker_image:
+    name: "{{loader_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - loader
     - microservice

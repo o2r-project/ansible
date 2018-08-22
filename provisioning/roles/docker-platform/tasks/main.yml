@@ -33,6 +33,17 @@
     owner: root
     group: root
     mode: 0600
+  register: platformcreate
+  tags:
+    - platform
+
+- name: Pull image
+  when: platformcreate.changed
+  become: yes
+  docker_image:
+    name: "{{platform_role.container.image}}"
+    state: present
+    force: yes
   tags:
     - platform
 
