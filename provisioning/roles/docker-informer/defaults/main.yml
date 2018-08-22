@@ -7,5 +7,5 @@ informer_role:
     mongo_port: "{{mongo_port}}"
     mongo_database: "{{mongo_database}}"
   container:
-    image: "o2rproject/o2r-informer:0.4.2"
+    image: "o2rproject/o2r-informer:0.5.0"
     name: o2r-informer

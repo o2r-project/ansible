@@ -6,5 +6,5 @@ platform_role:
       host: "/etc/o2r/platform/config.js"
       container: "/etc/nginx/html/app/config/config.js"
   container:
-    image: "o2rproject/o2r-platform:1.0.1"
+    image: "o2rproject/o2r-platform:1.0.2"
     name: o2r-platform

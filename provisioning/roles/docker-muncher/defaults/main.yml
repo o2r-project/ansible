@@ -11,5 +11,5 @@ muncher_role:
       receivers: "openingreproducibleresearch@gmail.com"
       sender: "openingreproducibleresearch@gmail.com"
   container:
-    image: "o2rproject/o2r-muncher:0.19.0"
+    image: "o2rproject/o2r-muncher:0.21.0"
     name: o2r-muncher
