@@ -32,7 +32,7 @@
   become: yes
   notify: Wait for o2r-bouncer to start up
   service:
-    name: "{{badger_role.container.name}}"
+    name: "{{bouncer_role.container.name}}"
     state: started
   tags:
     - bouncer

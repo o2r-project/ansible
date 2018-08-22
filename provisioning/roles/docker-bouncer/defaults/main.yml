@@ -10,6 +10,8 @@ bouncer_role:
       client_id: "{{oauth_client_id}}"
       client_secret: "{{oauth_client_secret}}"
       callback_url: "{{oauth_callback_url}}"
+      auth_url: "{{oauth_auth_url}}"
+      token_url: "{{oauth_token_url}}"
     slack:
       verification_token: "{{slack_verification_token}}"
       bot_token: "{{slack_bot_token}}"
