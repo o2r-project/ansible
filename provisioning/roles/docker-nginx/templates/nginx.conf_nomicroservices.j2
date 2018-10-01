@@ -67,12 +67,6 @@ http {
         #charset koi8-r;
         #access_log  logs/host.access.log  main;
 
-        location /piwik {
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_pass http://piwik:80;
-        }
-
         location /mongo-express {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;

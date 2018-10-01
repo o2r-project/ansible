@@ -1,9 +1,9 @@
 ---
-- name: Wait for piwik to start up
+- name: Wait for matomo to start up
   pause: seconds=20
 
-- name: restart piwik
+- name: restart matomo
   become: yes
   docker_container:
-    name: piwik
+    name: matomo
     restart: yes

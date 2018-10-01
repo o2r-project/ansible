@@ -30,12 +30,11 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
 - [`docker`](https://pypi.org/project/docker/) from PyPi (required for Docker via Ansible)
 - MongoDB `3.4` in Docker container
 - mariadb in Docker container
-- piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
-  - inofficial piwik container, but works well; watch out when updating the container because on the first run the build in webserver might have to generate private keys, which takes some time!
+- matomo in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
 - nginx in Docker-Container (läuft _nicht_ über systemd!)
   - reverse proxy für die o2r-microservices (siehe reverse proxies in `provisioning/roles/docker-nginx/templates/nginx.conf_all.j2`)
   - reverse proxy /mongo-express auf die mongo-express-Instanz >> http://o2r-mongo-express:8081
-  - reverse proxy /piwik auf die Piwik-Instanz
+  - reverse proxy /piwik auf die matomo-Instanz
   - hosting von `/static` - Dateien
   - proxy für WWU-Webseite (`/wwuproxy`) für CORS-losen Zugriff auf CRIS (genutzt für [Publikationsliste](https://o2r.uni-muenster.de/wwuproxy/forschungaz-rest/ws/public/infoobject/getrelated/Project/9520/PROJ_has_PUBL) auf o2r.info)
 - mongo-express in Docker-Container (abgesichert über HTTP Basic Auth), erreibbar unter http://ubsvirt148.uni-muenster.de:8027/ (Username und Passwort sind im vault)
@@ -82,6 +81,26 @@ ansible-vault edit <path to vault project>/provisioning/host_vars/<hostname>/vau
 
 Don't forget to manually sync the vault files between the vault file project and this project.
 Daniel has the password to the vault(s) and can give it to you in a secure way.
+
+## Usage on Windows
+
+It's been tested to run this configuration on Windows 10 using the Windows Subsystem for Linux ([WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)).
+Start a Linux shell and install Ansible within it to run the same commands.
+Note that you have to run ssh commands with ``sudo` because you cannot adjust the key file's permissions to fulfill `ssh`'s needs, unless you copy the key file into the WSL virtual machine, which we do not recommend for security reasons.
+This fixes opening a direct SSH connection from Windows 10 with WSL.
+
+If there are problems with the authentication agent, try running [`ssh-agent bash`](https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent).
+
+A working solution for running the playbook is to run all commands in the WSL machine as root:
+
+```bash
+ubuntu18.04
+# in the WSL machine
+sudo su root
+# now root@...
+ssh-add /path/to/keyfile/id_rsa
+make
+```
 
 ## Entwicklung
 
@@ -295,7 +314,10 @@ sudo docker logs mongodb
 
 ### MariaDB
 
-Eine MariaDB (MySQL) läuft in einem container und wird von PiWik genutzt. Im vault ist ein Passwort für Verbindung als root user. Folgender code kann helfen von einer Server-Shell aus direkt in der DB Änderungen vorzunehmen.
+MariaDB as a drop-in replacement for MySQL is running in a container.
+It is used by matomo.
+The vault containers the root user password for connections to the database.
+The following code may help with direct connections to the database for troubleshooting.
 
 ```bash
 sudo docker exec -it mariadb /bin/bash
@@ -304,7 +326,7 @@ mysql -p
 MariaDB [(none)] > SHOW DATABASES;
 MariaDB [(none)] > USE piwik;
 
-# in Piwik eine Tabelle (für einen bestimmten Monat) droppen um Daten einer Site zu löschen, siehe https://piwik.org/faq/how-to/faq_73/
+# remove specific data (site, time), see https://piwik.org/faq/how-to/faq_73/
 MariaDB [(piwik)] > SHOW TABLES;
 MariaDB [(piwik)] > SELECT DISTINCT(idsite) FROM piwik_archive_numeric_2017_09;
 MariaDB [(piwik)] > DELETE FROM piwik_archive_numeric_2017_09 WHERE idsite = 4;

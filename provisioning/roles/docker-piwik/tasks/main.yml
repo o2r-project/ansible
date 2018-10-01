@@ -2,53 +2,52 @@
 - name: Create config directory
   become: yes
   file:
-    path: "/etc/piwik-docker"
+    path: "/etc/matomo-docker"
     state: directory
     mode: 0755
-  tags: piwik
+  tags: matomo
 
 - name: Copy config.ini.php
   become: yes
-  notify: restart piwik
+  notify: restart matomo
   template:
     src: "config.ini.php.j2"
-    dest: "/etc/piwik-docker/config.ini.php"
+    dest: "/etc/matomo-docker/config.ini.php"
     owner: root
     group: root
     mode: 0644
-  tags: piwik
+  tags: matomo
 
-- name: Remove old piwik container
+- name: Remove old matomo container
   become: yes
   docker_container:
-    name: piwik
+    name: matomo
     state: absent
+  tags: matomo
 
-- name: Start piwik container
+- name: Start matomo container
   become: yes
   docker_container:
-    name: piwik
-    image: marvambass/piwik:3.5.0
+    name: matomo
+    image: matomo:3.6
     state: started
     restart_policy: always
     env:
-      PIWIK_MYSQL_USER: root
-      PIWIK_MYSQL_PASSWORD: "{{docker_mariadb_root_pass}}"
-      SITE_URL: https://o2r.uni-muenster.de
+      MYSQL_ROOT_PASSWORD: "{{docker_mariadb_root_pass}}"
     links:
-      - mariadb:mysql
+      - mariadb:db
     volumes:
-      - /etc/piwik-docker/config.ini.php:/piwik/config/config.ini.php:rw
-  notify: Wait for piwik to start up
-  tags: piwik
+      - /etc/matomo-docker/config.ini.php:/piwik/config/config.ini.php:rw
+  notify: Wait for matomo to start up
+  tags: matomo
 
 - name: run command to increase number of custom variables
   become: yes
   shell: "docker exec -i piwik /piwik/console customvariables:set-max-custom-variables 10 --no-interaction"
   register: customvarout
-  tags: piwik
+  tags: matomo
 
 - name: print result of custom variable config command
   debug:
     msg: "{{customvarout.stdout_lines}}"
-  tags: piwik
+  tags: matomo

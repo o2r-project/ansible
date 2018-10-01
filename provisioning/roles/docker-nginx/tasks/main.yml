@@ -92,7 +92,7 @@
     links:
       - "elasticsearch"
       - "mongo-express"
-      - "piwik"
+      - "matomo"
       - "o2r-muncher"
       - "o2r-informer"
       - "o2r-inspecter"

@@ -64,9 +64,9 @@ provision-platform:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "platform,nginx"
 .PHONY: provision-platform
 
-provision-piwik:
-	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "piwik,nginx"
-.PHONY: provision-piwik
+provision-matomo:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "matomo,nginx"
+.PHONY: provision-matomo
 
 provision-badger:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "badger,nginx"
