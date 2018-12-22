@@ -5,7 +5,7 @@
     name: mongo-express
     image: mongo-express:0.42
     state: started
-    restart_policy: always
+    restart_policy: unless-stopped
     env:
       # for all configuration options see https://hub.docker.com/_/mongo-express/
       ME_CONFIG_BASICAUTH_USERNAME: "{{mongo_express_basicauth_username}}"

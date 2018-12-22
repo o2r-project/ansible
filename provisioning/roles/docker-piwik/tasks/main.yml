@@ -30,7 +30,7 @@
     name: piwik
     image: marvambass/piwik:3.5.0
     state: started
-    restart_policy: always
+    restart_policy: unless-stopped
     env:
       PIWIK_MYSQL_USER: root
       PIWIK_MYSQL_PASSWORD: "{{docker_mariadb_root_pass}}"
