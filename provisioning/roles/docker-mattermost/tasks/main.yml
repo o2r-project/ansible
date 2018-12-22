@@ -1,0 +1,70 @@
+---
+- name: Create directories
+  become: yes
+  file:
+    path: "/data/docker/mattermost/{{item}}"
+    state: directory
+    mode: 0755
+    group: 2000
+    owner: 2000
+  with_items: ["data", "logs", "config"]
+  tags: mattermost
+
+- name: Copy config.json
+  become: yes
+  notify: restart mattermost
+  template:
+    src: "config.json.j2"
+    dest: "/data/docker/mattermost/config/config.json"
+    owner: 2000
+    group: 2000
+    mode: 0644
+  tags: mattermost
+
+- name: Create database (if it does not exist)
+  become: yes
+  shell: |
+    docker exec -it mariadb sh -c 'exec mysql -uroot -p"{{docker_mariadb_root_pass}}" -e"CREATE DATABASE IF NOT EXISTS mattermost;"'
+  register: execlog
+  tags:
+    - mattermost
+
+- name: print result of database creation
+  debug:
+    msg: "{{execlog.stdout_lines}}"
+  tags:
+    - mattermost
+
+- name: Remove old mattermost container
+  become: yes
+  docker_container:
+    name: mattermost-app
+    state: absent
+  tags: mattermost  
+
+- name: Start mattermost container
+  become: yes
+  docker_container:
+    name: mattermost-app
+    image: mattermost/mattermost-team-edition:5.6.1
+    state: started
+    restart_policy: unless-stopped
+    env:
+      #MM_USERNAME: root
+      #MM_PASSWORD: "{{docker_mariadb_root_pass}}"
+      #MM_DBNAME: mattermost
+      #DB_HOST: db
+      DB_PORT_NUMBER : 3306
+      MM_SQLSETTINGS_DRIVERNAME: mysql
+      MM_SQLSETTINGS_DATASOURCE: "root:{{docker_mariadb_root_pass}}@tcp(db:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s"
+      MM_SERVICESETTINGS_SITEURL: "https://o2r.uni-muenster.de/mattermost"
+    links:
+      - mariadb:db
+    volumes:
+      - /data/docker/mattermost/config:/mattermost/config:rw
+      - /data/docker/mattermost/data:/mattermost/data:rw
+      - /data/docker/mattermost/logs:/mattermost/logs:rw
+      - /data/docker/mattermost/plugins:/mattermost/plugins:rw
+      - /etc/localtime:/etc/localtime:ro
+  notify: Wait for mattermost to start up
+  tags: mattermost

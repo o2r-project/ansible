@@ -40,6 +40,12 @@ http {
         ''      close;
     }
 
+    # https://github.com/mattermost/mattermost-docker/blob/master/web/mattermost
+    map $http_x_forwarded_proto $proxy_x_forwarded_proto {
+        default $http_x_forwarded_proto;
+        ''      $scheme;
+    }
+
     server {
        listen         80;
        server_name    {{nginx_server_name}};
@@ -297,38 +303,72 @@ http {
             proxy_pass https://www.uni-muenster.de/;
         }
 
-        location /api/1.0/badge {
-            if ($request_method = 'OPTIONS') {
-                add_header 'Access-Control-Allow-Origin' '*';
-                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                
-                # Custom headers and headers various browsers *should* be OK with but aren't
-                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-                
-                # Tell client that this pre-flight info is valid for 20 days
-                add_header 'Access-Control-Max-Age' 1728000;
-                
-                add_header 'Content-Type' 'text/plain charset=UTF-8';
-                add_header 'Content-Length' 0;
-                return 204;
-            }
-            if ($request_method = 'POST') {
-                add_header 'Access-Control-Allow-Origin' '*';
-                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-            }
-            if ($request_method = 'GET') {
-                add_header 'Access-Control-Allow-Origin' '*';
-                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-            }
-        
-            proxy_set_header Host $host;
+        # based on https://github.com/mattermost/mattermost-docker/blob/master/web/mattermost
+        #location ~ /mattermost/api/v[0-9]+/(users/)?websocket$ {
+        location ~ /mattermost/api/(.*) {
+             proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            client_max_body_size 50M;
+            proxy_set_header Host $http_host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        
-            proxy_pass http://o2r-badger:8089;
+            proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            proxy_read_timeout 600s;
+            
+            proxy_pass http://mattermost-app:8000/api/$1;
         }
+
+        location /mattermost {
+            gzip on;
+
+            client_max_body_size 50M;
+            proxy_set_header Connection "";
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            proxy_read_timeout 600s;
+            proxy_pass http://mattermost-app:8000/;
+    }
+
+        #location /api/1.0/badge {
+        #    if ($request_method = 'OPTIONS') {
+        #        add_header 'Access-Control-Allow-Origin' '*';
+        #        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        #        
+        #        # Custom headers and headers various browsers *should* be OK with but aren't
+        #        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+        #        
+        #        # Tell client that this pre-flight info is valid for 20 days
+        #        add_header 'Access-Control-Max-Age' 1728000;
+        #        
+        #        add_header 'Content-Type' 'text/plain charset=UTF-8';
+        #        add_header 'Content-Length' 0;
+        #        return 204;
+        #    }
+        #    if ($request_method = 'POST') {
+        #        add_header 'Access-Control-Allow-Origin' '*';
+        #        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        #        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+        #    }
+        #    if ($request_method = 'GET') {
+        #        add_header 'Access-Control-Allow-Origin' '*';
+        #        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        #        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+        #    }
+        #
+        #    proxy_set_header Host $host;
+        #    proxy_set_header X-Real-IP $remote_addr;
+        #    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #
+        #    proxy_pass http://o2r-badger:8089;
+        #}
 
         location /static/ {
             root   /usr/share/nginx/html; 

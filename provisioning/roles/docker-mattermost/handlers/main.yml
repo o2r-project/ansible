@@ -1,0 +1,9 @@
+---
+- name: Wait for mattermost to start up
+  pause: seconds=10
+
+- name: restart mattermost
+  become: yes
+  docker_container:
+    name: mattermost-app
+    restart: yes

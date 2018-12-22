@@ -68,6 +68,10 @@ provision-piwik:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "piwik,nginx"
 .PHONY: provision-piwik
 
+provision-mattermost:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mattermost,nginx"
+.PHONY: provision-mattermost
+
 provision-badger:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "badger,nginx"
 .PHONY: provision-badger
