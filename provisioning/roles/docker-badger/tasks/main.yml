@@ -93,7 +93,7 @@
     - demo_data
 
 - name: Pause to allow MongoDB to take a breath after import
-  pause: seconds=5
+  pause: seconds=10
   tags:
     - mongodb
 

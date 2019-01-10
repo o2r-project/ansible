@@ -6,7 +6,7 @@
     - docker
     - docker-py
     - docker-mariadb
-    - docker-piwik
+    #- docker-piwik
   environment:
     http_proxy: "{{proxy.http_proxy}}"
     https_proxy: "{{proxy.http_proxy}}"

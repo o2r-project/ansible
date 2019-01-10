@@ -17,7 +17,7 @@
     - docker-shipper
     - docker-substituter
     - docker-platform
-    - docker-badger
+    #- docker-badger
     # proxy (must come after services it proxies):
     - docker-nginx
     # meta:

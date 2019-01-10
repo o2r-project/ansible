@@ -92,7 +92,7 @@
     links:
       - "elasticsearch"
       - "mongo-express"
-      - "piwik"
+      #- "piwik"
       - "o2r-muncher"
       - "o2r-informer"
       - "o2r-inspecter"
@@ -103,7 +103,7 @@
       - "o2r-shipper"
       - "o2r-substituter"
       - "o2r-platform"
-      - "o2r-badger"
+      #- "o2r-badger"
   tags:
     - nginx
 
@@ -134,27 +134,30 @@
     - nginx
     - insert_ip
     
-
-- include_role:
-    name: docker-badger
-
-# Docker manipulates /etc/hosts if it wants to, see http://blog.jonathanargentiero.com/docker-sed-cannot-rename-etcsedl8ysxl-device-or-resource-busy/
-- name: insert nginx container IP into other containers
-  become: yes
-  # add IP if it does not exist yet
-  shell: "docker exec {{ item }} /bin/sh -c \"if grep -q {{ nginx_server_name }} /etc/hosts ; then echo 'IP for {{ nginx_server_name }} already set in hosts file, if the IP changed, you have to manually clean it from the hosts file in the container, or restart the container.' ; else echo Inserting IP {{ o2r_webserver_container_ip }} for {{ nginx_server_name }} && echo {{ o2r_webserver_container_ip }} {{ nginx_server_name }} >> /etc/hosts ; fi \" "
-  with_items:
-    - "{{ badger_role.container.name }}"
-  register: ipsettingout
-  tags:
-    - nginx
-    - insert_ip
-
-- name: print ip setting result
-  debug:
-    msg: "{{ item }}"
-  with_items: "{{ ipsettingout.results | map(attribute='stdout_lines') | list }}"
-  tags:
-    - nginx
-    - insert_ip
-  
+# next three steps disabled, needed for o2r-badger
+#- include_role:
+#    name: docker-badger
+#
+## Docker manipulates /etc/hosts if it wants to, see http://blog.jonathanargentiero.com/docker-sed-cannot-rename-etcsedl8ysxl-device-or-resource-busy/
+#- name: insert nginx container IP into other containers
+#  when:
+#    - badger_role is defined
+#  become: yes
+#  # add IP if it does not exist yet
+#  shell: "docker exec {{ item }} /bin/sh -c \"if grep -q {{ nginx_server_name }} /etc/hosts ; then echo 'IP for {{ nginx_server_name }} already set in hosts file, if the IP changed, you have to manually clean it from the hosts file in the container, or restart the container.' ; else echo Inserting IP {{ o2r_webserver_container_ip }} for {{ nginx_server_name }} && echo {{ o2r_webserver_container_ip }} {{ nginx_server_name }} >> /etc/hosts ; fi \" "
+#  with_items:
+#    - "{{ badger_role.container.name }}"
+#  register: ipsettingout
+#  tags:
+#    - nginx
+#    - insert_ip
+#
+#- name: print ip setting result
+#  when: ipsettingout.results is defined
+#  debug:
+#    msg: "{{ item }}"
+#  with_items: "{{ ipsettingout.results | map(attribute='stdout_lines') | list }}"
+#  tags:
+#    - nginx
+#    - insert_ip
+#  

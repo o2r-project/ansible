@@ -30,7 +30,7 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
 - [`docker`](https://pypi.org/project/docker/) from PyPi (required for Docker via Ansible)
 - MongoDB `3.4` in Docker container
 - mariadb in Docker container
-- piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
+- [inactive] piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
   - inofficial piwik container, but works well; watch out when updating the container because on the first run the build in webserver might have to generate private keys, which takes some time!
 - nginx in Docker-Container (läuft _nicht_ über systemd!)
   - reverse proxy für die o2r-microservices (siehe reverse proxies in `provisioning/roles/docker-nginx/templates/nginx.conf_all.j2`)
@@ -38,9 +38,9 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
   - reverse proxy /piwik auf die Piwik-Instanz
   - hosting von `/static` - Dateien
   - proxy für WWU-Webseite (`/wwuproxy`) für CORS-losen Zugriff auf CRIS (genutzt für [Publikationsliste](https://o2r.uni-muenster.de/wwuproxy/forschungaz-rest/ws/public/infoobject/getrelated/Project/9520/PROJ_has_PUBL) auf o2r.info)
-- mongo-express in Docker-Container (abgesichert über HTTP Basic Auth), erreibbar unter http://ubsvirt148.uni-muenster.de:8027/ (Username und Passwort sind im vault)
+- mongo-express in Docker container (abgesichert über HTTP Basic Auth), erreibbar unter http://ubsvirt148.uni-muenster.de:8027/ (Username und Passwort sind im vault)
 - Elasticsearch in Docker-Container ("abgesichert" über nginx Proxy, der nur `GET` requests and den Endpoint für Suche erlaubt)
-- o2r-microservices in Docker-Containern
+- o2r-microservices in Docker containers
   - bouncer
   - muncher (inklusive mount von `/var/run/docker.sock` um Container zu starten)
   - finder
