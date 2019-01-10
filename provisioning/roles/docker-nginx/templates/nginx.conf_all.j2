@@ -3,7 +3,7 @@
 
 #daemon off; # handled in Dockerfile
 
-worker_processes  1;
+worker_processes  4;
 
 #error_log  logs/error.log;
 #error_log  logs/error.log  notice;
@@ -304,8 +304,7 @@ http {
         }
 
         # based on https://github.com/mattermost/mattermost-docker/blob/master/web/mattermost
-        #location ~ /mattermost/api/v[0-9]+/(users/)?websocket$ {
-        location ~ /mattermost/api/(.*) {
+        location ~ /api/v[0-9]+/(users/)?websocket$ {
              proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "upgrade";
             client_max_body_size 50M;
@@ -335,7 +334,7 @@ http {
             proxy_buffer_size 16k;
             proxy_read_timeout 600s;
             proxy_pass http://mattermost-app:8000/;
-    }
+        }
 
         #location /api/1.0/badge {
         #    if ($request_method = 'OPTIONS') {
@@ -382,6 +381,64 @@ http {
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
             root   html;
+        }
+    }
+
+    server {
+        server_name  {{nginx_server_name}};
+
+        listen 8443 ssl;
+        ssl_certificate /etc/ssl/certs/certchain.crt;
+        ssl_certificate_key /etc/ssl/private/cert.key;
+
+        # https://www.ssllabs.com/ssltest/analyze.html?d=o2r.uni-muenster.de&hideResults=on
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        
+        # https://bjornjohansen.no/optimizing-https-nginx and https://blog.qualys.com/ssllabs/2013/08/05/configuring-apache-nginx-and-openssl-for-forward-secrecy
+        ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+        ssl_prefer_server_ciphers on;
+        
+        # HSTS configuration, see also https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
+        # max-age is 31,536,000 seconds, equal to about 1 year
+        add_header Strict-Transport-Security "max-age=31536000;includeSubDomains" always;
+
+        # https://weakdh.org/sysadmin.html
+        ssl_dhparam /etc/dhparams.pem;
+
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+
+        # based on https://github.com/mattermost/mattermost-docker/blob/master/web/mattermost
+        location ~ /api/v[0-9]+/(users/)?websocket$ {
+             proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            client_max_body_size 50M;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            proxy_read_timeout 600s;
+            
+            proxy_pass http://mattermost-app:8000;
+        }
+
+        location / {
+            gzip on;
+
+            client_max_body_size 50M;
+            proxy_set_header Connection "";
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            proxy_read_timeout 600s;
+            proxy_pass http://mattermost-app:8000;
         }
     }
 
