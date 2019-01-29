@@ -54,7 +54,7 @@ http {
         ssl_certificate_key /etc/ssl/private/cert.key;
 
         # https://www.ssllabs.com/ssltest/analyze.html?d=o2r.uni-muenster.de&hideResults=on
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols TLSv1.2;
         
         # https://bjornjohansen.no/optimizing-https-nginx and https://blog.qualys.com/ssllabs/2013/08/05/configuring-apache-nginx-and-openssl-for-forward-secrecy
         ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
