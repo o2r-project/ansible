@@ -12,7 +12,5 @@
 - name: Install "docker" from PIP
   become: yes
   pip:
-    name: "{{item}}"
-  with_items:
-    - docker==3.3.0
+    name: ['docker==3.3.0']
   tags: docker-python

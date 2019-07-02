@@ -11,7 +11,7 @@
       ME_CONFIG_BASICAUTH_USERNAME: "{{mongo_express_basicauth_username}}"
       ME_CONFIG_BASICAUTH_PASSWORD: "{{mongo_express_basicauth_password}}"
       ME_CONFIG_MONGODB_SERVER: "{{mongo_host}}"
-      ME_CONFIG_MONGODB_PORT: "{{mongo_port}}"
+      ME_CONFIG_MONGODB_PORT: "{{ mongo_port | to_json }}"
       ME_CONFIG_SITE_COOKIESECRET: "{{mongo_express_cookiesecret}}"
       ME_CONFIG_SITE_SESSIONSECRET: "{{mongo_express_sessionsecret}}"
       ME_CONFIG_SITE_BASEURL: "/mongo-express/"
