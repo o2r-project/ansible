@@ -21,6 +21,13 @@
   tags:
     - nginx
 
+- name: Save certificate password to file
+  become: yes
+  notify: restart nginx
+  copy: content="{{ ssl_cert_password }}" dest=/etc/nginx-docker/global.pass
+  tags:
+    - nginx
+
 - name: Create www directory
   become: yes
   file:
@@ -88,6 +95,7 @@
       - /etc/nginx-docker/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/nginx-docker/bundle.crt:/etc/ssl/certs/certchain.crt:ro
       - /etc/nginx-docker/{{ssl_cert_keyfile}}:/etc/ssl/private/cert.key:ro
+      - /etc/nginx-docker/global.pass:/etc/keys/global.pass:ro
       - /etc/nginx-docker/dhparams-8192.pem:/etc/dhparams.pem:ro
     links:
       - "elasticsearch"

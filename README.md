@@ -252,17 +252,36 @@ Zugriff ist nur über die IP range von dem gesicherten VPN der Uni Münster mög
 
 Die o2r microservices auf Basis von node.js nutzen express.js zum Handling der Sessions. Hier wird eine zufällige session-ID gesetzt, die zur Authentifikation als ein bestimmter User genutzt werden kann. Der zusätzliche Konfigurationsparameter `secret` wird genutzt um die session zu verschlüsseln, liefert aber laut [diesem Stackoverflow post](http://stackoverflow.com/questions/18565512/importance-of-session-secret-key-in-express-web-framework) keine zusätzliche Sicherheit, sondern ist notwendig wenn incrementelle IDs vergeben werden. Daher wird diese Einstellung, die in den diversen `config.js`-Dateien vorhanden ist, _nicht genutzt_. Mit der session ID aus dem Cookie [kann (wie zu erwarten) die session gestohlen werden](http://security.stackexchange.com/questions/92122/why-is-it-insecure-to-store-the-session-id-in-a-cookie-directly).
 
-### HTTPS / Zertifikate
+### HTTPS / Zertifikate / certificate
 
-Die Zertifikate liegen auf dem host in `/etc/nginx-docker/` und werden von da in den nginx proxy gemountet, siehe `provisioning/role/docker-nginx/tasks/main.yml` ([genutzte Anleitung 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [genutzte Anleitung 2](https://bjornjohansen.no/securing-nginx-ssl)).
+Die Zertifikate liegen auf dem host in `/etc/nginx-docker/` (upload über SCP) und werden von da in den nginx proxy gemountet, siehe `provisioning/role/docker-nginx/tasks/main.yml` ([genutzte Anleitung 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [genutzte Anleitung 2](https://bjornjohansen.no/securing-nginx-ssl)).
 HTTP wird auf HTTPS umgeleitet ([genutzte Anleitung](https://bjornjohansen.no/redirect-to-https-with-nginx)).
 
-Die chain (_ohne_ das Telekom Root Zertifikat) ist mit folgenden Befehlen auf dem Server erstellt worden:
+Die certificate chain _ohne_ das Telekom Root Zertifikat (!) ist mit folgenden Befehlen auf dem Server erstellt worden:
 
 ```bash
+# Upload files
+#scp /home/daniel/ownCloud/o2r-data/Server/o2r.uni-muenster.de\ @\ ULB/Server-Certificate_2019/*.pem o2r@ubsvirt148.uni-muenster.de:/home/o2r
+
+# Login to server and move the files
+cd /etc/nginx-docker/
+mv ~/*.pem /etc/nginx-docker/
+chown root:root *.pem
+
+# Get chain
 wget https://pki.pca.dfn.de/wwu-ca/pub/cacert/chain.txt
 # manually remove certificate starting with "subject= /C=DE/O=Deutsche Telekom ..."
-cat cert-7648722783260631.pem chain.txt > bundle.crt
+nano chain.txt
+
+# 2016 certificate:
+#cat cert-7648722783260631.pem chain.txt > bundle.crt
+
+# 2019 certificate:
+mv bundle.crt bundle.crt_2016
+cat cert-10275895817424272556132495911.pem chain.txt > bundle.crt
+
+# Restart the webserver so new certificate takes effect
+docker restart nginx
 ```
 
 Die Seriennummer des Zertifikats sowie der key werden bei Daniel gesichert aufbewahrt.
