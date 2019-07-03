@@ -273,6 +273,9 @@ Die o2r microservices auf Basis von node.js nutzen express.js zum Handling der S
 Die Zertifikate liegen auf dem host in `/etc/nginx-docker/` (upload über SCP) und werden von da in den nginx proxy gemountet, siehe `provisioning/role/docker-nginx/tasks/main.yml` ([genutzte Anleitung 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [genutzte Anleitung 2](https://bjornjohansen.no/securing-nginx-ssl)).
 HTTP wird auf HTTPS umgeleitet ([genutzte Anleitung](https://bjornjohansen.no/redirect-to-https-with-nginx)).
 
+Informationen über die CA-Zertifikate der WWU gibt es online unter [https://www.uni-muenster.de/WWUCA/de/cacerts.html](https://www.uni-muenster.de/WWUCA/de/cacerts.html).
+Please check that site for up-to-date links to certificates and more instructions.
+
 Die certificate chain _ohne_ das Telekom Root Zertifikat (!) ist mit folgenden Befehlen auf dem Server erstellt worden:
 
 ```bash
@@ -284,17 +287,20 @@ cd /etc/nginx-docker/
 mv ~/*.pem /etc/nginx-docker/
 chown root:root *.pem
 
-# Get chain
-wget https://pki.pca.dfn.de/wwu-ca/pub/cacert/chain.txt
+# Get chain 2016
+# wget https://pki.pca.dfn.de/wwu-ca/pub/cacert/chain.txt
 # manually remove certificate starting with "subject= /C=DE/O=Deutsche Telekom ..."
-nano chain.txt
+# nano chain.txt
 
 # 2016 certificate:
 #cat cert-7648722783260631.pem chain.txt > bundle.crt
 
+# Get chain without root in 2019
+wget https://www.uni-muenster.de/WWUCA/chain.pem
+
 # 2019 certificate:
-mv bundle.crt bundle.crt_2016
-cat cert-10275895817424272556132495911.pem chain.txt > bundle.crt
+#mv bundle.crt bundle.crt_2016
+cat cert-10275895817424272556132495911.pem chain.pem > bundle.crt
 
 # Restart the webserver so new certificate takes effect
 docker restart nginx
