@@ -1,5 +1,5 @@
 {
-    "about": "this information is derived from the Ansible configuration (https://github.com/o2r-project/ansible) and _should_ match the actually running versions of microservices and tools",
+    "about": "This information is derived from the Ansible configuration (https://github.com/o2r-project/ansible) and _should_ match the actually running versions of microservices and tools in this instance of the o2r reference implementation.",
     "services": {
         "bouncer": "{{bouncer_role.container.image}}",
         "finder": "{{finder_role.container.image}}",
@@ -7,10 +7,10 @@
         "inspecter": "{{inspecter_role.container.image}}",
         "loader": "{{loader_role.container.image}}",
         "muncher": "{{muncher_role.container.image}}",
-        "platform": "{{platform_role.container.image}}",
         "shipper": "{{shipper_role.container.image}}",
         "substituter": "{{substituter_role.container.image}}",
-        "transporter": "{{transporter_role.container.image}}"
+        "transporter": "{{transporter_role.container.image}}",
+        "ui": "{{ui_role.container.image}}"
     },
     "tools": {
         "meta": {

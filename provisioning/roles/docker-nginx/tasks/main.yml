@@ -37,37 +37,29 @@
   tags:
     - nginx
 
-- name: Create www/static directory
+- name: Create www/_config directory
   become: yes
   file:
-    path: "/var/www-docker/static"
+    path: "/var/www-docker/_config"
     state: directory
     mode: 0755
   tags:
     - nginx
-
-- name: Copy index.html (redirection)
-  become: yes
-  copy:
-    src: "index.html"
-    dest: "/var/www-docker/static/index.html"
-  tags:
-    - nginx
-    
-- name: Copy socket.html (test page)
-  become: yes
-  copy:
-    src: "socket.html"
-    dest: "/var/www-docker/static/socket.html"
-  tags:
-    - nginx
+   
+#- name: Copy socket.html (test page)
+#  become: yes
+#  copy:
+#    src: "socket.html"
+#    dest: "/var/www-docker/_dev/socket.html"
+#  tags:
+#    - nginx
 
 - name: Copy versions file
   become: yes
   notify: restart nginx
   template:
     src: "versions.json.j2"
-    dest: "/var/www-docker/static/versions.json"
+    dest: "/var/www-docker/_config/versions.json"
   tags:
     - nginx
 
@@ -110,7 +102,8 @@
       - "o2r-loader"
       - "o2r-shipper"
       - "o2r-substituter"
-      - "o2r-platform"
+      #- "o2r-platform"
+      - "ui"
       #- "o2r-badger"
   tags:
     - nginx
@@ -119,30 +112,30 @@
   tags:
     - nginx
 
-# https://stackoverflow.com/questions/32279519/escaping-double-curly-braces-in-ansible
-- name: query IP of webserver container
-  become: yes
-  shell: "docker inspect --format '{{ '{{' }}range .NetworkSettings.Networks}}{{ '{{' }}.IPAddress}}{{ '{{' }}end}}' nginx"
-  register: _webserver_container_query
-  tags:
-    - nginx
-    - insert_ip 
-
-- name: get IP of query result
-  become: yes
-  set_fact:
-    o2r_webserver_container_ip: "{{ _webserver_container_query.stdout | regex_replace('\\s','') }}"
-  tags:
-    - nginx
-    - insert_ip
-
-- debug:
-    msg: "Webserver's container IP is {{ o2r_webserver_container_ip }}, going to inject it to containers' hosts files configured in the next task as the IP for {{ nginx_server_name }}."
-  tags:
-    - nginx
-    - insert_ip
-    
-# next three steps disabled, needed for o2r-badger
+# next steps disabled, IP injection only needed for o2r-badger
+#- name: query IP of webserver container
+#  become: yes
+#  # https://stackoverflow.com/questions/32279519/escaping-double-curly-braces-in-ansible
+#  shell: "docker inspect --format '{{ '{{' }}range .NetworkSettings.Networks}}{{ '{{' }}.IPAddress}}{{ '{{' }}end}}' nginx"
+#  register: _webserver_container_query
+#  tags:
+#    - nginx
+#    - insert_ip 
+#
+#- name: get IP of query result
+#  become: yes
+#  set_fact:
+#    o2r_webserver_container_ip: "{{ _webserver_container_query.stdout | regex_replace('\\s','') }}"
+#  tags:
+#    - nginx
+#    - insert_ip
+#
+#- debug:
+#    msg: "Webserver's container IP is {{ o2r_webserver_container_ip }}, going to inject it to containers' hosts files configured in the next task as the IP for {{ nginx_server_name }}."
+#  tags:
+#    - nginx
+#    - insert_ip
+#    
 #- include_role:
 #    name: docker-badger
 #

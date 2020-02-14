@@ -1,0 +1,29 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+  tags:
+    - ui
+
+- name: Remove old o2r-ui container
+  become: yes
+  notify: Wait for o2r-ui to start up
+  docker_container:
+    name: "{{ui_role.container.name}}"
+    state: absent
+  tags:
+    - ui
+
+- name: Restart o2r-ui
+  become: yes
+  notify: Wait for o2r-ui to start up
+  service:
+    name: "{{ui_role.container.name}}"
+    state: restarted
+  tags:
+    - ui
+
+- name: Wait for o2r-ui to start up
+  pause: seconds=5
+  tags:
+    - ui

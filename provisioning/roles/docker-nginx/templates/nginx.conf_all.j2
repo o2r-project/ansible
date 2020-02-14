@@ -72,10 +72,15 @@ http {
         #access_log  logs/host.access.log  main;
 
         # https://www.nginx.com/resources/admin-guide/reverse-proxy/
+        #location / {
+        #    proxy_set_header Host $host;
+        #    proxy_set_header X-Real-IP $remote_addr;
+        #    proxy_pass http://o2r-platform:80;
+        #}
         location / {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
-            proxy_pass http://o2r-platform:80;
+            proxy_pass http://ui:3000;
         }
 
         location /api {
@@ -331,9 +336,9 @@ http {
         #    proxy_pass http://o2r-badger:8089;
         #}
 
-        location /static/ {
+        location /_config/ {
             root   /usr/share/nginx/html; 
-            index  index.html index.htm; 
+            index  versions.json; 
         }
 
         #error_page  404              /404.html;

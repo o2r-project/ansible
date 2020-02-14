@@ -47,9 +47,9 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
   - informer
   - loader
   - transporter (inklusive mount von `/var/run/docker.sock` um Container zu starten)
-  - platform (die Website)
+  - ui (the web page)
   - shipper (has some issues with the log, the container may run fine but the systemctl log still shows a previous error)
-  - badger
+  - ~~badger~~
   - substituter
 
 ## Service names
@@ -83,9 +83,9 @@ ansible-vault edit <path to vault project>/provisioning/host_vars/<hostname>/vau
 Don't forget to manually sync the vault files between the vault file project and this project.
 Daniel has the password to the vault(s) and can give it to you in a secure way.
 
-## Entwicklung
+## Development
 
-### Microservices oder Apps hinzufügen
+### Add microservices or apps
 
 1. neue Ansible role erstellen, dabei den zugehörigen Container über eine [systemd service unit configuration](https://www.freedesktop.org/software/systemd/man/systemd.service.html) ([unit configuration](https://www.freedesktop.org/software/systemd/man/systemd.unit.html)) starten und überwachen lassen (wichtig: links zu benötigten containern nicht vergessen); systemd fährt fehlende container automatisch wieder hoch
 1. role in `provisioning/master.yml` eintragen (_vor nginx!_)
@@ -99,6 +99,10 @@ Daniel has the password to the vault(s) and can give it to you in a secure way.
 o2r-platform liegt container mit eigenem Webserver vor nicht mehr als [git submodule](https://git-scm.com/docs/git-submodule), da der uplauf auf den Server wegen extrem hoher Dateianzahl über Ansibles `copy` zu langsam war und `rsync` nicht funktioniert.
 
 ## Bugfixing
+
+### Check deployed versions on a server
+
+A static versions file in JSON format is generated at provisioning and available on the server at `http(s)://.../_config/versions.json`, for example [https://o2r.uni-muenster.de/_config/versions.json](https://o2r.uni-muenster.de/_config/versions.json).
 
 ### Zertifikatsprobleme
 

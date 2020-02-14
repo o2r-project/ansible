@@ -7,6 +7,8 @@ oauth_client_secret: "{{oauth_client_secret_vault}}"
 oauth_callback_url: "https://o2r.uni-muenster.de/api/v1/auth/login"
 oauth_auth_url: "https://orcid.org/oauth/authorize"
 oauth_token_url: "https://pub.orcid.org/oauth/token"
+ui_api_url: "https://o2r.uni-muenster.de/api/v1/"
+ui_erc_url: "https://o2r.uni-muenster.de/ui/#/erc/"
 sessionsecret: "{{sessionsecret_vault}}"
 mongo_host: "mongodb"
 mongo_port: 27017
