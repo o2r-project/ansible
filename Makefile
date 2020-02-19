@@ -80,6 +80,10 @@ provision-ui:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "ui,nginx"
 .PHONY: provision-ui
 
+provision-bindings:
+	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "bindings,nginx"
+.PHONY: provision-bindings
+
 ping:
 	ansible all -i hosts -m ping -u o2r
 .PHONY: ping

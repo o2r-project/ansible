@@ -247,6 +247,18 @@ http {
             proxy_pass http://o2r-inspecter:8091;
         }
 
+        location ~* ^/api/v1/compendium/[^/]+/binding {
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_pass http://{{bindings_role.container.name}}:8092;
+        }
+
+        location /api/v1/bindings {
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_pass http://{{bindings_role.container.name}}:8092;
+        }
+
         location /piwik {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;

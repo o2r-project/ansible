@@ -1,0 +1,14 @@
+---
+- name: Reload Systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Restart o2r-bindings
+  become: yes
+  notify: Wait for o2r-bindings
+  service:
+    name: "{{bindings_role.container.name}}"
+    state: restarted
+
+- name: Wait for o2r-bindings
+  pause: seconds=10

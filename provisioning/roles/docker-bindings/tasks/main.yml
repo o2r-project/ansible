@@ -1,0 +1,78 @@
+---
+#- name: Create data directory
+#  become: yes
+#  file:
+#    path: "{{bindings_role.config.basepath}}"
+#    state: directory
+#    owner: root
+#    group: root
+#    mode: 0755
+#  tags:
+#    - bindings
+#    - microservice
+
+- name: Create service
+  become: yes
+  notify:
+    - Reload Systemd
+  template:
+    src: o2r-bindings.service.j2
+    dest: "/etc/systemd/system/{{bindings_role.container.name}}.service"
+    owner: root
+    group: root
+    mode: 0600
+  register: bindingscreate
+  tags:
+    - bindings
+    - microservice
+
+- name: Pull image
+  when: bindingscreate.changed
+  become: yes
+  docker_image:
+    name: "{{bindings_role.container.image}}"
+    state: present
+    force: yes
+  tags:
+    - bindings
+    - microservice
+
+- name: Remove old o2r-bindings container
+  become: yes
+  notify: Wait for o2r-bindings
+  docker_container:
+    name: "{{bindings_role.container.name}}"
+    state: absent
+    force_kill: yes
+  tags:
+    - bindings
+    - microservice
+
+- name: Enable service
+  become: yes
+  service:
+    name: "{{bindings_role.container.name}}"
+    enabled: yes
+  tags:
+    - bindings
+    - microservice
+
+- meta: flush_handlers
+  tags:
+    - bindings
+    - microservice
+
+- name: Start service
+  become: yes
+  notify: Wait for o2r-bindings
+  service:
+    name: "{{bindings_role.container.name}}"
+    state: started
+  tags:
+    - bindings
+    - microservice
+
+- meta: flush_handlers
+  tags:
+    - bindings
+    - microservice

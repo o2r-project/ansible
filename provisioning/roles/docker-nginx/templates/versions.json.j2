@@ -1,6 +1,7 @@
 {
     "about": "This information is derived from the Ansible configuration (https://github.com/o2r-project/ansible) and _should_ match the actually running versions of microservices and tools in this instance of the o2r reference implementation.",
     "services": {
+        "bindings": "{{bindings_role.container.image}}",
         "bouncer": "{{bouncer_role.container.image}}",
         "finder": "{{finder_role.container.image}}",
         "informer": "{{informer_role.container.image}}",

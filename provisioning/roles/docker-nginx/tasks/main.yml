@@ -102,7 +102,7 @@
       - "o2r-loader"
       - "o2r-shipper"
       - "o2r-substituter"
-      #- "o2r-platform"
+      - "o2r-bindings"
       - "ui"
       #- "o2r-badger"
   tags:

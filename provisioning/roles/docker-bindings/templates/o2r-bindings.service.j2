@@ -1,0 +1,22 @@
+[Unit]
+Description=o2r transporter
+StartLimitIntervalSec=200
+StartLimitBurst=6
+
+[Service]
+Restart=always
+RestartSec=10
+TimeoutStartSec=30
+ExecStartPre=-/usr/bin/docker pull "{{bindings_role.container.image}}"
+ExecStartPre=-/usr/bin/docker create \
+  --name "{{bindings_role.container.name}}" \
+  -v "{{bindings_role.config.basepath}}:/tmp/o2r" \
+  -e "BINDINGS_PORT={{bindings_role.config.port}}" \
+  -e "DEBUG=bindings" \
+  -p "{{bindings_role.config.port}}:8092" \
+  "{{bindings_role.container.image}}"
+ExecStart=/usr/bin/docker start -a "{{bindings_role.container.name}}"
+ExecStop=/usr/bin/docker stop "{{bindings_role.container.name}}"
+
+[Install]
+WantedBy=multi-user.target
