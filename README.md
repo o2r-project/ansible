@@ -42,11 +42,10 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
 - Elasticsearch in Docker-Container ("abgesichert" über nginx Proxy, der nur `GET` requests and den Endpoint für Suche erlaubt)
 - o2r-microservices in Docker containers
   - bouncer
-  - muncher (inklusive mount von `/var/run/docker.sock` um Container zu starten)
+  - muncher (with access to Docker socket)
   - finder
   - informer
-  - loader
-  - transporter (inklusive mount von `/var/run/docker.sock` um Container zu starten)
+  - loader (with access to Docker socket)
   - ui (the web page)
   - shipper (has some issues with the log, the container may run fine but the systemctl log still shows a previous error)
   - ~~badger~~
@@ -138,7 +137,7 @@ sudo systemctl start o2r-*
 # Logs sind auch über journalctl einsehbar: https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 # Siehe auch roles/journald für die aktive Konfiguration
 ls /etc/systemd/system
-sudo journalctl -u o2r-transporter.service
+sudo journalctl -u o2r-muncher.service
 sudo journalctl --since yesterday
 sudo journalctl --since "1 hour ago"
 sudo journalctl -b

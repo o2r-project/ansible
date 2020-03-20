@@ -71,12 +71,6 @@ http {
         #charset koi8-r;
         #access_log  logs/host.access.log  main;
 
-        # https://www.nginx.com/resources/admin-guide/reverse-proxy/
-        #location / {
-        #    proxy_set_header Host $host;
-        #    proxy_set_header X-Real-IP $remote_addr;
-        #    proxy_pass http://o2r-platform:80;
-        #}
         location / {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -149,10 +143,10 @@ http {
             }
         }
 
+        # configure age headers and access control headers for data file access
         location ~ /data/ {
 
            if ($request_method = 'OPTIONS') {
-
               add_header 'Access-Control-Allow-Origin' '*';
 
               #
@@ -177,7 +171,6 @@ http {
            }
 
            if ($request_method = 'POST') {
-
               add_header 'Access-Control-Allow-Origin' '*';
               add_header 'Access-Control-Allow-Credentials' 'true';
               add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
@@ -186,17 +179,15 @@ http {
            }
 
            if ($request_method = 'GET') {
-
               add_header 'Access-Control-Allow-Origin' '*';
               add_header 'Access-Control-Allow-Credentials' 'true';
               add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
               add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-
            }
 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
-            proxy_pass http://o2r-transporter:8081;
+            proxy_pass http://o2r-muncher:8080;
         }
 
         location /api/v1/auth/ {
@@ -215,12 +206,6 @@ http {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_pass http://o2r-finder:8084;
-        }
-
-        location ~* \.(zip|tar|tar.gz) {
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_pass http://o2r-transporter:8081;
         }
 
         location /api/v1/shipment {

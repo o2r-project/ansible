@@ -98,7 +98,6 @@
       - "o2r-inspecter"
       - "o2r-bouncer"
       - "o2r-finder"
-      - "o2r-transporter"
       - "o2r-loader"
       - "o2r-shipper"
       - "o2r-substituter"

@@ -40,10 +40,6 @@ provision-muncher:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "muncher,nginx"
 .PHONY: provision-muncher
 
-provision-transporter:
-	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "transporter,nginx"
-.PHONY: provision-transporter
-
 provision-finder:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "finder,nginx"
 .PHONY: provision-finder
