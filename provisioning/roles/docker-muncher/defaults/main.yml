@@ -15,5 +15,5 @@ muncher_role:
     meta:
       image: "o2rproject/o2r-meta:9198450"
   container:
-    image: "o2rproject/o2r-muncher:0.21.0"
+    image: "o2rproject/o2r-muncher:0.25.0"
     name: o2r-muncher
