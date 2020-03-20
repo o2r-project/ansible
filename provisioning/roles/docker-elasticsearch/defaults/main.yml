@@ -1,5 +1,5 @@
 ---
 elasticsearch_role:
   container:
-    image: "elasticsearch:5"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:5.6.16"
     name: elasticsearch
