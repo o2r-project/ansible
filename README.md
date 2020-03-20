@@ -13,6 +13,26 @@ ssh-add /<path>/id_rsa
 make
 ```
 
+### Docker timeout issues
+
+**Problem**
+
+```bash
+[o2r@ubsvirt148 system]$ sudo docker pull o2rproject/o2r-muncher:0.25.0
+Error response from daemon: Get https://registry-1.docker.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+```
+
+**Solution**
+
+```bash
+[o2r@ubsvirt148 system]$ sudo systemctl daemon-reload
+[o2r@ubsvirt148 system]$ sudo systemctl restart docker
+```
+
+## Docker user
+
+The o2r password safe contains the crendentials of a Docker ID account `o2ruser` that can be used to login on the server.
+
 ## Configuration files to edit for this playbook to work
 
 - `provisioning/group_vars/all/vars.yml.template` - rename to `vars.yml` and put in the proxy server for public web access
@@ -255,9 +275,9 @@ Example:
 ME_CONFIG_MONGODB_PORT: '"{{ mongo_port | to_json }}"'
 ```
 
-## Sicherheit
+## Security
 
-### SSH und ports
+### SSH and ports
 
 SSH-Zugriff auf den Server kann nur aus dem verschlüsselten WWU VPN erfolgen. Öffentlicher Zugriff (nur https per redirect in der nginx-Konfiguration) ist nur über die Ports `80` und `443` möglich. Diese Ports sind explizit in der ZIV Firewall gewhitelistet (via CH, ULB).
 
@@ -278,15 +298,15 @@ Zugriff ist nur über die IP range von dem gesicherten VPN der Uni Münster mög
 
 Die o2r microservices auf Basis von node.js nutzen express.js zum Handling der Sessions. Hier wird eine zufällige session-ID gesetzt, die zur Authentifikation als ein bestimmter User genutzt werden kann. Der zusätzliche Konfigurationsparameter `secret` wird genutzt um die session zu verschlüsseln, liefert aber laut [diesem Stackoverflow post](http://stackoverflow.com/questions/18565512/importance-of-session-secret-key-in-express-web-framework) keine zusätzliche Sicherheit, sondern ist notwendig wenn incrementelle IDs vergeben werden. Daher wird diese Einstellung, die in den diversen `config.js`-Dateien vorhanden ist, _nicht genutzt_. Mit der session ID aus dem Cookie [kann (wie zu erwarten) die session gestohlen werden](http://security.stackexchange.com/questions/92122/why-is-it-insecure-to-store-the-session-id-in-a-cookie-directly).
 
-### HTTPS / Zertifikate / certificate
+### HTTPS certificate
 
-Die Zertifikate liegen auf dem host in `/etc/nginx-docker/` (upload über SCP) und werden von da in den nginx proxy gemountet, siehe `provisioning/role/docker-nginx/tasks/main.yml` ([genutzte Anleitung 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [genutzte Anleitung 2](https://bjornjohansen.no/securing-nginx-ssl)).
-HTTP wird auf HTTPS umgeleitet ([genutzte Anleitung](https://bjornjohansen.no/redirect-to-https-with-nginx)).
+The certificates are stored on the host in `/etc/nginx-docker/` (uploaded via SCP).
+The certificate files are mounted into the nginx proxy (see `provisioning/role/docker-nginx/tasks/main.yml` ([used manual 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [used manual 2](https://bjornjohansen.no/securing-nginx-ssl)).
+HTTP is redirected to HTTPS ([used instruction](https://bjornjohansen.no/redirect-to-https-with-nginx)) and only strong cipher suites are enabled.
 
-Informationen über die CA-Zertifikate der WWU gibt es online unter [https://www.uni-muenster.de/WWUCA/de/cacerts.html](https://www.uni-muenster.de/WWUCA/de/cacerts.html).
-Please check that site for up-to-date links to certificates and more instructions.
-
-Die certificate chain _ohne_ das Telekom Root Zertifikat (!) ist mit folgenden Befehlen auf dem Server erstellt worden:
+You can learn more about CA certificate issuing at WWU at [https://www.uni-muenster.de/WWUCA/de/cacerts.html](https://www.uni-muenster.de/WWUCA/de/cacerts.html).
+Please check that site for up-to-date links to base certificates and more instructions.
+The certificate chain _without_ the Telekom Root certificate (!) was created with the following commands _on the server_:
 
 ```bash
 # Upload files
@@ -316,11 +336,14 @@ cat cert-10275895817424272556132495911.pem chain.pem > bundle.crt
 docker restart nginx
 ```
 
-Die Seriennummer des Zertifikats sowie der key werden bei Daniel gesichert aufbewahrt.
+The serial number of the certificate as well as the certificate key are stored in the o2r password safe.
+
+The SSL certificate password is stored in the file `/etc/keys/global.pass` on the server, which can only be read by the `root` user.
+The file is generated as part of the Ansible script with information from the vault.
 
 Test suite: https://www.ssllabs.com/ssltest/analyze.html?d=o2r.uni%2dmuenster.de&hideResults=on&latest
 
-DH Parameter wurden auf dem Server generiert ([Anleitung](https://weakdh.org/sysadmin.html), [Keylength](https://www.keylength.com/en/compare/); Dauer für Erstellung von 4096er Variante: 15 min.):
+The DH parameters were generated on the server ([used instructions](https://weakdh.org/sysadmin.html), [about keylength](https://www.keylength.com/en/compare/); duration for creation of 4096er varian: about 15 minutes):
 
 ```bash
 [o2r@ubsvirt148 /etc/nginx-docker]$ sudo openssl dhparam -out dhparams.pem 8192
