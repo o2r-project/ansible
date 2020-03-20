@@ -83,6 +83,13 @@ ansible-vault edit <path to vault project>/provisioning/host_vars/<hostname>/vau
 Don't forget to manually sync the vault files between the vault file project and this project.
 Daniel has the password to the vault(s) and can give it to you in a secure way.
 
+## Server connection and authentication
+
+`id_rsa` file for connecting to the demo server is in Daniel's custory.
+Not that you must copy it to your own machine an restrict the access (`chmod 400`) so you can add it to your local keychain before you connnect.
+
+There is a user `o2r` on the demo server.
+
 ## Development
 
 ### Add microservices or apps
@@ -94,9 +101,9 @@ Daniel has the password to the vault(s) and can give it to you in a secure way.
 1. [optional/bei Problemen:] nginx container auf dem Server stoppen und entfernen, damit neuer Link funktioniert (scheint bei jeder Änderung der veröffentlichten ports etc. notwendig zu sein)
 1. Playbook laufen lassen
 
-### Website "o2r-platform"
+### Website "o2r-UI"
 
-o2r-platform liegt container mit eigenem Webserver vor nicht mehr als [git submodule](https://git-scm.com/docs/git-submodule), da der uplauf auf den Server wegen extrem hoher Dateianzahl über Ansibles `copy` zu langsam war und `rsync` nicht funktioniert.
+o2r-UI runs in a container with it's own webserver respectively Node.js application with a development server.
 
 ## Bugfixing
 

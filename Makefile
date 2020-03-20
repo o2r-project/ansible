@@ -60,10 +60,6 @@ provision-shipper:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "shipper,nginx"
 .PHONY: provision-shipper
 
-provision-platform:
-	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "platform,nginx"
-.PHONY: provision-platform
-
 provision-piwik:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "piwik,nginx"
 .PHONY: provision-piwik
