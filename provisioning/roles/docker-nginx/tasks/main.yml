@@ -17,14 +17,19 @@
     dest: "/etc/nginx-docker/nginx.conf"
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   tags:
     - nginx
 
 - name: Save certificate password to file
   become: yes
   notify: restart nginx
-  copy: content="{{ ssl_cert_password }}" dest=/etc/nginx-docker/global.pass
+  copy:
+    content: "{{ ssl_cert_password }}"
+    dest: "/etc/nginx-docker/global.pass"
+    onwer: root
+    group: root
+    mode: "0400"
   tags:
     - nginx
 
