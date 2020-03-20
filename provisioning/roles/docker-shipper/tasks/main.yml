@@ -33,7 +33,8 @@
   docker_image:
     name: "{{shipper_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - shipper
     - microservice

@@ -24,7 +24,8 @@
   docker_image:
     name: "{{loader_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - loader
     - microservice

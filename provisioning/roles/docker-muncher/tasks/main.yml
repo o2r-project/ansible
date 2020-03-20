@@ -36,7 +36,8 @@
   docker_image:
     name: "{{muncher_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - muncher
     - microservice

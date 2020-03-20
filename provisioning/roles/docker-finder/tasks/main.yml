@@ -27,7 +27,8 @@
   docker_image:
     name: "{{finder_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - finder
     - microservice

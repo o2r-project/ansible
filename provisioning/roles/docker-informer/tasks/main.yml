@@ -21,7 +21,8 @@
   docker_image:
     name: "{{infomer_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - informer
     - microservice

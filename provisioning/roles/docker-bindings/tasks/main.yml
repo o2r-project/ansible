@@ -32,7 +32,8 @@
   docker_image:
     name: "{{bindings_role.container.image}}"
     state: present
-    force: yes
+    source: pull
+    force_source: yes
   tags:
     - bindings
     - microservice
