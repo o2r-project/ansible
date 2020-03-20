@@ -18,4 +18,4 @@
     state: restarted
 
 - name: Wait for o2r-finder to start up
-  pause: seconds=10
+  pause: seconds=15
