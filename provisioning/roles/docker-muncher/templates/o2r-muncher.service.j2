@@ -12,6 +12,7 @@ ExecStartPre=-/usr/bin/docker create \
   --name "{{muncher_role.container.name}}" \
   -v "{{muncher_role.config.basepath}}:{{loader_role.config.basepath}}" \
   -v "/var/run/docker.sock:/var/run/docker.sock" \
+  -v "{{muncher_role.configdir}}/config.js:/muncher/config/config.js:ro" \
   -e "MUNCHER_BASEPATH={{loader_role.config.basepath}}/" \
   -e "MUNCHER_MONGODB=mongodb://{{muncher_role.config.mongo_host}}:{{muncher_role.config.mongo_port}}/" \
   -e "MUNCHER_PROXY={{proxy.http_proxy}}" \

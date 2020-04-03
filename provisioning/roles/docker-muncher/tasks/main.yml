@@ -2,6 +2,23 @@
 - name: debug
   debug: var=muncher_role
 
+- name: Create config directory
+  become: yes
+  file:
+    path: "{{muncher_role.configdir}}"
+    state: directory
+    mode: 0755
+  tags:
+    - muncher
+
+- name: Copy config.js for detailed configuration
+  become: yes
+  copy:
+    src: "config.js"
+    dest: "{{muncher_role.configdir}}/config.js"
+  tags:
+    - muncher
+
 - name: Create data directory
   become: yes
   file:

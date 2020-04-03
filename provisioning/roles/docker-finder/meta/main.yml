@@ -1,4 +1,4 @@
 ---
 dependencies:
   - docker-mongodb
-  - docker-elasticsearch
+  #- docker-elasticsearch
