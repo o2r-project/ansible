@@ -19,7 +19,7 @@
   when: informercreate.changed
   become: yes
   docker_image:
-    name: "{{infomer_role.container.image}}"
+    name: "{{informer_role.container.image}}"
     state: present
     source: pull
     force_source: yes
