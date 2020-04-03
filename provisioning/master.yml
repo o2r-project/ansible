@@ -3,7 +3,7 @@
   roles:
     # required databases:
     - docker-mongodb
-    - docker-elasticsearch
+    #- docker-elasticsearch
     # MongoDB admin interface:
     - docker-mongo-express
     # o2r microservices:
@@ -11,7 +11,7 @@
     - docker-informer
     - docker-inspecter
     - docker-bouncer
-    - docker-finder
+    #- docker-finder
     - docker-loader
     - docker-shipper
     - docker-substituter

@@ -47,28 +47,27 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
 - yum updates
 - EPEL repository
 - docker
-- [`docker`](https://pypi.org/project/docker/) from PyPi (required for Docker via Ansible)
-- MongoDB `3.4` in Docker container
+- Python package [`docker`](https://pypi.org/project/docker/) from PyPi (required for Docker via Ansible)
+- MongoDB `3.6` in Docker container
 - mariadb in Docker container
-- [inactive] piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de)
-  - inofficial piwik container, but works well; watch out when updating the container because on the first run the build in webserver might have to generate private keys, which takes some time!
-- nginx in Docker-Container (läuft _nicht_ über systemd!)
+- [inactive] piwik in Docker container (visitor statistics for http://o2r.info and https://o2r.uni-muenster.de); inofficial piwik container, but works well; watch out when updating the container because on the first run the build in webserver might have to generate private keys, which takes some time!
+- nginx in Docker-Container (_not_ running as a systemd service!)
   - reverse proxy für die o2r-microservices (siehe reverse proxies in `provisioning/roles/docker-nginx/templates/nginx.conf_all.j2`)
   - reverse proxy /mongo-express auf die mongo-express-Instanz >> http://o2r-mongo-express:8081
   - reverse proxy /piwik auf die Piwik-Instanz
   - hosting von `/static` - Dateien
-  - proxy für WWU-Webseite (`/wwuproxy`) für CORS-losen Zugriff auf CRIS (genutzt für [Publikationsliste](https://o2r.uni-muenster.de/wwuproxy/forschungaz-rest/ws/public/infoobject/getrelated/Project/9520/PROJ_has_PUBL) auf o2r.info)
-- mongo-express in Docker container (abgesichert über HTTP Basic Auth), erreibbar unter http://ubsvirt148.uni-muenster.de:8027/ (Username und Passwort sind im vault)
-- Elasticsearch in Docker-Container ("abgesichert" über nginx Proxy, der nur `GET` requests and den Endpoint für Suche erlaubt)
+  - proxy for WWU website (available at `/wwuproxy`) for accessing the CRIS system without CORS issues (used for [publication list](https://o2r.uni-muenster.de/wwuproxy/forschungaz-rest/ws/public/infoobject/getrelated/Project/9520/PROJ_has_PUBL) on https://o2r.info/publications)
+- mongo-express in Docker container, publicly available at http://ubsvirt148.uni-muenster.de:8027/ (secured via HTTP Basic Auth, username and password in o2r password safe)
+- [inactive]  Elasticsearch in Docker Container currently disabled (secured via nginx proxy, which only allows `GET` requests on the endpoint for search)
 - o2r-microservices in Docker containers
   - bouncer
   - muncher (with access to Docker socket)
-  - finder
+  - [inactive] finder
   - informer
   - loader (with access to Docker socket)
   - ui (the web page)
-  - shipper (has some issues with the log, the container may run fine but the systemctl log still shows a previous error)
-  - ~~badger~~
+  - shipper
+  - [inactive] badger
   - substituter
 
 ## Service names
@@ -119,6 +118,24 @@ There is a user `o2r` on the demo server.
 1. container aus nginx heraus verlinken (damit internes resolving funktioniert), siehe `../docker-nginx/tasks/main.yml`
 1. [optional/bei Problemen:] nginx container auf dem Server stoppen und entfernen, damit neuer Link funktioniert (scheint bei jeder Änderung der veröffentlichten ports etc. notwendig zu sein)
 1. Playbook laufen lassen
+
+### Remove services
+
+```bash
+[o2r@ubsvirt148 ~]$ sudo systemctl stop elasticsearch
+[o2r@ubsvirt148 ~]$ sudo systemctl disable elasticsearch
+Removed symlink /etc/systemd/system/multi-user.target.wants/elasticsearch.service.
+[o2r@ubsvirt148 ~]$ sudo rm /etc/systemd/system/elasticsearch.service 
+```
+
+```bash
+[o2r@ubsvirt148 ~]$ sudo systemctl stop o2r-finder
+[o2r@ubsvirt148 ~]$ sudo docker rm -f o2r-finder
+o2r-finder
+[o2r@ubsvirt148 ~]$ sudo systemctl disable o2r-finder
+Removed symlink /etc/systemd/system/multi-user.target.wants/o2r-finder.service.
+[o2r@ubsvirt148 ~]$ sudo rm /etc/systemd/system/o2r-finder.service
+```
 
 ### Website "o2r-UI"
 
@@ -357,9 +374,10 @@ SELinux ist auf `permissive` gesetzt, weil anders MongoDB nicht funktionieren wo
 
 ### MongoDB
 
-MongoDB is running in version `3.4` in a container, but without a system service configuration.
+MongoDB is running in version `3.6` in a container, but without a system service configuration.
 
-Außerdem muss auf der MongoDB ein [replication set](https://docs.mongodb.com/manual/replication/) konfiguriert und initialisiert sein, selbst wenn es keine Replikationen gibt, weil der [oplog](https://docs.mongodb.com/manual/core/replica-set-oplog/) von einigen Microservices für event-basierte Updates genutzt wird. Die entsprechenden Tasks sind in der Rolle `roles/mongodb` enthalten.
+**Important**: The MongoDB must have a [replication set](https://docs.mongodb.com/manual/replication/) configured and initialised, even if there are no replications, because the [oplog](https://docs.mongodb.com/manual/core/replica-set-oplog/) is used by some microservices as a makeshift event queue for notifications.
+The taks to set this up are included in the role, `roles/mongodb`.
 
 To get the current state of the MongoDB, run
 

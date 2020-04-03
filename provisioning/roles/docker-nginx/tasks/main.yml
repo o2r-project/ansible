@@ -95,14 +95,14 @@
       - /etc/nginx-docker/global.pass:/etc/keys/global.pass:ro
       - /etc/nginx-docker/dhparams-8192.pem:/etc/dhparams.pem:ro
     links:
-      - "elasticsearch"
+      #- "elasticsearch"
       - "mongo-express"
       #- "piwik"
       - "o2r-muncher"
       - "o2r-informer"
       - "o2r-inspecter"
       - "o2r-bouncer"
-      - "o2r-finder"
+      #- "o2r-finder"
       - "o2r-loader"
       - "o2r-shipper"
       - "o2r-substituter"
