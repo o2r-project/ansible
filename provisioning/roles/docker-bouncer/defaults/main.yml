@@ -17,5 +17,5 @@ bouncer_role:
       bot_token: "{{slack_bot_token}}"
       usernames_whitelist: "\\\\b(daniel|markuskonkol|m-schu)\\\\b" # \b must be escaped, check correctness on server with docker inspect o2r-bouncer
   container:
-    image: "o2rproject/o2r-bouncer:0.15.0"
+    image: "o2rproject/o2r-bouncer:0.16.0"
     name: o2r-bouncer
