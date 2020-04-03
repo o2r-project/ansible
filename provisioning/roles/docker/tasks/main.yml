@@ -10,6 +10,16 @@
     mode: 0644
   tags: docker
 
+- name: Add daemon.json global configuration file
+  become: yes
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+  tags: docker
+
 - name: Install
   become: yes
   yum: name=docker-ce
