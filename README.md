@@ -83,7 +83,7 @@ Container names should match names of systemd services, i.e. the name of the uni
 
 Information received by IT staff:
 
-> _CentOS 7.2 mit 4 Kernen und 8 GB Ram. Die Platte ist zurzeit 100 GB groß. Sollte da in der Performance etwas nicht passen, können wir das noch korrigieren._
+> _CentOS 7.2 mit 4 Kernen und ~~8~~ 16 GB Ram. Die Platte ist zurzeit 100 GB groß. Sollte da in der Performance etwas nicht passen, können wir das noch korrigieren._
 > _Snapshots sind eingerichtet. Es wird jeden Sonntag um ca. 21:00 ein komplettes Image der VM erstellt und auf ein anderes Storage (außerhalb des Datacenters) gespeichert._
 
 ## Secrets and passwords
