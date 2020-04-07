@@ -137,6 +137,10 @@ Removed symlink /etc/systemd/system/multi-user.target.wants/o2r-finder.service.
 [o2r@ubsvirt148 ~]$ sudo rm /etc/systemd/system/o2r-finder.service
 ```
 
+### Update second-level containers
+
+If you want to update the version of `o2r-meta` and `containerit`, i.e., the "second-level" containers used by the microservices, then make sure to recreate (`docker rm -f`) the containers of the microservices using them (`o2r-muncher`, `o2r-loader`).
+
 ### Website "o2r-UI"
 
 o2r-UI runs in a container with it's own webserver respectively Node.js application with a development server.

@@ -13,7 +13,7 @@ muncher_role:
     containerit:
       image: "o2rproject/containerit:geospatial-0.5.0.9003"
     meta:
-      image: "o2rproject/o2r-meta:9198450"
+      image: "o2rproject/o2r-meta:1447d43"
   container:
     image: "o2rproject/o2r-muncher:0.26.1"
     name: o2r-muncher
