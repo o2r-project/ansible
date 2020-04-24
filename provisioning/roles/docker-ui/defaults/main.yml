@@ -10,6 +10,6 @@ ui_role:
       api_url: "{{ui_api_url}}"
       erc_url: "{{ui_erc_url}}"
   container:
-    image: "o2rproject/ui:0.2.2"
+    image: "o2rproject/ui:0.2.4"
     #image: "o2rproject/ui:bugfix"
     name: ui
