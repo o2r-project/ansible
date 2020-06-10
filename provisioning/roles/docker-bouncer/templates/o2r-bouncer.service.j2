@@ -23,8 +23,6 @@ ExecStartPre=-/usr/bin/docker create \
   -e "SLACK_BOT_TOKEN={{bouncer_role.config.slack.bot_token}}" \
   -e "SLACK_USERNAMES_WHITELIST={{bouncer_role.config.slack.usernames_whitelist}}" \
   -e "SESSION_SECRET={{bouncer_role.config.sessionsecret}}" \
-#  -e "https_proxy={{proxy.https_proxy}}" \
-#  -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{bouncer_role.config.port}}:8083" \
   --link "{{bouncer_role.config.mongo_host}}:{{bouncer_role.config.mongo_host}}" \
   "{{bouncer_role.container.image}}"

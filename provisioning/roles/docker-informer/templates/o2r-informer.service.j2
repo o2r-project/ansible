@@ -1,5 +1,5 @@
 [Unit]
-Description=o2r bouncer
+Description=o2r informer
 StartLimitIntervalSec=200
 StartLimitBurst=6
 
@@ -16,8 +16,6 @@ ExecStartPre=-/usr/bin/docker create \
   -e "INFORMER_MONGODB_DATABASE={{informer_role.config.mongo_database}}" \
   -e "DEBUG=informer" \
   -e "SESSIONSECRET={{informer_role.config.sessionsecret}}" \
-#  -e "https_proxy={{proxy.https_proxy}}" \
-#  -e "http_proxy={{proxy.http_proxy}}" \
   -p "{{informer_role.config.port}}:8082" \
   --link "{{informer_role.config.mongo_host}}:{{informer_role.config.mongo_host}}" \
   "{{informer_role.container.image}}"
