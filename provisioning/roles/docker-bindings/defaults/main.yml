@@ -4,5 +4,5 @@ bindings_role:
     basepath: "{{storage}}"
     port: 8092
   container:
-    image: "o2rproject/o2r-bindings:0.1.0"
+    image: "o2rproject/o2r-bindings:0.3.1"
     name: o2r-bindings
