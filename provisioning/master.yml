@@ -9,7 +9,6 @@
     # o2r microservices:
     - docker-muncher
     - docker-informer
-    - docker-inspecter
     - docker-bouncer
     #- docker-finder
     - docker-shipper

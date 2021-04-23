@@ -48,10 +48,6 @@ provision-informer:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "informer,nginx"
 .PHONY: provision-informer
 
-provision-inspecter:
-	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "inspecter,nginx"
-.PHONY: provision-inspecter
-
 provision-shipper:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "shipper,nginx"
 .PHONY: provision-shipper

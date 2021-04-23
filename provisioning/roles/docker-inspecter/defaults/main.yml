@@ -1,8 +1,0 @@
----
-inspecter_role:
-  config:
-    basepath: "{{storage}}/compendium"
-    port: 8091
-  container:
-    image: "o2rproject/o2r-inspecter:0.0.1"
-    name: o2r-inspecter
