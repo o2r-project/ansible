@@ -21,6 +21,18 @@
   tags:
     - nginx
 
+- name: Copy cors.conf
+  become: yes
+  notify: restart nginx
+  copy:
+    src: "cors.conf"
+    dest: "/etc/nginx-docker/cors.conf"
+    owner: root
+    group: root
+    mode: "0600"
+  tags:
+    - nginx
+
 - name: Save certificate password to file
   become: yes
   notify: restart nginx
@@ -89,6 +101,7 @@
       - "443:443"
     volumes:
       - /var/www-docker:/usr/share/nginx/html:ro
+      - /etc/nginx-docker/cors.conf:/etc/nginx/cors.conf:ro
       - /etc/nginx-docker/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/nginx-docker/bundle.crt:/etc/ssl/certs/certchain.crt:ro
       - /etc/nginx-docker/{{ssl_cert_keyfile}}:/etc/ssl/private/cert.key:ro
@@ -100,10 +113,8 @@
       #- "piwik"
       - "o2r-muncher"
       - "o2r-informer"
-      - "o2r-inspecter"
       - "o2r-bouncer"
       #- "o2r-finder"
-      - "o2r-loader"
       - "o2r-shipper"
       - "o2r-substituter"
       - "o2r-bindings"
