@@ -64,7 +64,6 @@ Configuration is done with Ansible (`>= 2.0`), which installs the following soft
   - muncher (with access to Docker socket)
   - [inactive] finder
   - informer
-  - loader (with access to Docker socket)
   - ui (the web page)
   - shipper
   - [inactive] badger
@@ -139,7 +138,7 @@ Removed symlink /etc/systemd/system/multi-user.target.wants/o2r-finder.service.
 
 ### Update second-level containers
 
-If you want to update the version of `o2r-meta` and `containerit`, i.e., the "second-level" containers used by the microservices, then make sure to recreate (`docker rm -f`) the containers of the microservices using them (`o2r-muncher`, `o2r-loader`).
+If you want to update the version of `o2r-meta` and `containerit`, i.e., the "second-level" containers used by the microservices, then make sure to recreate (`docker rm -f`) the containers of the microservices using them (`o2r-muncher`).
 
 ### Website "o2r-UI"
 
@@ -215,12 +214,27 @@ sudo docker exec -it elasticsearch curl -XDELETE 'http://localhost:9200/o2r/'
 sudo docker images | grep o2r
 ```
 
-#### Entfernen alter images
+#### Remove old images and clean up space used by Docker
 
 Die alten (untagged) images können mit folgendem Befehl entfernt werden (zum Test zuvor nur das innere Kommando ausführen):
 
 ```bash
 sudo docker rmi $(sudo docker images | grep "<none>" | awk '{print $3}')
+```
+
+Check used space with
+
+```bash
+sudo docker system df
+```
+
+and clean up specific parts with (the `-a` option removes unused images, not just dangling ones)
+
+```bash
+docker volume prune
+docker container prune
+docker image prune -a
+docker network prune
 ```
 
 Eigentlich sollte keines dieser images genutzt werden. Wenn dennoch images nicht entfernt werden können dann nutzen die microservices vermutlich veraltete images. Das Alter der images überprüfen mit `sudo docker ps`, Spalte `CREATED` zeigt wann der container erzeugt wurde, was einen Ansatzpunkt zur Überprüfung des image-Alters gibt.
