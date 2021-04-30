@@ -62,14 +62,6 @@
     mode: 0755
   tags:
     - nginx
-   
-#- name: Copy socket.html (test page)
-#  become: yes
-#  copy:
-#    src: "socket.html"
-#    dest: "/var/www-docker/_dev/socket.html"
-#  tags:
-#    - nginx
 
 - name: Copy versions file
   become: yes
@@ -77,6 +69,18 @@
   template:
     src: "versions.json.j2"
     dest: "/var/www-docker/_config/versions.json"
+  tags:
+    - nginx
+
+- name: Copy config.js
+  become: yes
+  notify: Restart o2r-ui
+  template:
+    src: "config.json.j2"
+    dest: "{{ nginx_role.ui_config.host }}"
+    owner: root
+    group: root
+    mode: 0644
   tags:
     - nginx
 
@@ -91,8 +95,8 @@
 - name: nginx container
   become: yes
   docker_container:
-    name: nginx
-    image: nginx:stable-alpine
+    name: "{{nginx_role.container.name}}"
+    image: "{{nginx_role.container.image}}"
     state: started
     recreate: yes
     restart_policy: always
@@ -100,13 +104,14 @@
       - "80:80"
       - "443:443"
     volumes:
-      - /var/www-docker:/usr/share/nginx/html:ro
+      - /var/www-docker/_config:/usr/share/nginx/html/_config:ro
       - /etc/nginx-docker/cors.conf:/etc/nginx/cors.conf:ro
       - /etc/nginx-docker/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/nginx-docker/bundle.crt:/etc/ssl/certs/certchain.crt:ro
       - /etc/nginx-docker/{{ssl_cert_keyfile}}:/etc/ssl/private/cert.key:ro
       - /etc/nginx-docker/global.pass:/etc/keys/global.pass:ro
       - /etc/nginx-docker/dhparams-8192.pem:/etc/dhparams.pem:ro
+      - "{{ nginx_role.ui_config.host }}/{{ nginx_role.ui_config.container }}:ro"
     links:
       #- "elasticsearch"
       - "mongo-express"
@@ -118,7 +123,6 @@
       - "o2r-shipper"
       - "o2r-substituter"
       - "o2r-bindings"
-      - "ui"
       #- "o2r-badger"
   tags:
     - nginx

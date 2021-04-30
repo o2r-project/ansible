@@ -1,0 +1,10 @@
+---
+nginx_role:
+  config:
+    container:
+    image: "o2rproject/ui:0.5.0"
+    #image: "o2rproject/ui:bugfix"
+    name: nginx
+    ui_config:
+      host: "/etc/nginx-docker/config.json"
+      container: "usr/share/nginx/html/static/js/config.json"

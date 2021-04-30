@@ -75,10 +75,12 @@ http {
         #charset koi8-r;
         #access_log  logs/host.access.log  main;
 
+        # based on https://github.com/o2r-project/o2r-UI/blob/master/ui/dev/nginx.conf
         location / {
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_pass http://ui:3000;
+            include mime.types;
+            # https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/
+            root /usr/share/nginx/html;
+            index index.html;
         }
 
         location /api {
