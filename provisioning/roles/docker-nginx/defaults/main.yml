@@ -1,10 +1,12 @@
 ---
 nginx_role:
-  config:
-    container:
-    image: "o2rproject/ui:0.5.0"
+  container:
+    image: "o2rproject/ui:0.5.1"
     #image: "o2rproject/ui:bugfix"
     name: nginx
-    ui_config:
+  ui:
+    api_url: "{{ui_api_url}}"
+    erc_url: "{{ui_erc_url}}"
+    config_path:
       host: "/etc/nginx-docker/config.json"
-      container: "usr/share/nginx/html/static/js/config.json"
+      container: "/usr/share/nginx/html/config.js"

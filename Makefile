@@ -64,10 +64,6 @@ provision-mongodb:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "mongodb"
 .PHONY: provision-mongodb
 
-provision-ui:
-	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "ui,nginx"
-.PHONY: provision-ui
-
 provision-bindings:
 	ansible-playbook --ask-vault-pass -i hosts provisioning/site.yml --tags "bindings,nginx"
 .PHONY: provision-bindings

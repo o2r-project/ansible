@@ -74,10 +74,10 @@
 
 - name: Copy config.js
   become: yes
-  notify: Restart o2r-ui
+  notify: restart nginx
   template:
-    src: "config.json.j2"
-    dest: "{{ nginx_role.ui_config.host }}"
+    src: "config.js.j2"
+    dest: "{{ nginx_role.ui.config_path.host }}"
     owner: root
     group: root
     mode: 0644
@@ -111,7 +111,7 @@
       - /etc/nginx-docker/{{ssl_cert_keyfile}}:/etc/ssl/private/cert.key:ro
       - /etc/nginx-docker/global.pass:/etc/keys/global.pass:ro
       - /etc/nginx-docker/dhparams-8192.pem:/etc/dhparams.pem:ro
-      - "{{ nginx_role.ui_config.host }}/{{ nginx_role.ui_config.container }}:ro"
+      - "{{ nginx_role.ui.config_path.host }}:{{ nginx_role.ui.config_path.container }}:ro"
     links:
       #- "elasticsearch"
       - "mongo-express"
