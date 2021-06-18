@@ -183,8 +183,8 @@ sudo journalctl --since "1 hour ago"
 sudo journalctl -b
 sudo journalctl --list-boots
 
-# if there are too many logs, retain only the past x
-journalctl --vacuum-time=1h
+# if there are too many logs, retain only the past x hours/days
+journalctl --vacuum-time=1d
 
 # Wenn nichts mehr hilft, vielleicht ein Docker restart
 sudo systemctl restart docker

@@ -15,7 +15,7 @@ ExecStartPre=-/usr/bin/docker create \
   -e "SHIPPER_MONGO_NAME={{shipper_role.config.mongo_database}}" \
   -e "SHIPPER_BOTTLE_HOST={{shipper_role.config.bottle_host}}" \
   -e "SHIPPER_SECRET={{shipper_role.config.sessionsecret}}" \
-  -e SHIPPER_REPO_TOKENS="{\\"zenodo_sandbox\\": \\"{{shipper_role.config.zenodo_sandbox.token}}\\", \\"download\\": \\"none\\" }" \
+  -e SHIPPER_REPO_TOKENS="$(<{{shipper_role.configdir}}/tokens.json)" \
   -e "SHIPPER_BOTTLE_PORT=8087" \
   -p "{{shipper_role.config.port}}:8087" \
   --link "{{shipper_role.config.mongo_host}}:{{shipper_role.config.mongo_host}}" \
