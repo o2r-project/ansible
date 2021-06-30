@@ -11,7 +11,7 @@ muncher_role:
       receivers: "openingreproducibleresearch@gmail.com"
       sender: "openingreproducibleresearch@gmail.com"
     containerit:
-      image: "o2rproject/containerit:geospatial-0.5.0.9003"
+      image: "o2rproject/containerit:geospatial-0.6.0.9004"
     meta:
       image: "o2rproject/o2r-meta:1447d43"
   container:
