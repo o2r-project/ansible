@@ -80,7 +80,7 @@ http {
             include mime.types;
             # https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/
             root /usr/share/nginx/html;
-            index index.html;
+            try_files $uri /index.html;
         }
 
         location /api {
