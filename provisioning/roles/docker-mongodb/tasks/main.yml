@@ -54,7 +54,7 @@
     - mongodb
 
 - name: Pause to allow MongoDB service to start
-  pause: seconds=5
+  pause: seconds=10
   tags:
     - mongodb
 
