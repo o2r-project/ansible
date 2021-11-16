@@ -335,7 +335,8 @@ Die o2r microservices auf Basis von node.js nutzen express.js zum Handling der S
 
 ### HTTPS certificate
 
-The certificates are stored on the host in `/root/`.
+The certificates and key files are stored on the host in `/root/` and also in `/etc/nginx-docker`.
+In the latter, there are also the bundled certificate chains (_without_ the Telekom root certificate!) needed in the webserver.
 The certificates are managed by the ULB admin team with the cental e-mail "ulbzertifikatadmin", so please in in touch with them when it is time for an update.
 They will also be notified before the certificate expires.
 

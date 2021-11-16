@@ -95,7 +95,8 @@
       - /var/www-docker/_config:/usr/share/nginx/html/_config:ro
       - /etc/nginx-docker/cors.conf:/etc/nginx/cors.conf:ro
       - /etc/nginx-docker/nginx.conf:/etc/nginx/nginx.conf:ro
-      - "{{ssl_cert}}:/etc/ssl/certs/cert.pem:ro"
+      - "{{ssl_cert}}:/etc/ssl/certs/bundle.crt:ro"
+      - "{{ssl_key}}:/etc/ssl/private/cert.key:ro"
       - /etc/nginx-docker/dhparams-8192.pem:/etc/dhparams.pem:ro
       - "{{ nginx_role.ui.config_path.host }}:{{ nginx_role.ui.config_path.container }}:ro"
     links:
