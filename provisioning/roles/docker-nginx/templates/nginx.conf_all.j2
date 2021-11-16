@@ -54,10 +54,9 @@ http {
         server_name  {{nginx_server_name}};
 
         listen 443 ssl;
-        ssl_certificate /etc/ssl/certs/certchain.crt;
+        ssl_certificate /etc/ssl/certs/bundle.crt;
         ssl_certificate_key /etc/ssl/private/cert.key;
-        ssl_password_file /etc/keys/global.pass;
-
+        
         # https://www.ssllabs.com/ssltest/analyze.html?d=o2r.uni-muenster.de&hideResults=on
         ssl_protocols TLSv1.2 TLSv1.3;
         

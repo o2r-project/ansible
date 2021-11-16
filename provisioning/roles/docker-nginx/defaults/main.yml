@@ -1,7 +1,7 @@
 ---
 nginx_role:
   container:
-    image: "o2rproject/ui:0.5.4"
+    image: "o2rproject/ui:0.5.6"
     #image: "o2rproject/ui:bugfix"
     name: nginx
   ui:

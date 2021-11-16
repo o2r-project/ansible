@@ -97,7 +97,7 @@ The command to edit a vault file is
 ansible-vault edit <path to vault project>/provisioning/host_vars/<hostname>/vault.yml
 ```
 
-Don't forget to manually sync the vault files between the vault file project and this project.
+**Note:** Don't forget to manually sync the vault files between the vault file project and this project.
 Daniel has the password to the vault(s) and can give it to you in a secure way.
 
 ## Server connection and authentication
@@ -335,54 +335,19 @@ Die o2r microservices auf Basis von node.js nutzen express.js zum Handling der S
 
 ### HTTPS certificate
 
-The certificates are stored on the host in `/etc/nginx-docker/` (uploaded via SCP).
+The certificates and key files are stored on the host in `/root/` and also in `/etc/nginx-docker`.
+In the latter, there are also the bundled certificate chains (_without_ the Telekom root certificate!) needed in the webserver.
+The certificates are managed by the ULB admin team with the cental e-mail "ulbzertifikatadmin", so please in in touch with them when it is time for an update.
+They will also be notified before the certificate expires.
+
+The folder contains a private key `o2r.uni-muenster.de-key.pem` (without the password, so protected to be only read by root user!) and the signed certificate `cert-114906...1352.pem`.
 The certificate files are mounted into the nginx proxy (see `provisioning/role/docker-nginx/tasks/main.yml` ([used manual 1](http://nginx.org/en/docs/http/configuring_https_servers.html), [used manual 2](https://bjornjohansen.no/securing-nginx-ssl)).
 HTTP is redirected to HTTPS ([used instruction](https://bjornjohansen.no/redirect-to-https-with-nginx)) and only strong cipher suites are enabled.
 
 You can learn more about CA certificate issuing at WWU at [https://www.uni-muenster.de/WWUCA/de/cacerts.html](https://www.uni-muenster.de/WWUCA/de/cacerts.html).
 Please check that site for up-to-date links to base certificates and more instructions.
-The certificate chain _without_ the Telekom Root certificate (!) was created with the following commands _on the server_:
-
-```bash
-# Upload files
-#scp /home/daniel/ownCloud/o2r-data/Server/o2r.uni-muenster.de\ @\ ULB/Server-Certificate_2019/*.pem o2r@ubsvirt148.uni-muenster.de:/home/o2r
-
-# Login to server and move the files
-cd /etc/nginx-docker/
-mv ~/*.pem /etc/nginx-docker/
-chown root:root *.pem
-
-# Get chain 2016
-# wget https://pki.pca.dfn.de/wwu-ca/pub/cacert/chain.txt
-# manually remove certificate starting with "subject= /C=DE/O=Deutsche Telekom ..."
-# nano chain.txt
-
-# 2016 certificate:
-#cat cert-7648722783260631.pem chain.txt > bundle.crt
-
-# Get chain without root in 2019
-wget https://www.uni-muenster.de/WWUCA/chain.pem
-
-# 2019 certificate:
-#mv bundle.crt bundle.crt_2016
-cat cert-10275895817424272556132495911.pem chain.pem > bundle.crt
-
-# Restart the webserver so new certificate takes effect
-docker restart nginx
-```
-
-The serial number of the certificate as well as the certificate key are stored in the o2r password safe.
-
-The SSL certificate password is stored in the file `/etc/keys/global.pass` on the server, which can only be read by the `root` user.
-The file is generated as part of the Ansible script with information from the vault.
 
 Test suite: https://www.ssllabs.com/ssltest/analyze.html?d=o2r.uni%2dmuenster.de&hideResults=on&latest
-
-The DH parameters were generated on the server ([used instructions](https://weakdh.org/sysadmin.html), [about keylength](https://www.keylength.com/en/compare/); duration for creation of 4096er varian: about 15 minutes):
-
-```bash
-[o2r@ubsvirt148 /etc/nginx-docker]$ sudo openssl dhparam -out dhparams.pem 8192
-```
 
 ### SELinux
 
